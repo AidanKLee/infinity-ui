@@ -1,0 +1,61 @@
+@layer components {
+    .btn {
+        @apply flex items-center gap-2 px-4 py-1 font-medium border bg-white border-light rounded-md w-fit duration-200 outline-none hover:bg-light focus:outline-none focus:ring-2 focus:ring-dark/50 active:scale-95 dark:bg-black dark:border-dark dark:hover:bg-dark dark:focus:ring-light/50 disabled:opacity-50;
+
+        &.btn-2xs {
+            @apply text-2xs px-1.5;
+        }
+
+        &.btn-xs {
+            @apply text-xs px-2;
+        }
+
+        &.btn-sm {
+            @apply text-sm px-2.5;
+        }
+
+        &.btn-lg {
+            @apply text-lg px-4.5 py-1.5;
+        }
+
+        &.btn-xl {
+            @apply text-xl px-5.5 py-2;
+        }
+
+        &.btn-2xl {
+            @apply text-2xl px-6.5 py-2.5;
+        }
+
+        &.reverse {
+            @apply bg-black text-white border-dark hover:bg-dark focus:ring-dark/50 dark:bg-white dark:text-black dark:border-light dark:hover:bg-light dark:focus:ring-light/50;
+        }
+
+        &.primary {
+            @apply text-white bg-primary border-primary hover:bg-primary/80 focus:ring-primary/75 dark:text-black dark:border-primary-dark dark:bg-primary-dark dark:hover:bg-primary-dark/80 dark:focus:ring-primary-dark/75;
+        }
+
+        &.secondary {
+            @apply text-white bg-secondary border-secondary hover:bg-secondary/80 focus:ring-secondary/75 dark:text-black dark:border-secondary-dark dark:bg-secondary-dark dark:hover:bg-secondary-dark/80 dark:focus:ring-secondary-dark/75;
+        }
+
+        &.tertiary {
+            @apply text-white bg-tertiary border-tertiary hover:bg-tertiary/80 focus:ring-tertiary/75 dark:text-black dark:border-tertiary-dark dark:bg-tertiary-dark dark:hover:bg-tertiary-dark/80 dark:focus:ring-tertiary-dark/75;
+        }
+
+        &.info {
+            @apply text-white bg-info border-info hover:bg-info/80 focus:ring-info/75 dark:text-black dark:border-info-dark dark:bg-info-dark dark:hover:bg-info-dark/80 dark:focus:ring-info-dark/75;
+        }
+
+        &.warning {
+            @apply text-black bg-warning border-warning hover:bg-warning/80 focus:ring-warning/75;
+        }
+
+        &.danger {
+            @apply text-white bg-danger border-danger hover:bg-danger/80 focus:ring-danger/75;
+        }
+    }
+
+    .navlink {
+        @apply flex items-center justify-center rounded-md gap-1.5 px-2 py-2 duration-200 outline-none hover:text-primary hover:bg-primary/5 focus:outline-none focus:text-primary focus:bg-primary/5 dark:hover:text-primary-dark dark:hover:bg-primary-dark/20 dark:focus:text-primary-dark dark:focus:bg-primary-dark/20;
+    }
+}

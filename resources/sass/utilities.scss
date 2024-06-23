@@ -1,0 +1,5 @@
+@layer utilities {
+    .focus-none {
+        @apply outline-none focus:outline-none;
+    }
+}
