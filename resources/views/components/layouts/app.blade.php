@@ -33,6 +33,30 @@
                 <x-slot name="title">There was a problem!</x-slot>
                 Please check your internet connection.
             </x-notifications.toast>
+            <x-notifications.toast icon="success" closeable index="0">
+                <x-slot name="title">Successfully saved!</x-slot>
+                Anyone with a link can now view this file.
+            </x-notifications.toast>
+            <x-notifications.toast icon="error" closeable index="1">
+                <x-slot name="title">An error occurred!</x-slot>
+                Something went wrong. Please try again.
+            </x-notifications.toast>
+            <x-notifications.toast icon="warning" closeable index="2">
+                <x-slot name="title">There was a problem!</x-slot>
+                Please check your internet connection.
+            </x-notifications.toast>
+            <x-notifications.toast icon="success" closeable index="0">
+                <x-slot name="title">Successfully saved!</x-slot>
+                Anyone with a link can now view this file.
+            </x-notifications.toast>
+            <x-notifications.toast icon="error" closeable index="1">
+                <x-slot name="title">An error occurred!</x-slot>
+                Something went wrong. Please try again.
+            </x-notifications.toast>
+            <x-notifications.toast icon="warning" closeable index="2">
+                <x-slot name="title">There was a problem!</x-slot>
+                Please check your internet connection.
+            </x-notifications.toast>
         </x-notifications.container>
         @stack('modals')
         @stack('notifications')

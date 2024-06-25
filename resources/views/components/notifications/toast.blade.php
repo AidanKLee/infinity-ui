@@ -17,7 +17,6 @@
     x-transition:leave="ease-in"
     x-transition:leave-start="opacity-100 scale-100"
     x-transition:leave-end="opacity-0 scale-90"
-    style="top: {{ isset($index) ? ($index * 4) + 12 : 0 }}px; right: {{ isset($index) ? ($index * 4) + 12 : 0 }}px;"
     >
     @isset($icon)
         <div>
@@ -49,7 +48,7 @@
                 <h3 class="font-medium">{{ $title }}</h3>
             @endisset
             @isset ($closeable)
-                <button @click="close" class="focus-none p-1 duration-200 text-black/25 hover:text-primary dark:text-white/25 dark:hover:text-primary-dark">
+                <button @click="close(false)" class="focus-none p-1 duration-200 text-black/25 hover:text-primary dark:text-white/25 dark:hover:text-primary-dark">
                     <x-icons.cross class="w-4 h-4" />
                 </button>
             @endisset
@@ -79,11 +78,16 @@
                             }, 60000);
                         },
     
-                        close() {
+                        close(isOffscreen = false) {
                             this.show = false;
-                            setTimeout(() => {
+
+                            if (isOffscreen) {
                                 this.$refs.toast.remove();
-                            }, 300);
+                            } else {
+                                setTimeout(() => {
+                                    this.$refs.toast.remove();
+                                }, 300);
+                            }
                         },
     
                         handleScroll(e) {
@@ -231,7 +235,7 @@
                                 this.$refs.toast.style.transform = `translateX(${this.$refs.toast.getBoundingClientRect().width + 128}px)`;
                                 clearTimeout(this.initTimeout);
                                 setTimeout(() => {
-                                    this.close();
+                                    this.close(true);
                                 }, 300);
                             } else {
                                 this.$refs.toast.style.transform = '';

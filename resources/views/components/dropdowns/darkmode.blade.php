@@ -153,7 +153,7 @@
     
                             this.mode = e.currentTarget.dataset.themeMode;
     
-                            this.recursivelyDisableTransition(document.documentElement)
+                            recursivelyDisableTransition(document.documentElement)
                             
                             if (this.mode === 'system') {
                                 localStorage.removeItem('theme')
@@ -166,7 +166,7 @@
                                     document.documentElement.classList.remove('dark')
                                 }
     
-                                this.recursivelyEnableTransition(document.documentElement)
+                                recursivelyEnableTransition(document.documentElement)
     
                                 return this.checkSystemTheme();
                             } else if (this.mode === 'dark') {
@@ -179,7 +179,7 @@
                                 document.documentElement.classList.remove('dark')
                             }
     
-                            this.recursivelyEnableTransition(document.documentElement)
+                            recursivelyEnableTransition(document.documentElement)
     
                             cancelAnimationFrame(this.checker)
                         }
