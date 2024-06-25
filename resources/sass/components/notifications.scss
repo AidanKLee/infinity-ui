@@ -1,0 +1,5 @@
+@layer components {
+    .toast {
+        @apply absolute top-3 right-3 xs:top-3 xs:right-3 flex gap-3 select-none bg-white p-3 rounded-lg duration-300 border border-dark/5 w-[calc(100%-24px)] max-w-sm ml-auto shadow-custom-lg pointer-events-auto dark:bg-black dark:border-light/5;
+    }
+}

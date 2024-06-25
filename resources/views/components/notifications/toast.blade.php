@@ -1,5 +1,5 @@
 <li @attributes(null, ['x-data', 'x-ref', 'x-show', '@mousedown', '@mousemove', '@mouseup.window', '@touchstart', '@touchmove', '@touchend'], [
-    "absolute top-3 right-3 xs:top-3 xs:right-3 flex gap-3 select-none bg-white p-3 rounded-lg duration-300 border border-dark/5 w-[calc(100%-24px)] max-w-sm ml-auto shadow-custom-lg pointer-events-auto dark:bg-black dark:border-light/5"
+    "toast"
 ]) 
     x-data="toast"
     x-ref="toast"
@@ -10,7 +10,7 @@
     @touchstart="startSwipe" 
     @touchmove="swipe"
     @touchend.window="endSwipe"
-    {{-- @wheel="handleScroll" --}}
+    @wheel="handleScroll"
     x-transition:enter="ease-out"
     x-transition:enter-start="opacity-0 scale-90"
     x-transition:enter-end="opacity-100 scale-100"
@@ -84,15 +84,24 @@
                         }, 300);
                     },
 
-                    /**
-                     * TODO: Fix scroll event - sccrolls toasts underneath when the top toast has moved
-                     * @param {WheelEvent} e
-                     */
                     handleScroll(e) {
                         e.preventDefault();
+
+                        if (e.deltaX > 0 && this.parseIntFromTransform(this.$refs.toast.style.transform ?? 0) <= 0) {
+                            this.wheelTimeout = setTimeout(() => {
+                                this.$refs.toast.style.transition = '';
+
+                                this.recursivelyEnablePointerEvents(document.documentElement);
+
+                                this.handleSwipeGesture(this.$refs.toast.getBoundingClientRect().width / 8);
+                            }, 50);
+                            return
+                        }
+                        
                         clearTimeout(this.wheelTimeout);
 
-                        if (e.deltaX > 0) return;
+                        this.recursivelyDisablePointerEvents(document.documentElement, this.$refs.toast);
+
                         this.$refs.toast.style.transform = `translateY(${Math.abs(e.deltaY)}px)`;
 
                         this.touchendX -= e.deltaX;
@@ -102,8 +111,38 @@
 
                         this.wheelTimeout = setTimeout(() => {
                             this.$refs.toast.style.transition = '';
-                            this.handleSwipeGesture();
+
+                            this.recursivelyEnablePointerEvents(document.documentElement);
+
+                            this.handleSwipeGesture(this.$refs.toast.getBoundingClientRect().width / 8);
                         }, 50);
+                    },
+
+                    recursivelyDisablePointerEvents(element, ignoreElement) {
+                        if (!element || element === ignoreElement) {
+                            return
+                        }
+                        
+                        if (element.style) {
+                            element.style.pointerEvents = 'none'
+                            element.childNodes.forEach(child => this.recursivelyDisablePointerEvents(child, ignoreElement))
+                        }
+                    },
+
+                    recursivelyEnablePointerEvents(element) {
+                        if (!element) {
+                            return
+                        }
+                        
+                        if (element.style) {
+                            element.style.pointerEvents = ''
+                            element.childNodes.forEach(child => this.recursivelyEnablePointerEvents(child))
+                        }
+                    },
+
+                    parseIntFromTransform(transformString) {
+                        const transformInt = parseInt(transformString.replace('translateX(', '').replace('px)', ''));
+                        return Number.isNaN(transformInt) ? 0 : transformInt;
                     },
 
                     startSwipe(event) {
@@ -131,8 +170,8 @@
                         return event.changedTouches ? event.changedTouches[0].screenX : event.screenX;
                     },
 
-                    handleSwipeGesture() {
-                        const swipeThreshold = this.$refs.toast.getBoundingClientRect().width / 2;
+                    handleSwipeGesture(customThreshold = null) {
+                        const swipeThreshold = customThreshold ?? this.$refs.toast.getBoundingClientRect().width / 2;
 
                         if (this.touchendX > this.touchstartX + swipeThreshold) {
                             this.$refs.toast.style.transform = `translateX(${this.$refs.toast.getBoundingClientRect().width + 128}px)`;
