@@ -37,6 +37,12 @@
             <button class="btn btn-xs">Click me</button>
             <button class="btn btn-2xs">Click me</button>
         
+            <div class="btn-group">
+                <button class="btn">Click me</button>
+                <button class="btn primary">Click me</button>
+                <button class="btn secondary">Click me</button>
+            </div>
         </div>
+
     </div>
 </x-layouts.frontend>

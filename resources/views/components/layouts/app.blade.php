@@ -45,17 +45,26 @@
                 <x-slot name="title">There was a problem!</x-slot>
                 Please check your internet connection.
             </x-notifications.toast>
-            <x-notifications.toast icon="success" closeable index="0">
+            <x-notifications.toast icon="success" closeable>
                 <x-slot name="title">Successfully saved!</x-slot>
                 Anyone with a link can now view this file.
             </x-notifications.toast>
-            <x-notifications.toast icon="error" closeable index="1">
+            <x-notifications.toast icon="error" closeable>
                 <x-slot name="title">An error occurred!</x-slot>
                 Something went wrong. Please try again.
             </x-notifications.toast>
-            <x-notifications.toast icon="warning" closeable index="2">
+            <x-notifications.toast icon="warning" closeable>
                 <x-slot name="title">There was a problem!</x-slot>
                 Please check your internet connection.
+            </x-notifications.toast>
+            <x-notifications.toast icon="info">
+                <x-slot name="title">Receive notifications</x-slot>
+                Notifications may include alerts, sounds, and badges.
+                <x-slot name="actions">
+                    <button class="primary">Allow</button>
+                    <button class="danger">Don't Allow</button>
+                    <a href="#"">Learn more</a>
+                </x-slot>
             </x-notifications.toast>
         </x-notifications.container>
         @stack('modals')

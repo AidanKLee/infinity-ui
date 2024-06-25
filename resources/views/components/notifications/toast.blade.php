@@ -1,7 +1,7 @@
 <li @attributes(null, ['x-data', 'x-ref', 'x-show', '@mousedown', '@mousemove', '@mouseup.window', '@touchstart', '@touchmove', '@touchend'], [
-    "toast"
+    "toast",
 ]) 
-    x-data="toast"
+    x-data="toast({{ isset($timer) ? "$timer" : 'false' }})"
     x-ref="toast"
     x-show="show"
     @mousedown="startSwipe"
@@ -18,45 +18,52 @@
     x-transition:leave-start="opacity-100 scale-100"
     x-transition:leave-end="opacity-0 scale-90"
     >
-    @isset($icon)
-        <div>
-            <div @class([
-                'flex justify-center items-center h-5 w-5 p-0.5 mt-0.5 border rounded-full',
-                'bg-secondary/10 border-secondary text-secondary dark:bg-secondary-dark/10 dark:border-secondary-dark dark:text-secondary-dark' => $icon === 'success',
-                'bg-danger/10 border-danger text-danger' => $icon === 'error',
-                'bg-warning/10 border-warning text-warning text-sm' => $icon === 'warning',
-                'bg-info/10 border-info text-info text-sm dark:bg-info-dark/10 dark:border-infor-dark dark:text-info-dark' => $icon === 'info',
-                isset($iconClass) && !in_array($icon, ['success', 'error', 'warning', 'info']) ? $iconClass : '',
-            ])>
-                @if ($icon === 'success')
-                    <x-icons.check />
-                @elseif ($icon === 'error')
-                    <x-icons.cross />
-                @elseif ($icon === 'warning')
-                    <span>!</span>
-                @elseif ($icon === 'info')
-                    <span>i</span>
-                @else
-                    {{ $icon }}
-                @endif
+    <div class="flex flex-1 overflow-hidden gap-2 p-3">
+        @isset($icon)
+            <div>
+                <div @class([
+                    'flex justify-center items-center h-5 w-5 p-0.5 mt-0.5 border rounded-full',
+                    'bg-secondary/10 border-secondary text-secondary dark:bg-secondary-dark/10 dark:border-secondary-dark dark:text-secondary-dark' => $icon === 'success',
+                    'bg-danger/10 border-danger text-danger' => $icon === 'error',
+                    'bg-warning/10 border-warning text-warning text-sm' => $icon === 'warning',
+                    'bg-info/10 border-info text-info text-sm dark:bg-info-dark/10 dark:border-infor-dark dark:text-info-dark' => $icon === 'info',
+                    isset($iconClass) && !in_array($icon, ['success', 'error', 'warning', 'info']) ? $iconClass : '',
+                ])>
+                    @if ($icon === 'success')
+                        <x-icons.check />
+                    @elseif ($icon === 'error')
+                        <x-icons.cross />
+                    @elseif ($icon === 'warning')
+                        <span>!</span>
+                    @elseif ($icon === 'info')
+                        <span>i</span>
+                    @else
+                        {{ $icon }}
+                    @endif
+                </div>
             </div>
+        @endisset
+        <div class="grow max-w-full">
+            <div class="flex shrink justify-between items-center gap-2 overflow-hidden">
+                @isset($title)
+                    <h3 class="font-medium truncate shrink">{{ $title }}</h3>
+                @endisset
+                @isset ($closeable)
+                    <button @click="close(false)" class="focus-none p-1 duration-200 text-black/25 hover:text-primary dark:text-white/25 dark:hover:text-primary-dark">
+                        <x-icons.cross class="w-4 h-4" />
+                    </button>
+                @endisset
+            </div>
+            @isset($slot) 
+                <p class="text-sm font-light text-black/60 dark:text-white/60">{{ $slot }}</p>
+            @endisset
+        </div>
+    </div>
+    @isset($actions)
+        <div class="toast-actions">
+            {{ $actions }}
         </div>
     @endisset
-    <div class="grow">
-        <div class="flex justify-between items-center">
-            @isset($title)
-                <h3 class="font-medium">{{ $title }}</h3>
-            @endisset
-            @isset ($closeable)
-                <button @click="close(false)" class="focus-none p-1 duration-200 text-black/25 hover:text-primary dark:text-white/25 dark:hover:text-primary-dark">
-                    <x-icons.cross class="w-4 h-4" />
-                </button>
-            @endisset
-        </div>
-        @isset($slot) 
-            <p class="text-sm font-light text-black/60 dark:text-white/60">{{ $slot }}</p>
-        @endisset
-    </div>
 </li>
 
 @push('scripts')
@@ -64,7 +71,7 @@
         <script>
             (function() {
                 document.addEventListener('alpine:init', () => {
-                    Alpine.data('toast', () => ({
+                    Alpine.data('toast', (timer = false) => ({
                         show: true,
                         dragging: false,
                         touchstartX: 0,
@@ -73,9 +80,11 @@
                         initTimeout: null,
     
                         init() {
-                            this.initTimeout = setTimeout(() => {
-                                this.close();
-                            }, 60000);
+                            if (timer) {
+                                this.initTimeout = setTimeout(() => {
+                                    this.close();
+                                }, typeof timer === 'number' ? timer : 60000);
+                            }
                         },
     
                         close(isOffscreen = false) {
