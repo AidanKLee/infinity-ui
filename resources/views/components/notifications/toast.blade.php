@@ -1,5 +1,5 @@
 <li @attributes(null, ['x-data', 'x-ref', 'x-show', '@mousedown', '@mousemove', '@mouseup.window', '@touchstart', '@touchmove', '@touchend'], [
-    "absolute top-3 right-3 flex gap-3 select-none bg-white p-3 rounded-lg duration-300 border border-dark/5 w-full max-w-sm ml-auto shadow-custom-lg pointer-events-auto dark:bg-black dark:border-light/5"
+    "absolute top-3 right-3 xs:top-3 xs:right-3 flex gap-3 select-none bg-white p-3 rounded-lg duration-300 border border-dark/5 w-[calc(100%-24px)] max-w-sm ml-auto shadow-custom-lg pointer-events-auto dark:bg-black dark:border-light/5"
 ]) 
     x-data="toast"
     x-ref="toast"
@@ -20,25 +20,27 @@
     style="top: {{ isset($index) ? ($index * 4) + 12 : 0 }}px; right: {{ isset($index) ? ($index * 4) + 12 : 0 }}px;"
     >
     @isset($icon)
-        <div @class([
-            'flex justify-center items-center h-5 w-5 p-0.5 mt-0.5 border rounded-full',
-            'bg-secondary/10 border-secondary text-secondary dark:bg-secondary-dark/10 dark:border-secondary-dark dark:text-secondary-dark' => $icon === 'success',
-            'bg-danger/10 border-danger text-danger' => $icon === 'error',
-            'bg-warning/10 border-warning text-warning text-sm' => $icon === 'warning',
-            'bg-info/10 border-info text-info text-sm dark:bg-info-dark/10 dark:border-infor-dark dark:text-info-dark' => $icon === 'info',
-            isset($iconClass) && !in_array($icon, ['success', 'error', 'warning', 'info']) ? $iconClass : '',
-        ])>
-            @if ($icon === 'success')
-                <x-icons.check />
-            @elseif ($icon === 'error')
-                <x-icons.cross />
-            @elseif ($icon === 'warning')
-                <span>!</span>
-            @elseif ($icon === 'info')
-                <span>i</span>
-            @else
-                {{ $icon }}
-            @endif
+        <div>
+            <div @class([
+                'flex justify-center items-center h-5 w-5 p-0.5 mt-0.5 border rounded-full',
+                'bg-secondary/10 border-secondary text-secondary dark:bg-secondary-dark/10 dark:border-secondary-dark dark:text-secondary-dark' => $icon === 'success',
+                'bg-danger/10 border-danger text-danger' => $icon === 'error',
+                'bg-warning/10 border-warning text-warning text-sm' => $icon === 'warning',
+                'bg-info/10 border-info text-info text-sm dark:bg-info-dark/10 dark:border-infor-dark dark:text-info-dark' => $icon === 'info',
+                isset($iconClass) && !in_array($icon, ['success', 'error', 'warning', 'info']) ? $iconClass : '',
+            ])>
+                @if ($icon === 'success')
+                    <x-icons.check />
+                @elseif ($icon === 'error')
+                    <x-icons.cross />
+                @elseif ($icon === 'warning')
+                    <span>!</span>
+                @elseif ($icon === 'info')
+                    <span>i</span>
+                @else
+                    {{ $icon }}
+                @endif
+            </div>
         </div>
     @endisset
     <div class="grow">
