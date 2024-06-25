@@ -1,6 +1,6 @@
 @layer components {
     .notification-container {
-        @apply fixed top-0 right-0 z-[5] w-full mt-[67px] pointer-events-none duration-200 lg:opacity-50 hover:opacity-100;
+        @apply fixed top-0 right-0 z-[5] w-full mt-[67px] scale-75 origin-top-right pointer-events-none ease-out duration-200 lg:opacity-50 hover:scale-100 hover:opacity-100;
 
         li:nth-last-of-type(3):not(:nth-of-type(-n+1)),
         li:nth-last-of-type(2):not(:nth-of-type(-n+1)),

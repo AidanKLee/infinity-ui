@@ -22,7 +22,8 @@
         @isset($icon)
             <div>
                 <div @class([
-                    'flex justify-center items-center h-5 w-5 p-0.5 mt-0.5 border rounded-full',
+                    'flex justify-center items-center p-0.5 mt-0.5 border rounded-full',
+                    'h-5 w-5' => $icon === 'success' || $icon === 'error' || $icon === 'warning' || $icon === 'info',
                     'bg-secondary/10 border-secondary text-secondary dark:bg-secondary-dark/10 dark:border-secondary-dark dark:text-secondary-dark' => $icon === 'success',
                     'bg-danger/10 border-danger text-danger' => $icon === 'error',
                     'bg-warning/10 border-warning text-warning text-sm' => $icon === 'warning',
@@ -43,7 +44,7 @@
                 </div>
             </div>
         @endisset
-        <div class="grow max-w-full">
+        <div class="flex-1 max-w-full overflow-hidden">
             <div class="flex shrink justify-between items-center gap-2 overflow-hidden">
                 @isset($title)
                     <h3 class="font-medium truncate shrink">{{ $title }}</h3>
@@ -101,6 +102,8 @@
     
                         handleScroll(e) {
                             e.preventDefault();
+
+                            clearTimeout(this.wheelTimeout);
                             
                             if (this.$refs.toast.hasAttribute('data-no-scroll')) {
                                 return;
@@ -113,7 +116,7 @@
                                     this.recursivelyEnablePointerEvents(document.documentElement);
     
                                     this.handleSwipeGesture(this.$refs.toast.getBoundingClientRect().width / 8);
-                                }, 50);
+                                }, 100);
                                 return
                             }
                             
@@ -177,7 +180,7 @@
                         isElementAToast(event) {
                             let element = event.target;
                             while (element) {
-                                if (element.hasAttribute('x-ref') && element.getAttribute('x-ref') === 'toast'){
+                                if (element.hasAttribute('x-ref') && element.getAttribute('x-ref') === 'toast') {
                                     return true;
                                 }
                                 element = element.parentElement;
@@ -239,6 +242,8 @@
     
                         handleSwipeGesture(customThreshold = null) {
                             const swipeThreshold = customThreshold ?? this.$refs.toast.getBoundingClientRect().width / 2;
+
+                            this.$refs.toast.setAttribute('data-no-scroll', '');
     
                             if (this.touchendX > this.touchstartX + swipeThreshold) {
                                 this.$refs.toast.style.transform = `translateX(${this.$refs.toast.getBoundingClientRect().width + 128}px)`;
@@ -248,6 +253,8 @@
                                 }, 300);
                             } else {
                                 this.$refs.toast.style.transform = '';
+
+                                this.$refs.toast.removeAttribute('data-no-scroll');
                             }
     
                             this.touchstartX = 0;
