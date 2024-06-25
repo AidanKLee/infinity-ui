@@ -1,0 +1,29 @@
+@layer components {
+    .modal {
+        @apply relative w-full max-w-md mx-auto bg-white rounded-xl shadow-custom-lg dark:bg-black;
+
+        &.modal-xs {
+            @apply max-w-xs;
+        }
+
+        &.modal-sm {
+            @apply max-w-sm;
+        }
+
+        &.modal-md {
+            @apply max-w-md;
+        }
+
+        &.modal-lg {
+            @apply max-w-lg;
+        }
+
+        &.modal-xl {
+            @apply max-w-xl;
+        }
+
+        &.modal-2xl {
+            @apply max-w-2xl;
+        }
+    }
+}

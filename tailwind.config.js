@@ -5,12 +5,15 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 export default {
     content: [
         "./resources/**/*.{js,blade.php}",
-        "./app/Models/**/*.{php}",
-        "./app/Livewire/**/*.{php}",
+        "./app/Models/**/*.php",
+        "./app/Livewire/**/*.php",
     ],
+    darkMode: "class",
     theme: {
         extend: {
             boxShadow: {
+                'custom-md': "0 4px 15px -3px rgb(0 0 0 / 0.1), 0 0 6px -4px rgb(0 0 0 / 0.1)",
+                'custom-lg': "0 10px 30px -10px rgb(0 0 0 / 0.1), 0 0 10px -5px rgb(0 0 0 / 0.1)",
                 glow: "0 0 .5rem .125rem rgba(0, 0, 0, 0.25)",
             },
             colors: {

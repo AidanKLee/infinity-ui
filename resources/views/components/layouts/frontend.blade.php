@@ -15,47 +15,49 @@
                         Components
 
                         <x-slot name="dropdown">
-                            <x-dropdowns.navlink x-show="open">
+                            <x-dropdowns.navlink class="w-96" x-show="show">
+                                <ul class="flex flex-col gap-1 p-2">
 
-                                <x-dropdowns.items.navlink>
-                                    <x-slot name="icon">
-                                        <x-icons.wrench-screwdriver />
-                                    </x-slot>
-                                    <div>
-                                        <a href="#" class="font-medium focus-none">
-                                            <span>Buttons</span>
-                                            <span class="absolute inset-0"></span>
-                                        </a>
-                                        <p class="text-xs font-light">A variety of buttons to suit your UI needs</p>
-                                    </div>
-                                </x-dropdowns.items.navlink>
+                                    <x-dropdowns.items.navlink>
+                                        <x-slot name="icon">
+                                            <x-icons.wrench-screwdriver />
+                                        </x-slot>
+                                        <div>
+                                            <a href="#" class="font-medium focus-none">
+                                                <span>Buttons</span>
+                                                <span class="absolute inset-0"></span>
+                                            </a>
+                                            <p class="text-xs font-light">A variety of buttons to suit your UI needs</p>
+                                        </div>
+                                    </x-dropdowns.items.navlink>
 
-                                <x-dropdowns.items.navlink>
-                                    <x-slot name="icon">
-                                        <x-icons.clipboard />
-                                    </x-slot>
-                                    <div>
-                                        <a href="#" class="font-medium focus-none">
-                                            <span>Form inputs</span>
-                                            <span class="absolute inset-0"></span>
-                                        </a>
-                                        <p class="text-xs font-light">Enhance interaction: Form inputs redefined</p>
-                                    </div>
-                                </x-dropdowns.items.navlink>
+                                    <x-dropdowns.items.navlink>
+                                        <x-slot name="icon">
+                                            <x-icons.clipboard />
+                                        </x-slot>
+                                        <div>
+                                            <a href="#" class="font-medium focus-none">
+                                                <span>Form inputs</span>
+                                                <span class="absolute inset-0"></span>
+                                            </a>
+                                            <p class="text-xs font-light">Enhance interaction: Form inputs redefined</p>
+                                        </div>
+                                    </x-dropdowns.items.navlink>
 
-                                <x-dropdowns.items.navlink>
-                                    <x-slot name="icon">
-                                        <x-icons.check-badge />
-                                    </x-slot>
-                                    <div>
-                                        <a href="#" class="font-medium focus-none">
-                                            <span>Badges</span>
-                                            <span class="absolute inset-0"></span>
-                                        </a>
-                                        <p class="text-xs font-light">Elevate your site with UI badges that shine</p>
-                                    </div>
-                                </x-dropdowns.items.navlink>
+                                    <x-dropdowns.items.navlink>
+                                        <x-slot name="icon">
+                                            <x-icons.check-badge />
+                                        </x-slot>
+                                        <div>
+                                            <a href="#" class="font-medium focus-none">
+                                                <span>Badges</span>
+                                                <span class="absolute inset-0"></span>
+                                            </a>
+                                            <p class="text-xs font-light">Elevate your site with UI badges that shine</p>
+                                        </div>
+                                    </x-dropdowns.items.navlink>
 
+                                </ul>
                             </x-dropdowns.navlink>
                         </x-slot>
 
@@ -86,10 +88,11 @@
         <x-slot name="right">
             <div class="flex gap-3 py-2">
                 <div class="flex items-center">
-                    <x-buttons.darkmode />
+                    <x-buttons.search />
+                    <x-modals.search />
                 </div>
                 <div class="flex items-center">
-                    <x-buttons.search />
+                    <x-dropdowns.darkmode />
                 </div>
                 <x-buttons.navlink href="#" class="navlink">
                     <div>
@@ -102,6 +105,8 @@
                 </x-buttons.navlink>
             </div>
         </x-slot>
+
+        {{-- <x-header.navlist /> --}}
     </x-header.frontend>
     <main class="grow">
         @isset($slot)

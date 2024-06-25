@@ -1,0 +1,17 @@
+@layer components {
+    .navlist {
+        @apply bg-tertiary text-white py-1.5 font-poppins dark:bg-tertiary-dark dark:text-black;
+    }
+
+    .navlist-item {
+        @apply focus-none flex items-center gap-1 w-fit px-4 py-1.5 text-sm rounded-md bg-tertiary font-medium duration-200 hover:bg-light hover:text-tertiary focus:bg-light focus:text-tertiary dark:border-tertiary-dark dark:bg-tertiary-dark dark:hover:bg-black dark:hover:text-tertiary-dark dark:focus:bg-black dark:focus:text-tertiary-dark;
+    }
+
+    .overlay {
+        @apply fixed top-0 left-0 z-50 bg-white-pure/25 h-screen w-full xs:pt-24 pb-16 px-3 backdrop-blur-sm pt-16 dark:bg-black-pure/25;
+
+        &.overlay-clear {
+            @apply bg-transparent backdrop-blur-none pt-20 xs:pt-32 dark:bg-transparent;
+        }
+    }
+}

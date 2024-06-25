@@ -55,6 +55,14 @@
         }
     }
 
+    .btn-icon {
+        @apply p-3.5 h-11 w-11 bg-gradient-to-br from-dark/2.5 to-dark/10 rounded-md duration-200 focus-none hover:text-primary hover:bg-dark/2.5 focus:text-primary focus:bg-dark/2.5 focus:ring-2 focus:ring-primary dark:from-light/2.5 dark:to-light/10 dark:hover:bg-light/2.5 dark:hover:text-primary-dark dark:focus:bg-light/2.5 dark:focus:ring-primary-dark dark:focus:text-primary-dark;
+    }
+
+    .btn-search {
+        @apply flex justify-between items-center gap-14 p-2 bg-dark/2.5 rounded-md border duration-200 border-dark/20 outline-none hover:bg-dark/5 focus:outline-none focus:ring-2 focus:bg-dark/5 focus:ring-primary dark:bg-light/2.5 dark:border-light/20 dark:hover:bg-light/5 dark:focus:bg-light/5 dark:focus:ring-primary-dark;
+    }
+
     .navlink {
         @apply flex items-center justify-center rounded-md gap-1.5 px-2 py-2 duration-200 outline-none hover:text-primary hover:bg-primary/5 focus:outline-none focus:text-primary focus:bg-primary/5 dark:hover:text-primary-dark dark:hover:bg-primary-dark/20 dark:focus:text-primary-dark dark:focus:bg-primary-dark/20;
     }

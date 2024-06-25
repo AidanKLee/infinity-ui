@@ -1,0 +1,17 @@
+@layer components {
+    .navlink-dropdown {
+        @apply absolute z-10 border border-dark/5 -bottom-1 rounded-xl translate-y-full bg-white shadow-xl dark:bg-black dark:border-light/10;
+    }
+
+    .navlink-dropdown-item {
+        @apply flex gap-2 relative p-2 rounded-md duration-200 hover:bg-primary/5 hover:text-primary focus-within:bg-primary/5 focus-within:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark dark:focus-within:bg-primary-dark/20 dark:focus-within:text-primary-dark;
+    }
+
+    .search-dropdown {
+        @apply absolute bg-white space-y-1 mt-2 w-full p-2 rounded-xl shadow-custom-lg dark:bg-black;
+    }
+
+    .search-dropdown-item {
+        @apply relative p-2 rounded-md duration-200 hover:bg-primary/5 hover:text-primary focus-within:bg-primary/5 focus-within:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark dark:focus-within:bg-primary-dark/20 dark:focus-within:text-primary-dark;
+    }
+}

@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @import "./utilities";
-@import "./components/buttons";
-@import "./components/forms";
 @import "./components/badges";
+@import "./components/buttons";
+@import "./components/dropdowns";
+@import "./components/forms";
+@import "./components/layout";
+@import "./components/modals";
