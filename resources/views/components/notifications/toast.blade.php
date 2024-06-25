@@ -1,7 +1,7 @@
 <li @attributes(null, ['x-data', 'x-ref', 'x-show', '@mousedown', '@mousemove', '@mouseup.window', '@touchstart', '@touchmove', '@touchend'], [
     "toast",
 ]) 
-    x-data="toast({{ isset($timer) ? "$timer" : 'false' }})"
+    x-data="toast({{ isset($timer) ? ($timer == 1 ? 'true' : "$timer") : 'false' }})"
     x-ref="toast"
     x-show="show"
     @mousedown="startSwipe"
@@ -47,10 +47,10 @@
         <div class="flex-1 max-w-full overflow-hidden">
             <div class="flex shrink justify-between items-center gap-2 overflow-hidden">
                 @isset($title)
-                    <h3 class="font-medium truncate shrink">{{ $title }}</h3>
+                    <h3 class="font-medium truncate shrink mb-1">{{ $title }}</h3>
                 @endisset
                 @isset ($closeable)
-                    <button @click="close(false)" class="focus-none p-1 duration-200 text-black/25 hover:text-primary dark:text-white/25 dark:hover:text-primary-dark">
+                    <button @click="close()" class="focus-none p-1 duration-200 text-black/25 hover:text-primary dark:text-white/25 dark:hover:text-primary-dark">
                         <x-icons.cross class="w-4 h-4" />
                     </button>
                 @endisset
@@ -88,10 +88,12 @@
                             }
                         },
     
-                        close(isOffscreen = false) {
+                        close(removeInstantly = false) {
+                            removeInstantly = typeof removeInstantly === 'boolean' ? removeInstantly : false;
+
                             this.show = false;
 
-                            if (isOffscreen) {
+                            if (removeInstantly) {
                                 this.$refs.toast.remove();
                             } else {
                                 setTimeout(() => {

@@ -62,7 +62,7 @@
                 Notifications may include alerts, sounds, and badges.
                 <x-slot name="actions">
                     <button class="primary">Allow</button>
-                    <button class="danger">Don't Allow</button>
+                    <button class="danger" @click="close">Don't Allow</button>
                     <a href="#"">Learn more</a>
                 </x-slot>
             </x-notifications.toast>

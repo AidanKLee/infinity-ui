@@ -72,6 +72,24 @@
     @apply flex;
 
     .btn {
+        @apply px-2;
+
+        &.btn-2xs {
+            @apply px-1;
+        }
+
+        &.btn-xs {
+            @apply px-1.5;
+        }
+
+        &.btn-xl {
+            @apply px-2.5;
+        }
+
+        &.btn-2xl {
+            @apply px-3;
+        }
+
         &:not(:first-child) {
             @apply rounded-l-none border-l-transparent;
         }

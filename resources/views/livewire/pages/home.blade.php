@@ -11,7 +11,8 @@
             <div class="badge dot rounded danger">Badge</div>
         
             <div class="flex flex-col gap-2 max-w-md">
-                <div>
+                <x-inputs.text id="firstname" label="First name" placeholder="Enter your first name" maxlength="255" floating />
+                {{-- <div>
                     <label class="label">Text input</label>
                     <input type="text" class="input" placeholder="Input">
                 </div>
@@ -26,7 +27,7 @@
                 <div>
                     <label class="label">Textarea</label>
                     <textarea class="input" placeholder="Textarea"></textarea>
-                </div>
+                </div> --}}
             </div>
         
             <button class="btn btn-2xl !text-2xl" @click="test">Click me</button>
