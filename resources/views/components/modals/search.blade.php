@@ -48,50 +48,52 @@
 @push('scripts')
     @once
         <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.data('search_dropdown', () => ({
-                    search: '',
-
-                    close() {
-                        this.$store.modals.close()
-                        setTimeout(() => {
-                            this.search = ''
-                        }, 300);
-                    },
-
-                    handleFocus() {
-                        this.show = true
-                    },
-
-                    handleReset() {
-                        this.$refs['search-input'].focus()
-
-                        setTimeout(() => {
-                            this.$refs['search-input'].dispatchEvent(new InputEvent('input', { bubbles: true }))
-                        }, 0);
-                    },
-
-                    open() {
-                        this.show = true
-                    },
-
-                    async savePageAs() {
-                        const response = await fetch(window.location.href);
-                        const htmlContent = await response.text();
-                        const blob = new Blob([htmlContent], { type: 'text/html' });
-                        const link = document.createElement('a');
-
-                        link.download = document.title + '.html';
-                        link.href = URL.createObjectURL(blob);
-                        link.click();
-                        setTimeout(() => URL.revokeObjectURL(link.href), 100);
-                    },
-        
-                    toggle() {
-                        this.open = ! this.open
-                    }
-                }))
-            })
+            (function() {
+                document.addEventListener('alpine:init', () => {
+                    Alpine.data('search_dropdown', () => ({
+                        search: '',
+    
+                        close() {
+                            this.$store.modals.close()
+                            setTimeout(() => {
+                                this.search = ''
+                            }, 300);
+                        },
+    
+                        handleFocus() {
+                            this.show = true
+                        },
+    
+                        handleReset() {
+                            this.$refs['search-input'].focus()
+    
+                            setTimeout(() => {
+                                this.$refs['search-input'].dispatchEvent(new InputEvent('input', { bubbles: true }))
+                            }, 0);
+                        },
+    
+                        open() {
+                            this.show = true
+                        },
+    
+                        async savePageAs() {
+                            const response = await fetch(window.location.href);
+                            const htmlContent = await response.text();
+                            const blob = new Blob([htmlContent], { type: 'text/html' });
+                            const link = document.createElement('a');
+    
+                            link.download = document.title + '.html';
+                            link.href = URL.createObjectURL(blob);
+                            link.click();
+                            setTimeout(() => URL.revokeObjectURL(link.href), 100);
+                        },
+            
+                        toggle() {
+                            this.open = ! this.open
+                        }
+                    }))
+                })
+            })()
         </script>
     @endonce
 @endpush

@@ -51,119 +51,141 @@
 @push('scripts')
     @once
         <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.store('darkMode', {
-                    checker: null,
-                    mode: 'system',
-                    theme: '',
+            (function() {
+                recursivelyDisableTransition(document.documentElement)
 
-                    init() {
-                        this.recursivelyDisableTransition(document.documentElement)
-
-                        if (!('theme' in localStorage)) {
-                            this.mode = 'system'
-
-                            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                                this.theme = 'dark'
-                                document.documentElement.classList.add('dark')
-                            } else {
-                                this.theme = 'light'
-                                document.documentElement.classList.remove('dark')
-                            }
-
-                            this.checkSystemTheme();
-                        } else {
-                            this.theme = localStorage.theme
-
-                            if (this.theme === 'dark') {
-                                this.mode = 'dark'
-                                document.documentElement.classList.add('dark')
-                            } else {
-                                this.mode = 'light'
-                                document.documentElement.classList.remove('dark')
-                            }
-                        }
-
-                        this.recursivelyEnableTransition(document.documentElement)
-                    },
-
-                    checkSystemTheme() {
-                        if (this.mode === 'system') {
-                            if (window.matchMedia('(prefers-color-scheme: dark)').matches && this.theme !== 'dark') {
-                                this.recursivelyDisableTransition(document.documentElement)
-                                this.theme = 'dark'
-                                document.documentElement.classList.add('dark')
-                                this.recursivelyEnableTransition(document.documentElement)
-                            } else if (!window.matchMedia('(prefers-color-scheme: dark)').matches && this.theme !== 'light') {
-                                this.recursivelyDisableTransition(document.documentElement)
-                                this.theme = 'light'
-                                document.documentElement.classList.remove('dark')
-                                this.recursivelyEnableTransition(document.documentElement)
-                            }
-                        }
-
-                        this.checker = requestAnimationFrame(this.checkSystemTheme.bind(this))
-                    },
-
-                    recursivelyDisableTransition(element = null) {
-                        if (!element) {
-                            return
-                        }
-                        
-                        if (element.style) {
-                            element.style.transition = 'none'
-                            element.childNodes.forEach(child => this.recursivelyDisableTransition(child))
-                        }
-                    },
-
-                    recursivelyEnableTransition(element) {
-                        if (!element) {
-                            return
-                        }
-                        
-                        if (element.style) {
-                            element.style.transition = ''
-                            element.childNodes.forEach(child => this.recursivelyEnableTransition(child))
-                        }
-                    },
-        
-                    updateTheme(e) {
-                        if (this.mode === e.currentTarget.dataset.themeMode) return;
-
-                        this.mode = e.currentTarget.dataset.themeMode;
-
-                        this.recursivelyDisableTransition(document.documentElement)
-                        
-                        if (this.mode === 'system') {
-                            localStorage.removeItem('theme')
-                            
-                            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                                this.theme = 'dark'
-                                document.documentElement.classList.add('dark')
-                            } else {
-                                this.theme = 'light'
-                                document.documentElement.classList.remove('dark')
-                            }
-
-                            this.recursivelyEnableTransition(document.documentElement)
-
-                            return this.checkSystemTheme();
-                        } else if (this.mode === 'dark') {
-                            this.theme = 'dark'
-                            localStorage.theme = 'dark'
-                            document.documentElement.classList.add('dark')
-                        } else {
-                            this.theme = 'light'
-                            localStorage.theme = 'light'
-                            document.documentElement.classList.remove('dark')
-                        }
-
-                        this.recursivelyEnableTransition(document.documentElement)
-
-                        cancelAnimationFrame(this.checker)
+                if (!('theme' in localStorage)) {
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        document.documentElement.classList.add('dark')
+                    } else {
+                        document.documentElement.classList.remove('dark')
                     }
+                } else {
+                    const theme = localStorage.theme
+
+                    if (this.theme === 'dark') {
+                        document.documentElement.classList.add('dark')
+                    } else {
+                        document.documentElement.classList.remove('dark')
+                    }
+                }
+
+                recursivelyEnableTransition(document.documentElement)
+
+                function recursivelyDisableTransition(element = null) {
+                    if (!element) {
+                        return
+                    }
+                    
+                    if (element.style) {
+                        element.style.transition = 'none'
+                        element.childNodes.forEach(child => recursivelyDisableTransition(child))
+                    }
+                }
+
+                function recursivelyEnableTransition(element) {
+                    if (!element) {
+                        return
+                    }
+                    
+                    if (element.style) {
+                        element.style.transition = ''
+                        element.childNodes.forEach(child => recursivelyEnableTransition(child))
+                    }
+                }
+
+                document.addEventListener('alpine:init', () => {
+                    Alpine.store('darkMode', {
+                        checker: null,
+                        mode: 'system',
+                        theme: '',
+    
+                        init() {
+                            recursivelyDisableTransition(document.documentElement)
+    
+                            if (!('theme' in localStorage)) {
+                                this.mode = 'system'
+    
+                                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                                    this.theme = 'dark'
+                                    document.documentElement.classList.add('dark')
+                                } else {
+                                    this.theme = 'light'
+                                    document.documentElement.classList.remove('dark')
+                                }
+    
+                                this.checkSystemTheme();
+                            } else {
+                                this.theme = localStorage.theme
+    
+                                if (this.theme === 'dark') {
+                                    this.mode = 'dark'
+                                    document.documentElement.classList.add('dark')
+                                } else {
+                                    this.mode = 'light'
+                                    document.documentElement.classList.remove('dark')
+                                }
+                            }
+    
+                            recursivelyEnableTransition(document.documentElement)
+                        },
+    
+                        checkSystemTheme() {
+                            if (this.mode === 'system') {
+                                if (window.matchMedia('(prefers-color-scheme: dark)').matches && this.theme !== 'dark') {
+                                    recursivelyDisableTransition(document.documentElement)
+                                    this.theme = 'dark'
+                                    document.documentElement.classList.add('dark')
+                                    recursivelyEnableTransition(document.documentElement)
+                                } else if (!window.matchMedia('(prefers-color-scheme: dark)').matches && this.theme !== 'light') {
+                                    recursivelyDisableTransition(document.documentElement)
+                                    this.theme = 'light'
+                                    document.documentElement.classList.remove('dark')
+                                    recursivelyEnableTransition(document.documentElement)
+                                }
+                            }
+    
+                            this.checker = requestAnimationFrame(this.checkSystemTheme.bind(this))
+                        },
+            
+                        updateTheme(e) {
+                            if (this.mode === e.currentTarget.dataset.themeMode) return;
+    
+                            this.mode = e.currentTarget.dataset.themeMode;
+    
+                            this.recursivelyDisableTransition(document.documentElement)
+                            
+                            if (this.mode === 'system') {
+                                localStorage.removeItem('theme')
+                                
+                                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                                    this.theme = 'dark'
+                                    document.documentElement.classList.add('dark')
+                                } else {
+                                    this.theme = 'light'
+                                    document.documentElement.classList.remove('dark')
+                                }
+    
+                                this.recursivelyEnableTransition(document.documentElement)
+    
+                                return this.checkSystemTheme();
+                            } else if (this.mode === 'dark') {
+                                this.theme = 'dark'
+                                localStorage.theme = 'dark'
+                                document.documentElement.classList.add('dark')
+                            } else {
+                                this.theme = 'light'
+                                localStorage.theme = 'light'
+                                document.documentElement.classList.remove('dark')
+                            }
+    
+                            this.recursivelyEnableTransition(document.documentElement)
+    
+                            cancelAnimationFrame(this.checker)
+                        }
+                    })
                 })
-            })
+            })()
         </script>
     @endonce
 @endpush

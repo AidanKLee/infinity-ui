@@ -63,130 +63,186 @@
 @push('scripts')
     @once
         <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.data('toast', () => ({
-                    show: true,
-                    dragging: false,
-                    touchstartX: 0,
-                    touchendX: 0,
-                    wheelTimeout: null,
-
-                    init() {
-                        setTimeout(() => {
-                            this.close();
-                        }, 60000);
-                    },
-
-                    close() {
-                        this.show = false;
-                        setTimeout(() => {
-                            this.$refs.toast.remove();
-                        }, 300);
-                    },
-
-                    handleScroll(e) {
-                        e.preventDefault();
-
-                        if (e.deltaX > 0 && this.parseIntFromTransform(this.$refs.toast.style.transform ?? 0) <= 0) {
+            (function() {
+                document.addEventListener('alpine:init', () => {
+                    Alpine.data('toast', () => ({
+                        show: true,
+                        dragging: false,
+                        touchstartX: 0,
+                        touchendX: 0,
+                        wheelTimeout: null,
+                        initTimeout: null,
+    
+                        init() {
+                            this.initTimeout = setTimeout(() => {
+                                this.close();
+                            }, 60000);
+                        },
+    
+                        close() {
+                            this.show = false;
+                            setTimeout(() => {
+                                this.$refs.toast.remove();
+                            }, 300);
+                        },
+    
+                        handleScroll(e) {
+                            e.preventDefault();
+                            
+                            if (this.$refs.toast.hasAttribute('data-no-scroll')) {
+                                return;
+                            }
+    
+                            if (e.deltaX > 0 && this.parseIntFromTransform(this.$refs.toast.style.transform ?? 0) <= 0) {
+                                this.wheelTimeout = setTimeout(() => {
+                                    this.$refs.toast.style.transition = '';
+    
+                                    this.recursivelyEnablePointerEvents(document.documentElement);
+    
+                                    this.handleSwipeGesture(this.$refs.toast.getBoundingClientRect().width / 8);
+                                }, 50);
+                                return
+                            }
+                            
+                            clearTimeout(this.wheelTimeout);
+    
+                            // this.disableWindowScrolling();
+                            this.recursivelyDisablePointerEvents(document.documentElement, this.$refs.toast);
+    
+                            this.$refs.toast.style.transform = `translateY(${Math.abs(e.deltaY)}px)`;
+    
+                            this.touchendX -= e.deltaX;
+    
+                            this.$refs.toast.style.transition = 'none';
+                            this.$refs.toast.style.transform = `translateX(${this.touchendX}px)`;
+    
                             this.wheelTimeout = setTimeout(() => {
                                 this.$refs.toast.style.transition = '';
-
+    
+                                // this.enableWindowScrolling()
                                 this.recursivelyEnablePointerEvents(document.documentElement);
-
+    
                                 this.handleSwipeGesture(this.$refs.toast.getBoundingClientRect().width / 8);
                             }, 50);
-                            return
-                        }
-                        
-                        clearTimeout(this.wheelTimeout);
-
-                        this.recursivelyDisablePointerEvents(document.documentElement, this.$refs.toast);
-
-                        this.$refs.toast.style.transform = `translateY(${Math.abs(e.deltaY)}px)`;
-
-                        this.touchendX -= e.deltaX;
-
-                        this.$refs.toast.style.transition = 'none';
-                        this.$refs.toast.style.transform = `translateX(${this.touchendX}px)`;
-
-                        this.wheelTimeout = setTimeout(() => {
-                            this.$refs.toast.style.transition = '';
-
-                            this.recursivelyEnablePointerEvents(document.documentElement);
-
-                            this.handleSwipeGesture(this.$refs.toast.getBoundingClientRect().width / 8);
-                        }, 50);
-                    },
-
-                    recursivelyDisablePointerEvents(element, ignoreElement) {
-                        if (!element || element === ignoreElement) {
-                            return
-                        }
-                        
-                        if (element.style) {
-                            element.style.pointerEvents = 'none'
-                            element.childNodes.forEach(child => this.recursivelyDisablePointerEvents(child, ignoreElement))
-                        }
-                    },
-
-                    recursivelyEnablePointerEvents(element) {
-                        if (!element) {
-                            return
-                        }
-                        
-                        if (element.style) {
-                            element.style.pointerEvents = ''
-                            element.childNodes.forEach(child => this.recursivelyEnablePointerEvents(child))
-                        }
-                    },
-
-                    parseIntFromTransform(transformString) {
-                        const transformInt = parseInt(transformString.replace('translateX(', '').replace('px)', ''));
-                        return Number.isNaN(transformInt) ? 0 : transformInt;
-                    },
-
-                    startSwipe(event) {
-                        this.$refs.toast.style.transition = 'none';
-                        this.dragging = true;
-                        this.touchstartX = this.getEventX(event);
-                    },
-
-                    swipe(event) {
-                        if (!this.dragging) return;
-                        if (this.getEventX(event) - this.touchstartX > 0) {
-                            this.$refs.toast.style.transform = `translateX(${this.getEventX(event) - this.touchstartX}px)`;
-                        }
-                    },
-
-                    endSwipe(event) {
-                        if (!this.dragging) return;
-                        this.$refs.toast.style.transition = '';
-                        this.dragging = false;
-                        this.touchendX = this.getEventX(event);
-                        this.handleSwipeGesture();
-                    },
-
-                    getEventX(event) {
-                        return event.changedTouches ? event.changedTouches[0].screenX : event.screenX;
-                    },
-
-                    handleSwipeGesture(customThreshold = null) {
-                        const swipeThreshold = customThreshold ?? this.$refs.toast.getBoundingClientRect().width / 2;
-
-                        if (this.touchendX > this.touchstartX + swipeThreshold) {
-                            this.$refs.toast.style.transform = `translateX(${this.$refs.toast.getBoundingClientRect().width + 128}px)`;
+                        },
+    
+                        addDataNotScrollToOtherToasts() {
+                            document.querySelectorAll('[x-data="toast"]').forEach(toast => {
+                                console.log(toast, this.$refs.toast)
+                                if (toast !== this.$refs.toast) {
+                                    toast.setAttribute('data-no-scroll', '');
+                                }
+                            });
+                        },
+    
+                        removeDataNotScrollFromOtherToasts() {
+                            document.querySelectorAll('[x-data="toast"]').forEach(toast => {
+                                delete toast.dataset.noScroll;
+                            });
+                        },
+    
+                        preventDefault(e) {
+                                e.preventDefault();
+                        },
+    
+                        disableWindowScrolling() {
+                            this.addDataNotScrollToOtherToasts();
+                            window.addEventListener('DOMMouseScroll', this.preventDefault.bind(this), false);
+                            window.addEventListener('wheel', this.preventDefault.bind(this), { passive: false });
+                            window.addEventListener('touchmove', this.preventDefault.bind(this), { passive: false });
+                        },
+    
+                        enableWindowScrolling() {
                             setTimeout(() => {
-                                this.close();
+                                this.removeDataNotScrollFromOtherToasts();
                             }, 300);
-                        } else {
-                            this.$refs.toast.style.transform = '';
+                            window.removeEventListener('DOMMouseScroll', this.preventDefault.bind(this), false);
+                            window.removeEventListener('wheel', this.preventDefault.bind(this), { passive: false });
+                            window.removeEventListener('touchmove', this.preventDefault.bind(this), { passive: false });
+                        },
+    
+                        isElementAToast(event) {
+                            let element = event.target;
+                            while (element) {
+                                if (element.hasAttribute('x-ref') && element.getAttribute('x-ref') === 'toast'){
+                                    return true;
+                                }
+                                element = element.parentElement;
+                            }
+                            return false;
+                        },
+    
+                        recursivelyDisablePointerEvents(element, ignoreElement) {
+                            if (!element || element === ignoreElement) {
+                                return
+                            }
+                            
+                            if (element.style) {
+                                element.style.pointerEvents = 'none'
+                                element.childNodes.forEach(child => this.recursivelyDisablePointerEvents(child, ignoreElement))
+                            }
+                        },
+    
+                        recursivelyEnablePointerEvents(element) {
+                            if (!element) {
+                                return
+                            }
+                            
+                            if (element.style) {
+                                element.style.pointerEvents = ''
+                                element.childNodes.forEach(child => this.recursivelyEnablePointerEvents(child))
+                            }
+                        },
+    
+                        parseIntFromTransform(transformString) {
+                            const transformInt = parseInt(transformString.replace('translateX(', '').replace('px)', ''));
+                            return Number.isNaN(transformInt) ? 0 : transformInt;
+                        },
+    
+                        startSwipe(event) {
+                            this.$refs.toast.style.transition = 'none';
+                            this.dragging = true;
+                            this.touchstartX = this.getEventX(event);
+                        },
+    
+                        swipe(event) {
+                            if (!this.dragging) return;
+                            if (this.getEventX(event) - this.touchstartX > 0) {
+                                this.$refs.toast.style.transform = `translateX(${this.getEventX(event) - this.touchstartX}px)`;
+                            }
+                        },
+    
+                        endSwipe(event) {
+                            if (!this.dragging) return;
+                            this.$refs.toast.style.transition = '';
+                            this.dragging = false;
+                            this.touchendX = this.getEventX(event);
+                            this.handleSwipeGesture();
+                        },
+    
+                        getEventX(event) {
+                            return event.changedTouches ? event.changedTouches[0].screenX : event.screenX;
+                        },
+    
+                        handleSwipeGesture(customThreshold = null) {
+                            const swipeThreshold = customThreshold ?? this.$refs.toast.getBoundingClientRect().width / 2;
+    
+                            if (this.touchendX > this.touchstartX + swipeThreshold) {
+                                this.$refs.toast.style.transform = `translateX(${this.$refs.toast.getBoundingClientRect().width + 128}px)`;
+                                clearTimeout(this.initTimeout);
+                                setTimeout(() => {
+                                    this.close();
+                                }, 300);
+                            } else {
+                                this.$refs.toast.style.transform = '';
+                            }
+    
+                            this.touchstartX = 0;
+                            this.touchendX = 0;
                         }
-
-                        this.touchstartX = 0;
-                        this.touchendX = 0;
-                    }
-                }));
-            });
+                    }));
+                });
+            })()
         </script>
     @endonce
 @endpush

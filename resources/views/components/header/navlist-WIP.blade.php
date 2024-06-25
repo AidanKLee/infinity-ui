@@ -29,66 +29,68 @@
 @push('scripts')
     @once
         <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.data('navlist', () => ({
-                    listItems: [
-                        ['Home & Garden', '#'],
-                        ['Hair & Beauty', '#'],
-                        ['Consumer Electronics', '#'],
-                        ['Clothing', '#'],
-                        ['Toys & Games', '#'],
-                        ['Furniture', '#'],
-                        ['Sports & Entertainment', '#'],
-                        ['Pet supplies', '#'],
-                        ['Tools & Industrial', '#'],
-                        ['Jewellery & Watches', '#'],
-                        ['Automotive & Motorcycle', '#']
-                    ],
-                    visibleItems: [],
-                    overflowItems: [],
-
-                    init() {
-                        this.visibleItems = [...this.listItems];
-                        this.$nextTick(() => {
-                            this.updateOverflow();
-                            window.addEventListener('resize', this.updateOverflow.bind(this));
-                        });
-                    },
-
-                    updateOverflow() {
-                        this.$nextTick(() => {
-                            const parentRect = this.$refs.navlist.getBoundingClientRect();
-                            const dropdownButtonWidth = this.$refs.navlist.querySelector('.navlist-dropdown button').getBoundingClientRect().width;
-
-                            let totalWidth = 0;
-                            this.visibleItems = [];
-                            this.overflowItems = [];
-
-                            this.listItems.forEach(item => {
-                                const dummyElement = document.createElement('span');
-                                dummyElement.className = 'block duration-200 whitespace-nowrap';
-                                dummyElement.style.visibility = 'hidden';
-                                dummyElement.style.position = 'absolute';
-                                dummyElement.textContent = item[0];
-                                document.body.appendChild(dummyElement);
-                                const itemWidth = dummyElement.getBoundingClientRect().width;
-                                document.body.removeChild(dummyElement);
-
-                                if (totalWidth + itemWidth + dropdownButtonWidth > parentRect.width) {
-                                    this.overflowItems.push(item);
-                                } else {
-                                    totalWidth += itemWidth;
-                                    this.visibleItems.push(item);
-                                }
+            (function() {
+                document.addEventListener('alpine:init', () => {
+                    Alpine.data('navlist', () => ({
+                        listItems: [
+                            ['Home & Garden', '#'],
+                            ['Hair & Beauty', '#'],
+                            ['Consumer Electronics', '#'],
+                            ['Clothing', '#'],
+                            ['Toys & Games', '#'],
+                            ['Furniture', '#'],
+                            ['Sports & Entertainment', '#'],
+                            ['Pet supplies', '#'],
+                            ['Tools & Industrial', '#'],
+                            ['Jewellery & Watches', '#'],
+                            ['Automotive & Motorcycle', '#']
+                        ],
+                        visibleItems: [],
+                        overflowItems: [],
+    
+                        init() {
+                            this.visibleItems = [...this.listItems];
+                            this.$nextTick(() => {
+                                this.updateOverflow();
+                                window.addEventListener('resize', this.updateOverflow.bind(this));
                             });
-                        });
-                    },
-
-                    toggleDropdown() {
-                        this.dropdownOpen = !this.dropdownOpen;
-                    }
-                }));
-            });
+                        },
+    
+                        updateOverflow() {
+                            this.$nextTick(() => {
+                                const parentRect = this.$refs.navlist.getBoundingClientRect();
+                                const dropdownButtonWidth = this.$refs.navlist.querySelector('.navlist-dropdown button').getBoundingClientRect().width;
+    
+                                let totalWidth = 0;
+                                this.visibleItems = [];
+                                this.overflowItems = [];
+    
+                                this.listItems.forEach(item => {
+                                    const dummyElement = document.createElement('span');
+                                    dummyElement.className = 'block duration-200 whitespace-nowrap';
+                                    dummyElement.style.visibility = 'hidden';
+                                    dummyElement.style.position = 'absolute';
+                                    dummyElement.textContent = item[0];
+                                    document.body.appendChild(dummyElement);
+                                    const itemWidth = dummyElement.getBoundingClientRect().width;
+                                    document.body.removeChild(dummyElement);
+    
+                                    if (totalWidth + itemWidth + dropdownButtonWidth > parentRect.width) {
+                                        this.overflowItems.push(item);
+                                    } else {
+                                        totalWidth += itemWidth;
+                                        this.visibleItems.push(item);
+                                    }
+                                });
+                            });
+                        },
+    
+                        toggleDropdown() {
+                            this.dropdownOpen = !this.dropdownOpen;
+                        }
+                    }));
+                });
+            })()
         </script>
     @endonce
 @endpush

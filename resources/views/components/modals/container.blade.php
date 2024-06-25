@@ -61,41 +61,43 @@
 @push('scripts')
     @once
         <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.store('modals', {
-                    show: [],
-
-                    open(id, isModalOverlay = false) {
-                        if (isModalOverlay) {
-                            if (!this.show.includes(id)) {
-                                this.show.push(id)
+            (function() {
+                document.addEventListener('alpine:init', () => {
+                    Alpine.store('modals', {
+                        show: [],
+    
+                        open(id, isModalOverlay = false) {
+                            if (isModalOverlay) {
+                                if (!this.show.includes(id)) {
+                                    this.show.push(id)
+                                }
+                            } else {
+                                if (!this.show.includes(id)) {
+                                    this.show = [id]
+                                }
                             }
-                        } else {
-                            if (!this.show.includes(id)) {
-                                this.show = [id]
+                        },
+    
+                        close(id = null) {
+                            if (typeof id === 'array') {
+                                this.show = this.show.filter((modal) => !id.includes(modal))
+                            } else if (typeof id === 'string') {
+                                this.show = this.show.filter((modal) => modal !== id)
+                            } else {
+                                this.show = []
+                            }
+                        },
+    
+                        toggle(id, isModalOverlay = false) {
+                            if (this.show === id) {
+                                this.close(id)
+                            } else {
+                                this.open(id, isModalOverlay)
                             }
                         }
-                    },
-
-                    close(id = null) {
-                        if (typeof id === 'array') {
-                            this.show = this.show.filter((modal) => !id.includes(modal))
-                        } else if (typeof id === 'string') {
-                            this.show = this.show.filter((modal) => modal !== id)
-                        } else {
-                            this.show = []
-                        }
-                    },
-
-                    toggle(id, isModalOverlay = false) {
-                        if (this.show === id) {
-                            this.close(id)
-                        } else {
-                            this.open(id, isModalOverlay)
-                        }
-                    }
+                    })
                 })
-            })
+            })()
         </script>
     @endonce
 @endpush
