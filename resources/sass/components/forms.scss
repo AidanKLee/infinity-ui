@@ -3,12 +3,12 @@
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,
     input:-webkit-autofill:active {
-        @apply border border-dark/10 ring-2 ring-primary;
-        -webkit-box-shadow: 0 0 0 30px #FDFDFD inset !important;
+        @apply border-0 border-dark/10 ring-2 ring-primary;
+        -webkit-box-shadow: 0 0 0 100px #FDFDFD inset !important;
 
         &:is(.dark *) {
             @apply border-light/5 ring-primary-dark;
-            -webkit-box-shadow: 0 0 0 30px #0F1012 inset !important;
+            -webkit-box-shadow: 0 0 0 100px #0F1012 inset !important;
         }
     }
     
@@ -32,11 +32,23 @@
         @apply pl-1;
     }
 
-    textarea.input {
-        @apply h-32;
-    }
-
     .label {
         @apply block w-fit mb-1;
+    }
+
+    .select-dropdown {
+        @apply absolute -bottom-2 text-xs w-full max-h-60 overflow-y-auto overflow-x-visible translate-y-full z-10 bg-white border border-dark/10 rounded-md dark:bg-black dark:border-light/5;
+
+        & > *:first-child {
+            @apply rounded-t-md;
+        }
+
+        & > *:last-child {
+            @apply rounded-b-md;
+        }
+    }
+
+    .select-option {
+        @apply focus-none flex justify-between items-center gap-2 px-2 py-2 w-full text-left border-2 border-transparent duration-200 hover:bg-dark/5 focus:outline-none focus:bg-dark/5 focus:border-primary dark:hover:bg-light/5 dark:focus:bg-light/5 dark:focus:border-primary-dark;
     }
 }
