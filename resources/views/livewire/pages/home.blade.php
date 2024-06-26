@@ -12,6 +12,7 @@
         
             <div class="flex flex-col gap-2 max-w-md">
                 <x-inputs.text id="firstname" label="First name" placeholder="Enter your first name" maxlength="255" floating />
+                <x-inputs.text id="password" label="Password" placeholder="Enter your password" floating password />
                 {{-- <div>
                     <label class="label">Text input</label>
                     <input type="text" class="input" placeholder="Input">
