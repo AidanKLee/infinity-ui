@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/sass/app.scss'])
         @livewireStyles
     </head>
-    <body class="relative font-sans antialiased bg-white-pure text-black dark:text-white dark:bg-black-pure" x-data>
+    <body class="relative font-sans antialiased bg-white text-black dark:text-white dark:bg-black" x-data>
         @isset($slot)
             {{ $slot }}
         @endisset
@@ -68,6 +68,7 @@
             </x-notifications.toast>
         </x-notifications.container>
         @stack('modals')
+        @stack('mobile-menu')
         @stack('notifications')
         @stack('scripts')
         @livewireScripts
