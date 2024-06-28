@@ -46,16 +46,27 @@
                         </label>
                     </x-slot>
                 </x-inputs.text>
-                <x-inputs.text id="categories" label="Categories" placeholder="Enter the categories" floating select>
-                    <x-inputs.option type="button" value="1">Consumer Electronics</x-inputs.option>
-                    <x-inputs.option type="button" value="2">Health & Beauty</x-inputs.option>
-                    <x-inputs.option type="button" value="3">Home & Garden</x-inputs.option>
-                    <x-inputs.option type="button" value="4">Toys & Hobbies</x-inputs.option>
-                    <x-inputs.option type="button" value="5">Sports & Outdoors</x-inputs.option>
-                    <x-inputs.option type="button" value="6">Automotive</x-inputs.option>
-                    <x-inputs.option type="button" value="7">Fashion</x-inputs.option>
-                    <x-inputs.option type="button" value="8">Jewelry & Watches</x-inputs.option>
-                </x-inputs.text>
+                <x-inputs.text id="categories" label="Categories" placeholder="Select the category" select :options="[
+                    ['value' => '', 'label' => 'No category'],
+                    ['value' => 1, 'label' => 'Consumer Electronics'],
+                    ['value' => 2, 'label' => 'Health & Beauty'],
+                    ['value' => 3, 'label' => 'Home & Garden'],
+                    ['value' => 4, 'label' => 'Toys & Hobbies'],
+                    ['value' => 5, 'label' => 'Sports & Outdoors'],
+                    ['value' => 6, 'label' => 'Automotive'],
+                    ['value' => 7, 'label' => 'Fashion'],
+                    ['value' => 8, 'label' => 'Jewelry & Watches'],
+                ]" floating />
+                <x-inputs.text id="sub-categories" label="Subcategories" placeholder="Select the subcategories" select :options="[
+                    ['value' => 1, 'label' => 'Consumer Electronics'],
+                    ['value' => 2, 'label' => 'Health & Beauty'],
+                    ['value' => 3, 'label' => 'Home & Garden'],
+                    ['value' => 4, 'label' => 'Toys & Hobbies'],
+                    ['value' => 5, 'label' => 'Sports & Outdoors'],
+                    ['value' => 6, 'label' => 'Automotive'],
+                    ['value' => 7, 'label' => 'Fashion'],
+                    ['value' => 8, 'label' => 'Jewelry & Watches'],
+                ]" floating multiple />
                 {{-- <div>
                     <label class="label">Text input</label>
                     <input type="text" class="input" placeholder="Input">

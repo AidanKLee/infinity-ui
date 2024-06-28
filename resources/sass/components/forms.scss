@@ -49,6 +49,6 @@
     }
 
     .select-option {
-        @apply focus-none flex justify-between items-center gap-2 px-2 py-2 w-full text-left border-2 border-transparent duration-200 hover:bg-dark/5 focus:outline-none focus:bg-dark/5 focus:border-primary dark:hover:bg-light/5 dark:focus:bg-light/5 dark:focus:border-primary-dark;
+        @apply focus-none relative flex justify-between items-center gap-2 px-2 py-2 w-full text-left border-2 border-transparent duration-200 hover:bg-dark/5 focus-within:bg-dark/5 focus-within:border-primary dark:hover:bg-light/5 dark:focus-within:bg-light/5 dark:focus-within:border-primary-dark;
     }
 }
