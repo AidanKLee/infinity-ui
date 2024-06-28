@@ -56,7 +56,13 @@
                     ['value' => 6, 'label' => 'Automotive'],
                     ['value' => 7, 'label' => 'Fashion'],
                     ['value' => 8, 'label' => 'Jewelry & Watches'],
-                ]" floating />
+                ]" floating prefix-inset>
+                    <x-slot name="prefix">
+                        <label for="categories" class="flex justify-center items-center h-[50px] w-[50px]">
+                            <x-icons.tag class="w-5 h-5 text-dark/50 dark:text-light/50" />
+                        </label>
+                    </x-slot>
+                </x-inputs.text>
                 <x-inputs.text id="sub-categories" label="Subcategories" placeholder="Select the subcategories" select :options="[
                     ['value' => 1, 'label' => 'Consumer Electronics'],
                     ['value' => 2, 'label' => 'Health & Beauty'],
