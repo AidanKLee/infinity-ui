@@ -26,14 +26,15 @@
             x-transition:leave="ease-in duration-200"
             x-transition:leave-start="translate-y-0 blur-none scaled-100"
             x-transition:leave-end="-translate-y-24 blur-sm scale-50">
-            @isset($toolbar)
+            @if(isset($toolbar) || $attributes->has('@click.close'))
                 <div @class([
                     'flex items-center gap-2',
-                    'justify-between' => isset($closeButton),
-                    'justify-start' => !isset($closeButton),
+                    'justify-between' => $attributes->has('@click.close') && (isset($toolbar) && $toolbar !== 1),
+                    'justify-end' => $attributes->has('@click.close') && (!isset($toolbar) || $toolbar === 1),
+                    'justify-start' => !$attributes->has('@click.close'),
                     'absolute top-0 right-0' => isset($closeButton) && $closeButton === 'absolute'
                 ])>
-                    {{ $toolbar !== true ? $toolbar : '' }}
+                    {{ isset($toolbar) && $toolbar !== 1 ? $toolbar : '' }}
                     @if ($attributes->has('@click.close'))
                         <button class="focus-none group relative flex items-center cursor-pointer" @attributes(['@click.close' => '@click'])>
                             <span class="text-2xs bg-dark/10 px-1 rounded-md duration-200 group-hover:bg-primary group-hover:text-white group-focus:bg-primary group-focus:text-white dark:bg-light/10 dark:group-focus:text-black dark:group-hover:bg-primary-dark dark:group-hover:text-black dark:group-focus:bg-primary-dark">esc</span>

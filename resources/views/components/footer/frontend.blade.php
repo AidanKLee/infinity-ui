@@ -14,7 +14,7 @@
                         <h2 class="font-semibold">Subscribe to our newsletter</h2>
                         <div class="flex flex-col gap-x-4 gap-y-2 items-stretch max-w-md xl:flex-row">
                             <div class="grow">
-                                <x-inputs.text id="email" label="Email" placeholder="Enter your email" floating prefix-inset>
+                                <x-inputs.text id="newsletter-email" label="Email" placeholder="Enter your email" floating prefix-inset>
                                     <x-slot name="prefix">
                                         <div>
                                             <label for="email" class="flex justify-center items-center h-[50px] w-[50px]">

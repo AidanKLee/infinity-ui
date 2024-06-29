@@ -94,15 +94,16 @@
                 <div class="flex items-center">
                     <x-dropdowns.darkmode />
                 </div>
-                <x-buttons.navlink href="#" class="navlink relative">
+                <button class="navlink relative" @click="$store.modals.open('auth')">
                     <div>
                         <x-icons.user class="w-7 h-7" />
                     </div>
-                    <div class="flex flex-col sr-only md:not-sr-only">
+                    <div class="flex flex-col sr-only text-left md:not-sr-only">
                         <span class="text-xs leading-tight whitespace-nowrap">Hi there,</span>
                         <span class="leading-tight whitespace-nowrap">Login / Register</span>
                     </div>
-                </x-buttons.navlink>
+                </button>
+                <x-modals.auth />
                 <button class="group navlink relative xl:hidden">
                     <div class="flex flex-col justify-center items-end gap-1 w-7 md:w-[35px] h-full duration-200 group-active:scale-90 group-hover:gap-1.5 group-focus:gap-1.5">
                         <hr class="border-0 h-0.5 bg-black rounded-3xl w-full duration-200 group-hover:bg-primary group-focus:bg-primary dark:bg-white dark:group-hover:bg-primary-dark dark:group-focus:bg-primary-dark" />
