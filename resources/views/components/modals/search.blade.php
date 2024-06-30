@@ -54,7 +54,7 @@
                         search: '',
     
                         close() {
-                            this.$store.modals.close()
+                            this.$store.modals.close(['search'])
                             setTimeout(() => {
                                 this.search = ''
                             }, 300);

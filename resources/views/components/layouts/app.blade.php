@@ -67,9 +67,11 @@
                 </x-slot>
             </x-notifications.toast>
         </x-notifications.container>
+
         @stack('modals')
         @stack('mobile-menu')
         @stack('notifications')
+        
         @stack('scripts')
         @livewireScripts
     </body>

@@ -1,7 +1,7 @@
 @push('modals')
-    <div @attributes(['x-show', 'x-data', '@keydown.window.esc'], ['overlay'], [
+    <div @attributes(['class', 'x-show', 'x-data', '@keydown.window.esc'], null, [
         'overlay',
-        'overlay-clear' => isset($noOverlay) && $noOverlay === true,
+        'overlay-clear' => isset($noOverlay) && $noOverlay === true
     ])
         x-transition:enter="ease-out duration-200"
         x-transition:enter-start="opacity-0"
@@ -10,21 +10,22 @@
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
         style="display:none;">
-        <div @attributes(['x-show', '@click.outside'], null, [
-            'modal',
-            'modal-xs' => isset($size) && $size === 'xs',
-            'modal-sm' => isset($size) && $size === 'sm',
-            'modal-md' => isset($size) && $size === 'md',
-            'modal-lg' => isset($size) && $size === 'lg',
-            'modal-xl' => isset($size) && $size === 'xl',
-            'modal-2xl' => isset($size) && $size === '2xl',
-            'modal-3xl' => isset($size) && $size === '3xl',
-        ])
+        <div @attributes(['x-show', '@click.outside'], ['class'])
+            @class([
+                'modal',
+                'modal-xs' => isset($size) && $size === 'xs',
+                'modal-sm' => isset($size) && $size === 'sm',
+                'modal-md' => isset($size) && $size === 'md',
+                'modal-lg' => isset($size) && $size === 'lg',
+                'modal-xl' => isset($size) && $size === 'xl',
+                'modal-2xl' => isset($size) && $size === '2xl',
+                'modal-3xl' => isset($size) && $size === '3xl',
+            ])
             x-transition:enter="ease-out duration-200"
             x-transition:enter-start="-translate-y-24 blur-sm scale-50"
-            x-transition:enter-end="translate-y-0 blur-nonescale-100"
+            x-transition:enter-end="translate-y-0 blur-none scale-100"
             x-transition:leave="ease-in duration-200"
-            x-transition:leave-start="translate-y-0 blur-none scaled-100"
+            x-transition:leave-start="translate-y-0 blur-none scale-100"
             x-transition:leave-end="-translate-y-24 blur-sm scale-50">
             @if(isset($toolbar) || $attributes->has('@click.close'))
                 <div @class([
@@ -50,7 +51,9 @@
                 {{ $header }}
             @endisset
             @isset ($slot)
-                {{ $slot }}
+                <div class="flex-1 overflow-y-auto">
+                    {{ $slot }}
+                </div>
             @endif
             @isset($footer)
                 {{ $footer}}
@@ -77,6 +80,12 @@
                                     this.show = [id]
                                 }
                             }
+                            
+                            if (!Alpine.store('mobilemenu').disableClose) {
+                                Alpine.store('mobilemenu').disableClose = true
+                            }
+
+                            document.body.style.overflow = 'hidden'
                         },
     
                         close(id = null) {
@@ -86,6 +95,13 @@
                                 this.show = this.show.filter((modal) => modal !== id)
                             } else {
                                 this.show = []
+                            }
+
+                            if (this.show.length === 0) {
+                                setTimeout(() => {
+                                    document.body.style.overflow = ''
+                                    Alpine.store('mobilemenu').disableClose = false
+                                }, 0)
                             }
                         },
     

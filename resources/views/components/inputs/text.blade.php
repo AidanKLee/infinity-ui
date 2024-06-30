@@ -145,9 +145,15 @@
     @endif
     @error($attributes->get('wire:model') ?? ($attributes->get('name') ?? ''))
         <div @class([
-            'px-2 py-1 text-sm text-danger rounded-b-md border-2 border-transparent bg-danger/10 ring-2 ring-danger/10'
+            'flex items-center justify-between gap-2 px-2 py-1 text-sm text-danger rounded-b-md border-2 border-transparent bg-danger/10 ring-2 ring-danger/10'
         ])>
-            {{ $message ?? 'There are errors with this field.' }}
+            <span>{{ $message ?? 'There are errors with this field.' }}</span>
+            @if ($attributes->has('wire:model'))
+                <button type="button" wire:click="dismissErrors('{{ $attributes->get('wire:model') }}')" class="focus-none">
+                    <x-icons.cross class="w-4 h-4" />
+                    <span class="sr-only">Clear error</span>
+                </button>
+            @endif
         </div>
     @enderror
     @isset($maxlength)

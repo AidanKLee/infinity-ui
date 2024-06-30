@@ -160,7 +160,7 @@
                         },
     
                         preventDefault(e) {
-                                e.preventDefault();
+                            e.preventDefault();
                         },
     
                         disableWindowScrolling() {

@@ -10,6 +10,26 @@
     .overlay {
         @apply fixed top-0 left-0 z-50 bg-white-pure/25 h-screen w-full xs:pt-24 pb-16 px-3 backdrop-blur-sm pt-16 dark:bg-black-pure/25;
 
+        &.layer-1 {
+            @apply z-[51];
+        }
+
+        &.layer-2 {
+            @apply z-[52];
+        }
+
+        &.layer-3 {
+            @apply z-[53];
+        }
+
+        &.layer-4 {
+            @apply z-[54];
+        }
+
+        &.layer-5 {
+            @apply z-[55];
+        }
+
         &.overlay-clear {
             @apply bg-transparent backdrop-blur-none pt-20 xs:pt-32 dark:bg-transparent;
         }

@@ -1,6 +1,6 @@
 @layer components {
     .modal {
-        @apply relative w-full max-w-md mx-auto bg-white rounded-xl shadow-custom-lg dark:bg-black;
+        @apply relative flex flex-col items-stretch w-full max-w-md max-h-full mx-auto bg-white rounded-xl shadow-custom-lg border border-black/5 dark:bg-black dark:border-white/5;
 
         &.modal-xs {
             @apply max-w-xs;
@@ -25,5 +25,9 @@
         &.modal-2xl {
             @apply max-w-2xl;
         }
+    }
+
+    .mobile-menu {
+        @apply flex flex-col items-stretch relative ml-auto h-full w-full max-w-[343px] bg-white rounded-l-md shadow-custom-lg border border-black/5 dark:bg-black dark:border-white/5 2xs:max-w-96;
     }
 }
