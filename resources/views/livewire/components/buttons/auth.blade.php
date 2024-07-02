@@ -7,7 +7,10 @@
             <div>
                 <x-icons.user class="w-7 h-7" />
             </div>
-            <div class="flex flex-col sr-only text-left md:not-sr-only">
+            <div @class([
+                'flex flex-col text-left',
+                'sr-only md:not-sr-only' => !isset($fullWidth),
+            ])>
                 <span class="text-xs leading-tight whitespace-nowrap">Hi there,</span>
                 <span class="leading-tight whitespace-nowrap">Login / Register</span>
             </div>
@@ -22,7 +25,10 @@
                     <img src="{{ asset('assets/images/avatar.jpg') }}" alt="avatar" class="w-[35px] h-[35px] max-w-none rounded-full border border-black/20 duration-200 group-hover:border-primary/20 group-focus:border-primary/20 dark:border-white/20 dark:group-hover:border-primary-dark/20 dark:group-focus:border-primary-dark/20" />
                     {{-- <x-icons.user class="w-7 h-7" /> --}}
                 </div>
-                <div class="flex flex-1 flex-col !overflow-hidden sr-only text-left md:not-sr-only">
+                <div @class([
+                    'flex flex-1 flex-col !overflow-hidden text-left',
+                    'sr-only md:not-sr-only' => !isset($fullWidth),
+                ]) class="">
                     <span class="flex-1 leading-tight truncate">{{ auth()->user()->name }}</span>
                     <span class="flex-1 text-xs leading-tight truncate">{{ auth()->user()->email }}</span>
                 </div>

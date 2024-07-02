@@ -99,8 +99,13 @@
 
                             if (this.show.length === 0) {
                                 setTimeout(() => {
-                                    document.body.style.overflow = ''
-                                    Alpine.store('mobilemenu').disableClose = false
+                                    if (!Alpine.store('mobilemenu').show) {
+                                        document.body.style.overflow = ''
+                                    }
+
+                                    if (Alpine.store('mobilemenu').disableClose) {
+                                        Alpine.store('mobilemenu').disableClose = false
+                                    }
                                 }, 0)
                             }
                         },

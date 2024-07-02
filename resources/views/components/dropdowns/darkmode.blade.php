@@ -8,7 +8,7 @@
                 <x-icons.sun />
             </div>
         </x-buttons.icon>
-        <x-dropdowns.navlink class="w-48" x-show="show">
+        <x-dropdowns.navlink class="w-48 -left-12 2xs:-left-8 md:-left-3" x-show="show">
             <ul class="flex flex-col gap-1 p-1">
                 <x-dropdowns.items.navlink ::class="{'bg-secondary/5 text-secondary dark:text-secondary-dark dark:bg-secondary-dark/20': $store.darkMode.mode === 'system'}">
                     <div class="flex items-center">

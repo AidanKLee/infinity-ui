@@ -68,7 +68,11 @@
     }
 
     .navlink {
-        @apply flex items-center justify-center rounded-md gap-1.5 px-2 py-2 duration-200 outline-none hover:text-primary hover:bg-primary/5 focus:outline-none focus:text-primary focus:bg-primary/5 dark:hover:text-primary-dark dark:hover:bg-primary-dark/20 dark:focus:text-primary-dark dark:focus:bg-primary-dark/20;
+        @apply flex grow items-center rounded-md gap-1.5 px-2 py-2 duration-200 outline-none hover:text-primary hover:bg-primary/5 focus:outline-none focus:text-primary focus:bg-primary/5 dark:hover:text-primary-dark dark:hover:bg-primary-dark/20 dark:focus:text-primary-dark dark:focus:bg-primary-dark/20;
+
+        &.mobile-menu-navlink {
+            @apply justify-between text-xl gap-3;
+        }
     }
 
     .footer-link {

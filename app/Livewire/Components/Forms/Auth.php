@@ -4,7 +4,9 @@ namespace App\Livewire\Components\Forms;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Models\User;
+use App\Notifications\ForgotPassword;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Password as PasswordReset;
 use Livewire\Component;
 
 class Auth extends Component
@@ -19,6 +21,10 @@ class Auth extends Component
         'email' => '',
         'password' => '',
         'password_confirmation' => '',
+    ];
+
+    public array $password = [
+        'email' => '',
     ];
 
     protected function rules($type = '') {
@@ -44,8 +50,13 @@ class Auth extends Component
                         ->uncompromised(),
                 ],
             ];
+        } elseif ($type === 'forgot-password') {
+            return [
+                'password.email' => 'required|email|max:255',
+            ];
         } else {
             return [
+                'password.email' => 'required|email|max:255',
                 'login.email' => 'required|email|max:255',
                 'login.password' => 'required|min:8|max:255',
                 'register.name' => 'required|string|regex:/^[\pL\s\-]+$/u|min:2|max:255',
@@ -71,6 +82,7 @@ class Auth extends Component
     ];
 
     protected array $validationAttributes = [
+        'password.email' => 'email',
         'login.email' => 'email',
         'login.password' => 'password',
         'register.name' => 'name',
@@ -86,6 +98,24 @@ class Auth extends Component
         } else {
             $this->resetErrorBag();
         }
+    }
+
+    public function handleResetPassword()
+    {
+        $this->validate($this->rules('forgot-password'));
+
+        $user = User::where('email', $this->password['email'])->first();
+
+        if (empty($user)) {
+            $this->addError('password.email', 'We can\'t find a user with that email address.');
+            return;
+        }
+        
+        $token = PasswordReset::createToken($user);
+
+        $user->notify(new ForgotPassword($token, $this->password['email']));
+
+        $this->reset();
     }
 
     public function handleLogin()

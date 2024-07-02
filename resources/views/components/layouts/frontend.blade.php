@@ -121,6 +121,69 @@
                     </x-slot:preheader>
                     <div class="px-2">
                         <livewire:components.buttons.auth full-width />
+                        <nav class="flex flex-col items-stretch justify-center gap-2 py-2 ">
+
+                            <x-buttons.navlink class="mobile-menu-navlink">
+                                Components
+        
+                                <x-slot name="dropdown">
+                                    <x-dropdowns.navlink class="w-full left-0" x-show="show">
+                                        <ul class="flex flex-col gap-1 p-2">
+        
+                                            <x-dropdowns.items.navlink>
+                                                <x-slot name="icon">
+                                                    <x-icons.wrench-screwdriver />
+                                                </x-slot>
+                                                <div>
+                                                    <a href="#" class="font-medium focus-none">
+                                                        <span>Buttons</span>
+                                                        <span class="absolute inset-0"></span>
+                                                    </a>
+                                                    <p class="text-xs font-light">A variety of buttons to suit your UI needs</p>
+                                                </div>
+                                            </x-dropdowns.items.navlink>
+        
+                                            <x-dropdowns.items.navlink>
+                                                <x-slot name="icon">
+                                                    <x-icons.clipboard />
+                                                </x-slot>
+                                                <div>
+                                                    <a href="#" class="font-medium focus-none">
+                                                        <span>Form inputs</span>
+                                                        <span class="absolute inset-0"></span>
+                                                    </a>
+                                                    <p class="text-xs font-light">Enhance interaction: Form inputs redefined</p>
+                                                </div>
+                                            </x-dropdowns.items.navlink>
+        
+                                            <x-dropdowns.items.navlink>
+                                                <x-slot name="icon">
+                                                    <x-icons.check-badge />
+                                                </x-slot>
+                                                <div>
+                                                    <a href="#" class="font-medium focus-none">
+                                                        <span>Badges</span>
+                                                        <span class="absolute inset-0"></span>
+                                                    </a>
+                                                    <p class="text-xs font-light">Elevate your site with UI badges that shine</p>
+                                                </div>
+                                            </x-dropdowns.items.navlink>
+        
+                                        </ul>
+                                    </x-dropdowns.navlink>
+                                </x-slot>
+        
+                            </x-buttons.navlink>
+        
+                            <x-buttons.navlink class="mobile-menu-navlink" href="#">
+                                Blocks
+                            </x-buttons.navlink>
+        
+                            <x-buttons.navlink class="mobile-menu-navlink" href="#">
+                                Documentation
+                            </x-buttons.navlink>
+        
+                        </nav>
                     </div>
                 </x-modals.mobile-menu>
             </div>

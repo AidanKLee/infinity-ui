@@ -7,7 +7,7 @@
     <div @class([
         'flex items-stretch rounded-md bg-white overflow-hidden border border-dark/10 focus-within:ring-2 focus-within:ring-primary dark:border-light/5 dark:bg-black dark:focus-within:ring-primary-dark',
         'group-focus-within:ring-2 group-focus-within:ring-primary dark:group-focus-within:ring-primary-dark' => $attributes->has('select'),
-        'ring-2 ring-danger rounded-b-none' => $errors->has($attributes->get('wire:model') ?? ($attributes->get('name') ?? '')),
+        'ring-2 ring-danger rounded-b-none' => isset($errors) && ($errors->has($attributes->get('wire:model') ?? ($attributes->get('name') ?? ''))),
     ]) :class="{ 'ring-2 ring-primary dark:ring-primary-dark': selectable && show }">
         @if (isset($prefix) && (!isset($floating) || (isset($prefixInset) && isset($floating))))
             {{ $prefix }}
@@ -112,50 +112,52 @@
         @endisset
     </div>
     @if(isset($select) && isset($options))
-    <div class="select-dropdown" x-show="show" wire:ignore>
-        <div x-ref="select-dropdown">
-            @foreach($options as $option)
-                @if((isset($multiple) && !empty($option['value']) || !isset($multiple)))
-                    <label class="select-option">
-                        <input @attributes(null, ['type', 'label', 'floating', 'maxlength', 'value', 'growable', 'textarea', 'prefix-inset', 'options', 'select', 'multiple', 'value', 'placeholder', 'class', 'name', '@change'])
-                            class="sr-only" 
-                            type="{{ isset($multiple) ? 'checkbox' : 'radio' }}" 
-                            value="{{ $option['value'] }}" 
-                            name="{{ $name ?? ($attributes->get('wire:model') ?? ($id ?? '')) }}" 
-                            @change="handleChange($event);{{ $attributes->get('@change') ?? '' }}" />
-                        <div class="flex-1 truncate">
-                            {!! $option['label'] !!}
-                        </div>
-                        <div x-show="(multiple && value.includes('{{ $option['value'] }}')) || (!multiple && value === '{{ $option['value'] }}')" style="display: none;">
-                            <x-icons.check class="w-4 h-4 text-primary dark:text-primary-dark" />
-                        </div>
-                    </label>
-                @endif
-            @endforeach
-        </div>
-        <div class="select-option" x-show="filteredOptions.length === 0">
-            <div class="flex items-center gap-2">
-                <div>
-                    <x-icons.warning class="h-4 w-4" />
+        <div class="select-dropdown" x-show="show" wire:ignore>
+            <div x-ref="select-dropdown">
+                @foreach($options as $option)
+                    @if((isset($multiple) && !empty($option['value']) || !isset($multiple)))
+                        <label class="select-option">
+                            <input @attributes(null, ['type', 'label', 'floating', 'maxlength', 'value', 'growable', 'textarea', 'prefix-inset', 'options', 'select', 'multiple', 'value', 'placeholder', 'class', 'name', '@change'])
+                                class="sr-only" 
+                                type="{{ isset($multiple) ? 'checkbox' : 'radio' }}" 
+                                value="{{ $option['value'] }}" 
+                                name="{{ $name ?? ($attributes->get('wire:model') ?? ($id ?? '')) }}" 
+                                @change="handleChange($event);{{ $attributes->get('@change') ?? '' }}" />
+                            <div class="flex-1 truncate">
+                                {!! $option['label'] !!}
+                            </div>
+                            <div x-show="(multiple && value.includes('{{ $option['value'] }}')) || (!multiple && value === '{{ $option['value'] }}')" style="display: none;">
+                                <x-icons.check class="w-4 h-4 text-primary dark:text-primary-dark" />
+                            </div>
+                        </label>
+                    @endif
+                @endforeach
+            </div>
+            <div class="select-option" x-show="filteredOptions.length === 0">
+                <div class="flex items-center gap-2">
+                    <div>
+                        <x-icons.warning class="h-4 w-4" />
+                    </div>
+                    <span>No results</span>
                 </div>
-                <span>No results</span>
             </div>
         </div>
-    </div>
     @endif
-    @error($attributes->get('wire:model') ?? ($attributes->get('name') ?? ''))
-        <div @class([
-            'flex items-center justify-between gap-2 px-2 py-1 text-sm text-danger rounded-b-md border-2 border-transparent bg-danger/10 ring-2 ring-danger/10'
-        ])>
-            <span>{{ $message ?? 'There are errors with this field.' }}</span>
-            @if ($attributes->has('wire:model'))
-                <button type="button" wire:click="dismissErrors('{{ $attributes->get('wire:model') }}')" class="focus-none">
-                    <x-icons.cross class="w-4 h-4" />
-                    <span class="sr-only">Clear error</span>
-                </button>
-            @endif
-        </div>
-    @enderror
+    @isset($errors)
+        @error($attributes->has('wire:model') ? $attributes->get('wire:model') : ($name ?? 'test'))
+            <div @class([
+                'flex items-center justify-between gap-2 px-2 py-1 text-sm text-danger rounded-b-md border-2 border-transparent bg-danger/10 ring-2 ring-danger/10'
+            ])>
+                <span>{{ $message ?? 'There are errors with this field.' }}</span>
+                @if ($attributes->has('wire:model'))
+                    <button type="button" wire:click="dismissErrors('{{ $attributes->get('wire:model') }}')" class="focus-none">
+                        <x-icons.cross class="w-4 h-4" />
+                        <span class="sr-only">Clear error</span>
+                    </button>
+                @endif
+            </div>
+        @enderror
+    @endif
     @isset($maxlength)
         <div @class(["text-2xs text-right mt-0.5"]) :class="{ 'text-danger': text.length > maxlength }" x-text="`${text.length} / ${maxlength}`"></div>
     @endisset
