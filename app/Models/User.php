@@ -49,4 +49,14 @@ class User extends Authenticatable
     {
         return explode(' ', $this->name)[0];
     }
+
+    public function getLastnameAttribute()
+    {
+        return array_reverse(explode(' ', $this->name))[0];
+    }
+
+    public function getInitialsAttribute()
+    {
+        return $this->firstname[0] . $this->lastname[0];
+    }
 }

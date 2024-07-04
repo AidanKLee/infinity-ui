@@ -1,0 +1,9 @@
+@layer components {
+    .progress-list-vertical {
+        > *:not(:last-child)::after {
+            content: '';
+            @apply absolute top-3.5 left-[13px] pl-0.5 h-full bg-primary dark:bg-primary-dark;
+            
+        }
+    }
+}

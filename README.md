@@ -1,3 +1,12 @@
+# Attribution
+Photo by <a href="https://unsplash.com/@fujiphilm?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Fujiphilm</a> on <a href="https://unsplash.com/photos/a-cell-phone-sitting-next-to-a-keyboard-ASrceChVEQU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+
+Photo by <a href="https://unsplash.com/@growtika?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Growtika</a> on <a href="https://unsplash.com/photos/a-computer-screen-with-a-keyboard-and-a-box-with-a-logo-YOEHA0Ou8ZY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  
+Photo by <a href="https://unsplash.com/@theshubhamdhage?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Shubham Dhage</a> on <a href="https://unsplash.com/photos/blue-and-white-floral-egg-fmCr42xCLtk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  
+  
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

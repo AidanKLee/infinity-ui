@@ -1,4 +1,32 @@
 @layer components {
+    main > section {
+        @apply py-24;
+        
+        &.coloured {
+            @apply py-48 bg-black/2.5 dark:bg-white/2.5;
+
+            &:has(+ .coloured) {
+                @apply pb-0;
+            }
+
+            + :not(.coloured) {
+                @apply pt-48;
+            }
+        }
+
+        &:first-child {
+            @apply pt-48;
+        }
+
+        &:last-child {
+            @apply pb-48;
+        }
+
+        &:has(+ .coloured) {
+            @apply pb-48;
+        }
+    }
+
     .navlist {
         @apply bg-tertiary text-white py-1.5 font-poppins dark:bg-tertiary-dark dark:text-black;
     }

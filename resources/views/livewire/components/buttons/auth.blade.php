@@ -22,7 +22,8 @@
                 'bg-black/2.5 dark:bg-white/2.5' => isset($fullWidth),
             ]) @click="toggle">
                 <div>
-                    <img src="{{ asset('assets/images/avatar.jpg') }}" alt="avatar" class="w-[35px] h-[35px] max-w-none rounded-full border border-black/20 duration-200 group-hover:border-primary/20 group-focus:border-primary/20 dark:border-white/20 dark:group-hover:border-primary-dark/20 dark:group-focus:border-primary-dark/20" />
+                    <div class="flex justify-center items-center w-[35px] h-[35px] text-white rounded-full border bg-primary border-black/20 duration-200 group-hover:border-primary/20 group-focus:border-primary/20 dark:text-black dark:bg-primary-dark dark:border-white/20 dark:group-hover:border-primary-dark/20 dark:group-focus:border-primary-dark/20">{{ auth()->user()->initials }}</div>
+                    {{-- <img src="{{ asset('assets/images/avatar.jpg') }}" alt="avatar" class="w-[35px] h-[35px] max-w-none rounded-full border border-black/20 duration-200 group-hover:border-primary/20 group-focus:border-primary/20 dark:border-white/20 dark:group-hover:border-primary-dark/20 dark:group-focus:border-primary-dark/20" /> --}}
                     {{-- <x-icons.user class="w-7 h-7" /> --}}
                 </div>
                 <div @class([
