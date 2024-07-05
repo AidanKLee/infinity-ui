@@ -15,7 +15,12 @@
         @apply grid gap-y-3 mt-20 sm:grid-cols-2 lg:grid-cols-4;
 
         > * {
-            @apply px-3 border-l-2 border-primary dark:border-primary-dark;
+            @apply relative px-4;
+
+            &::before {
+                content: '';
+                @apply absolute left-0 top-0 h-full w-1 rounded-2xl bg-primary dark:bg-primary-dark;
+            }
 
             > * {
                 &:first-child {
