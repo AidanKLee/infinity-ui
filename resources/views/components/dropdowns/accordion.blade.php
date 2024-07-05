@@ -1,5 +1,5 @@
-<li x-data="accordion" @click.outside="close" @resize.window="handleResize">
-    <button class="flex items-center justify-between w-full gap-3 py-8" @click="toggle">
+<li x-data="accordion" @click.outside="close" @resize.window="handleResize" :class="{ 'border-primary dark:border-primary-dark': show }">
+    <button class="focus-none flex items-center justify-between w-full gap-3 py-8 duration-200 focus:text-primary dark:focus:text-primary-dark" @click="toggle">
         <h3 class="text-left font-semibold flex-1 xs:text-lg xl:text-xl">
             @isset($header)
                 {{ $header }}
@@ -32,13 +32,14 @@
                         },
 
                         handleResize() {
-                            this.$refs.content.style.transition = 'none'
-
                             if (this.show) {
-                                this.$refs.content.style.height = this.$refs.content.scrollHeight + 'px'
-                            }
+                                this.$refs.content.style.transition = 'none'
 
-                            this.$refs.content.style.transition = ''
+                                this.$refs.content.style.height = ''
+                                this.$refs.content.style.height = this.$refs.content.scrollHeight + 'px'
+                                
+                                this.$refs.content.style.transition = ''
+                            }
                         },
     
                         open() {

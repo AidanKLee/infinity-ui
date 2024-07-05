@@ -1,6 +1,6 @@
 @layer components {
     .badge {
-        @apply flex items-center gap-1 text-2xs w-fit shadow-glow shadow-black/40 font-semibold py-1 px-2 text-center border border-black rounded-md bg-black/10 dark:bg-white/10 dark:border-white dark:shadow-white/40;
+        @apply flex items-center gap-1 text-2xs w-fit shadow-glow shadow-black/20 font-semibold py-1 px-2 text-center border border-black rounded-md bg-black/10 dark:bg-white/10 dark:border-white dark:shadow-white/20;
 
         &.dot {
             &::before {
@@ -14,7 +14,7 @@
         }
 
         &.primary {
-            @apply text-primary border-primary shadow-primary/40 bg-primary/10 dark:text-primary-dark dark:border-primary-dark dark:shadow-primary-dark/40 dark:bg-primary-dark/10;
+            @apply text-primary border-primary shadow-primary/20 bg-primary/10 dark:text-primary-dark dark:border-primary-dark dark:shadow-primary-dark/20 dark:bg-primary-dark/10;
 
             &.dot {
                 &::before {
@@ -24,7 +24,7 @@
         }
 
         &.secondary {
-            @apply text-secondary border-secondary shadow-secondary/40 bg-secondary/10 dark:text-secondary-dark dark:border-secondary-dark dark:shadow-secondary-dark/40 dark:bg-secondary-dark/10;
+            @apply text-secondary border-secondary shadow-secondary/20 bg-secondary/10 dark:text-secondary-dark dark:border-secondary-dark dark:shadow-secondary-dark/20 dark:bg-secondary-dark/10;
 
             &.dot {
                 &::before {
@@ -34,7 +34,7 @@
         }
 
         &.tertiary {
-            @apply text-tertiary border-tertiary shadow-tertiary/40 bg-tertiary/10 dark:text-tertiary-dark dark:border-tertiary-dark dark:shadow-tertiary-dark/40 dark:bg-tertiary-dark/10;
+            @apply text-tertiary border-tertiary shadow-tertiary/20 bg-tertiary/10 dark:text-tertiary-dark dark:border-tertiary-dark dark:shadow-tertiary-dark/20 dark:bg-tertiary-dark/10;
 
             &.dot {
                 &::before {
@@ -44,7 +44,7 @@
         }
 
         &.info {
-            @apply text-info border-info shadow-info/40 bg-info/10 dark:text-info-dark dark:border-info-dark dark:shadow-info-dark/40 dark:bg-info-dark/10;
+            @apply text-info border-info shadow-info/20 bg-info/10 dark:text-info-dark dark:border-info-dark dark:shadow-info-dark/20 dark:bg-info-dark/10;
 
             &.dot {
                 &::before {
@@ -54,7 +54,7 @@
         }
 
         &.warning {
-            @apply text-warning border-warning shadow-warning/40 bg-warning/10;
+            @apply text-warning border-warning shadow-warning/20 bg-warning/10;
 
             &.dot {
                 &::before {
@@ -64,7 +64,7 @@
         }
 
         &.danger {
-            @apply text-danger border-danger shadow-danger/40 bg-danger/10;
+            @apply text-danger border-danger shadow-danger/20 bg-danger/10;
 
             &.dot {
                 &::before {

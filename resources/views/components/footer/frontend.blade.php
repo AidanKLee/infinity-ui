@@ -17,7 +17,7 @@
                             <x-inputs.text id="newsletter-email" label="Email" placeholder="Enter your email" floating prefix-inset>
                                 <x-slot name="prefix">
                                     <div>
-                                        <label for="email" class="flex justify-center items-center h-[50px] w-[50px]">
+                                        <label for="newsletter-email" class="flex justify-center items-center h-[50px] w-[50px]">
                                             <x-icons.email class="w-5 h-5 text-dark/50 dark:text-light/50" />
                                         </label>
                                     </div>

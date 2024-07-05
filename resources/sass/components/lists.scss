@@ -1,15 +1,56 @@
 @layer components {
-    .accordion {
+    .accordion-list > *, .accordion {
+        @apply border-b-2 border-tertiary duration-200 focus-within:border-primary dark:border-tertiary-dark dark:focus-within:border-primary-dark;
+    }
+
+    .blog-list {
+        @apply grid sm:grid-cols-3 gap-5 max-w-7xl mt-20 mx-auto lg:gap-10;
+
         > * {
-            @apply border-b-2 border-tertiary dark:border-tertiary-dark;
+            @apply relative flex flex-col bg-white border border-black/5 rounded-lg shadow-lg overflow-hidden duration-200 hover:shadow-2xl md:hover:scale-[102%] focus-within:shadow-2xl md:focus-within:scale-[102%] dark:bg-black dark:border-white/5;
+        }
+    }
+
+    .metrics-list {
+        @apply grid gap-y-3 mt-20 sm:grid-cols-2 lg:grid-cols-4;
+
+        > * {
+            @apply px-3 border-l-2 border-primary dark:border-primary-dark;
+
+            > * {
+                &:first-child {
+                    @apply leading-none text-5xl font-semibold font-poppins;
+                }
+
+                &:last-child {
+                    @apply leading-none text-sm opacity-60;
+                }
+            }
         }
     }
 
     .progress-list-vertical {
-        > *:not(:last-child)::after {
-            content: '';
-            @apply absolute top-3.5 left-[13px] pl-0.5 h-full bg-primary dark:bg-primary-dark;
-            
+        > * {
+            @apply relative flex gap-3 pb-5 xs:pb-10;
+
+            &:not(:last-child) {
+                &::before {
+                    content: '';
+                    @apply absolute top-3.5 left-[13px] pl-0.5 h-full bg-primary dark:bg-primary-dark;
+                }
+            }
+
+            > *:first-child {
+                @apply relative;
+
+                > * {
+                    @apply flex justify-center items-center h-7 w-7 border-2 bg-white border-primary rounded-full dark:bg-black dark:border-primary-dark;
+
+                    > svg {
+                        @apply w-4 h-4 stroke-2 text-primary dark:text-primary-dark;
+                    }
+                }
+            }
         }
     }
 }

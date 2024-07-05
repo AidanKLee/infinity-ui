@@ -58,6 +58,35 @@
             </a>
         </div>
     </section>
+    <section>
+        <div class="container">
+            <div class="max-w-screen-2xl mx-auto">
+                <div class="max-w-5xl">
+                    <p class="text-primary font-semibold dark:text-primary-dark">Our Commitment to Excellence</p>
+                    <h2 class="text-3xl font-semibold mt-4">Building the Future of UI Development</h2>
+                    <p class="mt-8 text-lg opacity-60">At <strong>Infinity UI</strong>, we are dedicated to revolutionizing the way developers create user interfaces. Our mission is to empower developers with high-quality, intuitive, and versatile UI components that accelerate development time and enhance user experiences. We believe in the power of innovation, collaboration, and continuous improvement to shape the future of web development.</p>
+                </div>
+                <ul class="metrics-list">
+                    <li>
+                        <p>50+</p>
+                        <p>Customizable UI components</p>
+                    </li>
+                    <li>
+                        <p>100+</p>
+                        <p>Hours saved per project</p>
+                    </li>
+                    <li>
+                        <p>99.9%</p>
+                        <p>Code efficiency</p>
+                    </li>
+                    <li>
+                        <p>1000+</p>
+                        <p>Hours of development experience</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
     <section class="coloured">
         <div class="container">
             <div class="max-w-4xl mx-auto text-center">
@@ -66,53 +95,119 @@
                 <p class="mt-8 text-lg opacity-60">Three Simple Steps to Stunning Interfaces.</p>
             </div>
             <ul class="progress-list-vertical flex flex-col mt-20 max-w-2xl mx-auto">
-                <li class="relative flex gap-3 pb-5 xs:pb-10">
-                    <div class="relative z-[1]">
-                        <div class="flex justify-center items-center h-7 w-7 border-2 bg-white border-primary rounded-full dark:bg-black dark:border-primary-dark">
-                            <x-icons.library class="w-4 h-4 stroke-2 text-primary dark:text-primary-dark" />
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold">1. Choose your Component</h3>
-                        <p class="text-sm mt-1 opacity-60">Browse our extensive library and select the components that fit your project. Our collection features a wide range of options, from buttons to complex navigation bars, all designed to enhance your interface.</p>
-                    </div>
-                </li>
-                <li class="relative flex gap-3 pb-5 xs:pb-10">
-                    <div class="relative z-[1]">
-                        <div class="flex justify-center items-center h-7 w-7 border-2 bg-white border-primary rounded-full dark:bg-black dark:border-primary-dark">
-                            <x-icons.paintbrush class="w-4 h-4 stroke-2 text-primary dark:text-primary-dark" />
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold">2. Customize</h3>
-                        <p class="text-sm mt-1 opacity-60">Easily customize your chosen components to match your brand and design requirements. Our components are designed for flexibility, allowing you to adjust colors, sizes, and behaviors with ease.</p>
-                    </div>
-                </li>
-                <li class="relative flex gap-3 pb-5 xs:pb-10">
-                    <div class="relative z-[1]">
-                        <div class="flex justify-center items-center h-7 w-7 border-2 bg-white border-primary rounded-full dark:bg-black dark:border-primary-dark">
-                            <x-icons.code-bracket class="w-4 h-4 stroke-2 text-primary dark:text-primary-dark" />
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold">3. Implement</h3>
-                        <p class="text-sm mt-1 opacity-60">Integrate the components into your project with simple, straightforward code. Our detailed documentation and support resources guide you through the implementation process, ensuring a smooth integration.</p>
-                    </div>
-                </li>
+                <x-lists.progress-list-vertical-item>
+                    <x-slot:icon>
+                        <x-icons.library />
+                    </x-slot:icon>
+                    <x-slot:heading>1. Choose your Component</x-slot:heading>
+                    Browse our extensive library and select the components that fit your project. Our collection features a wide range of options, from buttons to complex navigation bars, all designed to enhance your interface.
+                </x-lists.progress-list-vertical-item>
+                <x-lists.progress-list-vertical-item>
+                    <x-slot:icon>
+                        <x-icons.paintbrush />
+                    </x-slot:icon>
+                    <x-slot:heading>2. Customize</x-slot:heading>
+                    Easily customize your chosen components to match your brand and design requirements. Our components are designed for flexibility, allowing you to adjust colors, sizes, and behaviors with ease.
+                </x-lists.progress-list-vertical-item>
+                <x-lists.progress-list-vertical-item>
+                    <x-slot:icon>
+                        <x-icons.code-bracket />
+                    </x-slot:icon>
+                    <x-slot:heading>3. Implement</x-slot:heading>
+                    Integrate the components into your project with simple, straightforward code. Our detailed documentation and support resources guide you through the implementation process, ensuring a smooth integration.
+                </x-lists.progress-list-vertical-item>
             </ul>
         </div>
     </section>
-    <section>
-        <div class="container">
-            <div class="max-w-4xl mx-auto text-center">
-                <p class="text-primary font-semibold dark:text-primary-dark">Enhance Your Interface Effortlessly</p>
-                <h2 class="text-3xl font-semibold md:text-5xl mt-4">Ready to Transform Your UI?</h2>
-                <p class="mt-8 text-lg opacity-60">Discover the power of our UI components to create stunning, user-friendly interfaces. Whether you’re starting a new project or looking to enhance an existing one, our components are designed to streamline your workflow and elevate your design. Take the next step towards exceptional user experiences with our intuitive tools and extensive library of customizable elements.</p>
-                <div class="flex flex-col items-center gap-3 mt-10">
-                    <a href="#" class="btn btn-lg font-lexend">Sign Up</a>
-                    <a href="#" class="btn btn-lg primary font-lexend">Contact Us</a>
-                </div>
+    <section class="coloured relative !pb-24">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white h-full w-full dark:to-black"></div>
+        <div class="container relative">
+            <div class="max-w-5xl mx-auto text-center">
+                <p class="text-primary font-semibold dark:text-primary-dark">Flexible Plans for Every Developer</p>
+                <h2 class="text-3xl font-semibold mt-4">Simple, Transparent Pricing</h2>
+                <p class="mt-8 text-lg opacity-60">Choose the plan that fits your needs and unlock access to our comprehensive library of UI components, regular updates, and dedicated support. With our transparent pricing, you can focus on building exceptional user interfaces without worrying about hidden costs. Experience the flexibility and power of our components today, and elevate your development process to new heights.</p>
             </div>
+            <ul class="max-w-7xl mx-auto grid gap-8 mt-20 font-poppins lg:grid-cols-3">
+                <li class="flex flex-col p-6 bg-white border-2 border-white/10 rounded-2xl shadow-lg dark:bg-black dark:text-white">
+                    <div class="grow">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="text-xl font-semibold">Starter</h3>
+                        </div>
+                        <p class="mt-6 text-sm opacity-60">Ideal for small projects</p>
+                        <p class="mt-6 text-4xl font-semibold">£100</p>
+                        <p class="mt-1 text-sm opacity-60">Single purchase license</p>
+                        <p class="mt-6 text-sm font-semibold opacity-60">Everything you need to get started:</p>
+                        <ul class="mt-10 text-left space-y-3">
+                            <li class="flex items-center gap-4">
+                                <div class="p-0.5 rounded-full bg-primary flex items-center justify-center dark:bg-primary-dark">
+                                    <x-icons.check class="w-4 h-4 text-white stroke-2" />
+                                </div>
+                                <span>Access to 50+ components</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-xl primary w-full justify-center mt-12">Get Started</a>
+                </li>
+                <li class="flex flex-col p-6 bg-white border-2 border-primary rounded-2xl shadow-lg dark:bg-black dark:text-white dark:border-primary-dark">
+                    <div class="grow">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="text-xl font-semibold">Professional</h3>
+                            <p class="badge rounded primary animate-pulse">Most popular</p>
+                        </div>
+                        <p class="mt-6 text-sm opacity-60">Best value for growing teams</p>
+                        <p class="mt-6 text-4xl font-semibold">£250</p>
+                        <p class="mt-1 text-sm opacity-60">Single purchase license</p>
+                        <p class="mt-6 text-sm font-semibold opacity-60">Everything from the starter plan plus:</p>
+                        <ul class="mt-10 text-left space-y-3">
+                            <li class="flex items-center gap-4">
+                                <div class="p-0.5 rounded-full bg-primary flex items-center justify-center dark:bg-primary-dark">
+                                    <x-icons.check class="w-4 h-4 text-white stroke-2" />
+                                </div>
+                                <span>1 year of updates</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="p-0.5 rounded-full bg-primary flex items-center justify-center dark:bg-primary-dark">
+                                    <x-icons.check class="w-4 h-4 text-white stroke-2" />
+                                </div>
+                                <span>Basic support</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-xl primary w-full justify-center mt-12">Get Started</a>
+                </li>
+                <li class="flex flex-col p-6 text-white bg-primary border-2 border-primary rounded-2xl shadow-glow shadow-primary dark:bg-primary-dark dark:border-primary-dark dark:text-black dark:shadow-primary-dark">
+                    <div class="grow">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="text-xl font-semibold">Enterprise</h3>
+                        </div>
+                        <p class="mt-6 text-sm opacity-80">For large-scale applications</p>
+                        <p class="mt-6 text-4xl font-semibold">£1500</p>
+                        <p class="mt-1 text-sm opacity-80">Single purchase license</p>
+                        <p class="mt-6 text-sm font-semibold opacity-80">Everything from the professional plan plus:</p>
+                        <ul class="mt-10 text-left space-y-3">
+                            <li class="flex items-center gap-4">
+                                <div class="p-0.5 rounded-full bg-white flex items-center justify-center dark:bg-black">
+                                    <x-icons.check class="w-4 h-4 text-primary stroke-2 dark:text-primary-dark" />
+                                </div>
+                                <span>Exclusive components</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="p-0.5 rounded-full bg-white flex items-center justify-center dark:bg-black">
+                                    <x-icons.check class="w-4 h-4 text-primary stroke-2 dark:text-primary-dark" />
+                                </div>
+                                <span>5 years of updates</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="p-0.5 rounded-full bg-white flex items-center justify-center dark:bg-black">
+                                    <x-icons.check class="w-4 h-4 text-primary stroke-2 dark:text-primary-dark" />
+                                </div>
+                                <span>Premium support</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-xl text-primary w-full justify-center mt-12 dark:text-primary-dark">Get Started</a>
+                </li>
+            </ul>
         </div>
     </section>
     <section>
@@ -120,7 +215,7 @@
             <div class="max-w-5xl mx-auto">
                 <p class="text-primary font-semibold dark:text-primary-dark">Empower Your Experience</p>
                 <h2 class="text-3xl font-semibold mt-4">Got Questions? We’ve Got Answers!</h2>
-                <ul class="accordion mt-12">
+                <ul class="accordion-list mt-12">
                     <x-dropdowns.accordion>
                         <x-slot:header>What are the advantages of using UI components in web development?</x-slot:header>
                         UI components provide modular, reusable building blocks that streamline development, ensure consistency across the application, and enhance maintainability. They also facilitate faster prototyping and easier collaboration among team members.
@@ -145,69 +240,49 @@
             </div>
         </div>
     </section>
+    <section>
+        <div class="container">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-primary font-semibold dark:text-primary-dark">Enhance Your Interface Effortlessly</p>
+                <h2 class="text-3xl font-semibold md:text-5xl mt-4">Ready to Transform Your UI?</h2>
+                <p class="mt-8 text-lg opacity-60">Discover the power of our UI components to create stunning, user-friendly interfaces. Whether you’re starting a new project or looking to enhance an existing one, our components are designed to streamline your workflow and elevate your design. Take the next step towards exceptional user experiences with our intuitive tools and extensive library of customizable elements.</p>
+                <div class="flex flex-col items-center gap-3 mt-10">
+                    <a href="#" class="btn btn-lg font-lexend">Sign Up</a>
+                    <a href="#" class="btn btn-lg primary font-lexend">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="relative">
-        <img src="{{ asset('assets/images/samples/backdrop.jpg') }}" alt="Laptop and mobile" class="absolute z-[1] inset-0 object-cover w-full h-full opacity-10" />
+        <img src="{{ asset('assets/images/samples/backdrop.jpg') }}" alt="Laptop and mobile" class="absolute z-[1] inset-0 object-cover w-full h-full mix-blend-exclusion opacity-50" />
         <div class="absolute z-[2] inset-0 bg-gradient-to-b from-white to-transparent h-full w-full dark:from-black"></div>
         <div class="container relative z-[3]">
             <div class="max-w-4xl mx-auto text-center">
                 <p class="text-primary font-semibold dark:text-primary-dark">Explore and Innovate</p>
                 <h2 class="text-3xl font-semibold mt-4">Latest Insights and Tutorials</h2>
             </div>
-            <ul class="grid sm:grid-cols-3 gap-5 max-w-7xl mt-20 mx-auto lg:gap-10">
-                <li class="flex flex-col bg-white border border-black/5 rounded-lg shadow-lg overflow-hidden dark:bg-black dark:border-white/5">
-                    <img class="aspect-video object-cover" src="{{ asset('assets/images/samples/blog/ui.jpg') }}" alt="Laptop and mobile" />
-                    <div class="flex grow flex-col justify-between gap-3 p-3">
-                        <div class="grow">
-                            <p class="text-primary text-xs font-bold line-clamp-1 dark:text-primary-dark">Stay Ahead in UI</p>
-                            <h3 class="text-lg font-semibold mt-1 line-clamp-1">Top 5 UI Design Trends for 2024</h3>
-                            <div class="mt-3 line-clamp-4 opacity-60 font-light">
-                                <p>
-                                    Stay ahead of the curve with the latest UI design trends. Discover the top five trends that are shaping the future of user interfaces in 2024 and learn how to implement them in your projects.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center gap-3">
-                            <p class="flex-1 truncate font-light text-xs">July 1, 2024</p>
-                            <a href="#" class="link text-sm">Read More</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="flex flex-col bg-white border border-black/5 rounded-lg shadow-lg overflow-hidden dark:bg-black dark:border-white/5">
-                    <img class="aspect-video object-cover" src="{{ asset('assets/images/samples/blog/code.jpg') }}" alt="Laptop and mobile" />
-                    <div class="flex grow flex-col justify-between gap-3 p-3">
-                        <div class="grow">
-                            <p class="text-primary text-xs font-bold line-clamp-1 dark:text-primary-dark">Customize with Ease</p>
-                            <h3 class="text-lg font-semibold mt-1 line-clamp-1">How to Customize Our Button Components for Your Brand</h3>
-                            <div class="mt-3 line-clamp-4 opacity-60 font-light">
-                                <p>
-                                    Creating buttons that match your brand's identity has never been easier. Follow our step-by-step guide to customize our button components and enhance your application's visual appeal.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center gap-3">
-                            <p class="flex-1 truncate font-light text-xs">June 25, 2024</p>
-                            <a href="#" class="link text-sm">Read More</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="flex flex-col bg-white border border-black/5 rounded-lg shadow-lg overflow-hidden dark:bg-black dark:border-white/5">
-                    <img class="aspect-video object-cover" src="{{ asset('assets/images/samples/blog/digital-globe.jpg') }}" alt="Laptop and mobile" />
-                    <div class="flex grow flex-col justify-between gap-3 p-3">
-                        <div class="grow">
-                            <p class="text-primary text-xs font-bold line-clamp-1 dark:text-primary-dark">Enhance Navigation</p>
-                            <h3 class="text-lg font-semibold mt-1 line-clamp-1">Improving User Experience with Our Navigation Bars</h3>
-                            <div class="mt-3 line-clamp-4 opacity-60 font-light">
-                                <p>
-                                    Navigation bars are crucial for guiding users through your application. Learn how our customizable navigation bar components can improve user experience with intuitive and responsive designs.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center gap-3">
-                            <p class="flex-1 truncate font-light text-xs">June 21, 2024</p>
-                            <a href="#" class="link text-sm">Read More</a>
-                        </div>
-                    </div>
-                </li>
+            <ul class="blog-list">
+                <x-lists.blog-list-item href="#" :src="asset('assets/images/samples/blog/ui.jpg')" alt="Laptop and mobile">
+                    <x-slot:prefix>Stay Ahead in UI</x-slot:prefix>
+                    <x-slot:category>Industry Trends</x-slot:category>
+                    <x-slot:heading>Top 5 UI Design Trends for 2024</x-slot:heading>
+                    Stay ahead of the curve with the latest UI design trends. Discover the top five trends that are shaping the future of user interfaces in 2024 and learn how to implement them in your projects.
+                    <x-slot:date>July 1, 2024</x-slot:date>
+                </x-lists.blog-list-item>
+                <x-lists.blog-list-item href="#" :src="asset('assets/images/samples/blog/code.jpg')" alt="Laptop and mobile">
+                    <x-slot:prefix>Customize with Ease</x-slot:prefix>
+                    <x-slot:category>Beginner Guides</x-slot:category>
+                    <x-slot:heading>How to Customize Our Button Components for Your Brand</x-slot:heading>
+                    Creating buttons that match your brand's identity has never been easier. Follow our step-by-step guide to customize our button components and enhance your application's visual appeal.
+                    <x-slot:date>June 25, 2024</x-slot:date>
+                </x-lists.blog-list-item>
+                <x-lists.blog-list-item href="#" :src="asset('assets/images/samples/blog/digital-globe.jpg')" alt="Laptop and mobile">
+                    <x-slot:prefix>Enhance Navigation</x-slot:prefix>
+                    <x-slot:category>Best Practices</x-slot:category>
+                    <x-slot:heading>Improving User Experience with Our Navigation Bars</x-slot:heading>
+                    Navigation bars are crucial for guiding users through your application. Learn how our customizable navigation bar components can improve user experience with intuitive and responsive designs.
+                    <x-slot:date>June 21, 2024</x-slot:date>
+                </x-lists.blog-list-item>
             </ul>
         </div>
     </section>
