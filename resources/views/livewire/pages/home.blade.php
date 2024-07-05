@@ -117,12 +117,44 @@
     </section>
     <section>
         <div class="container">
+            <div class="max-w-5xl mx-auto">
+                <p class="text-primary font-semibold dark:text-primary-dark">Empower Your Experience</p>
+                <h2 class="text-3xl font-semibold mt-4">Got Questions? We’ve Got Answers!</h2>
+                <ul class="accordion mt-12">
+                    <x-dropdowns.accordion>
+                        <x-slot:header>What are the advantages of using UI components in web development?</x-slot:header>
+                        UI components provide modular, reusable building blocks that streamline development, ensure consistency across the application, and enhance maintainability. They also facilitate faster prototyping and easier collaboration among team members.
+                    </x-dropdowns.accordion>
+                    <x-dropdowns.accordion>
+                        <x-slot:header>How can I ensure consistency when using UI components across different pages or applications?</x-slot:header>
+                        Consistency can be ensured by establishing design guidelines and using a centralized UI component library. By adhering to these guidelines and reusing components with consistent styling and behavior, developers can maintain a unified look and feel throughout the application.
+                    </x-dropdowns.accordion>
+                    <x-dropdowns.accordion>
+                        <x-slot:header>What are some best practices for optimizing UI component performance?</x-slot:header>
+                            Optimizing UI component performance involves minimizing render times, reducing unnecessary re-renders, and optimizing asset sizes. Techniques such as lazy loading, code splitting, and caching can also improve performance by reducing load times and enhancing user experience.
+                    </x-dropdowns.accordion>
+                    <x-dropdowns.accordion>
+                        <x-slot:header>What are some common types of UI components used in web development?</x-slot:header>
+                        Common types of UI components include buttons, forms, modals, navigation bars, cards, dropdowns, and sliders. These components help structure and organize content, provide interactive elements, and enhance the overall user experience.
+                    </x-dropdowns.accordion>
+                    <x-dropdowns.accordion>
+                        <x-slot:header>How can UI components improve the accessibility of a web application?</x-slot:header>
+                        UI components can improve accessibility by following best practices such as using semantic HTML, ensuring keyboard navigability, providing sufficient color contrast, and including ARIA (Accessible Rich Internet Applications) attributes. This ensures that all users, including those with disabilities, can interact with the application effectively.
+                    </x-dropdowns.accordion>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="relative">
+        <img src="{{ asset('assets/images/samples/backdrop.jpg') }}" alt="Laptop and mobile" class="absolute z-[1] inset-0 object-cover w-full h-full opacity-10" />
+        <div class="absolute z-[2] inset-0 bg-gradient-to-b from-white to-transparent h-full w-full dark:from-black"></div>
+        <div class="container relative z-[3]">
             <div class="max-w-4xl mx-auto text-center">
                 <p class="text-primary font-semibold dark:text-primary-dark">Explore and Innovate</p>
                 <h2 class="text-3xl font-semibold mt-4">Latest Insights and Tutorials</h2>
             </div>
             <ul class="grid sm:grid-cols-3 gap-5 max-w-7xl mt-20 mx-auto lg:gap-10">
-                <li class="flex flex-col border border-black/5 rounded-lg shadow-lg overflow-hidden dark:border-white/5">
+                <li class="flex flex-col bg-white border border-black/5 rounded-lg shadow-lg overflow-hidden dark:bg-black dark:border-white/5">
                     <img class="aspect-video object-cover" src="{{ asset('assets/images/samples/blog/ui.jpg') }}" alt="Laptop and mobile" />
                     <div class="flex grow flex-col justify-between gap-3 p-3">
                         <div class="grow">
@@ -140,7 +172,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="flex flex-col border border-black/5 rounded-lg shadow-lg overflow-hidden dark:border-white/5">
+                <li class="flex flex-col bg-white border border-black/5 rounded-lg shadow-lg overflow-hidden dark:bg-black dark:border-white/5">
                     <img class="aspect-video object-cover" src="{{ asset('assets/images/samples/blog/code.jpg') }}" alt="Laptop and mobile" />
                     <div class="flex grow flex-col justify-between gap-3 p-3">
                         <div class="grow">
@@ -158,7 +190,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="flex flex-col border border-black/5 rounded-lg shadow-lg overflow-hidden dark:border-white/5">
+                <li class="flex flex-col bg-white border border-black/5 rounded-lg shadow-lg overflow-hidden dark:bg-black dark:border-white/5">
                     <img class="aspect-video object-cover" src="{{ asset('assets/images/samples/blog/digital-globe.jpg') }}" alt="Laptop and mobile" />
                     <div class="flex grow flex-col justify-between gap-3 p-3">
                         <div class="grow">

@@ -1,4 +1,10 @@
 @layer components {
+    .accordion {
+        > * {
+            @apply border-b-2 border-tertiary dark:border-tertiary-dark;
+        }
+    }
+
     .progress-list-vertical {
         > *:not(:last-child)::after {
             content: '';
