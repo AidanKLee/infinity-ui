@@ -10,7 +10,7 @@
         </svg>
         <div class="container font-poppins">
             <div class="max-w-4xl mx-auto text-center">
-                <p class="text-3xl font-light opacity-60">infinity:<span class="font-semibold">ui</span></p>
+                <p class="text-3xl font-light opacity-70">infinity:<span class="font-semibold">ui</span></p>
                 <h1 class="text-4xl font-semibold mt-5 md:text-7xl">Build Stunning Interfaces Effortlessly</h1>
                 <p class="text-lg mt-8 opacity-60">Discover a collection of premium UI components that speed up your development process.</p>
                 <div class="flex flex-col items-center gap-3 mt-10">
@@ -18,6 +18,34 @@
                     <a href="#" class="btn btn-lg primary font-lexend">Browse Components</a>
                 </div>
             </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <!-- Section listing the technologies used (Laravel, Livewire, Tailwind CSS, Alpine.js) -->
+            <div class="max-w-5xl mx-auto text-center">
+                <p class="text-primary font-semibold dark:text-primary-dark">Powered by Leading Technologies</p>
+                <h2 class="text-3xl font-semibold mt-4">Our Stack</h2>
+                <p class="mt-8 text-lg opacity-60">We leverage the latest technologies to deliver high-quality, efficient, and customizable UI components. Our stack is designed to enhance your development experience and provide you with the tools you need to create exceptional user interfaces.</p>
+            </div>
+            <ul class="grid grid-cols-2 gap-5 xs:gap-10 md:grid-cols-4 mt-8 sm:mt-20 gap-y-5 sm:gap-x-20 md:gap-10 lg:gap-20 xl:gap-24 2xl:gap-36 3xl:gap-56">
+                <li class="flex items-center justify-center gap-4 duration-200 opacity-40 grayscale hover:opacity-100 hover:grayscale-0">
+                    <x-icons.technologies.tailwind class="w-full h-full" />
+                    <p class="sr-only">Tailwind CSS</p>
+                </li>
+                <li class="flex items-center justify-center gap-4 duration-200 opacity-40 grayscale hover:opacity-100 hover:grayscale-0">
+                    <x-icons.technologies.laravel class="w-full h-full" />
+                    <p class="sr-only">Laravel</p>
+                </li>
+                <li class="flex items-center justify-center gap-4 duration-200 opacity-40 grayscale hover:opacity-100 hover:grayscale-0">
+                    <x-icons.technologies.livewire class="w-full h-full" />
+                    <p class="sr-only">Livewire</p>
+                </li>
+                <li class="flex items-center justify-center gap-4 duration-200 opacity-40 grayscale hover:opacity-100 hover:grayscale-0">
+                    <x-icons.technologies.alpine class="w-full h-full" />
+                    <p class="sr-only">Alpine.js</p>
+                </li>
+            </ul>
         </div>
     </section>
     <section>

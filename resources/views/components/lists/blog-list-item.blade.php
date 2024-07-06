@@ -12,7 +12,7 @@
                         @endisset
                     </p>
                     @isset($category)
-                        <div class="badge rounded tertiary !py-0 !px-1.5">{{ $category }}</div>
+                        <div class="badge rounded !bg-tertiary !text-white tertiary !py-0 !px-1.5 dark:!bg-tertiary-dark dark:!text-black">{{ $category }}</div>
                     @endisset
                 </div>
             @endif

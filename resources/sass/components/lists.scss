@@ -1,6 +1,6 @@
 @layer components {
     .accordion-list > *, .accordion {
-        @apply border-b-2 border-tertiary duration-200 focus-within:border-primary dark:border-tertiary-dark dark:focus-within:border-primary-dark;
+        @apply border-b-2 border-tertiary duration-200 dark:border-tertiary-dark;
     }
 
     .blog-list {
