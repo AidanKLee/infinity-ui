@@ -1,4 +1,4 @@
-<li class="flex items-center justify-center">
+<li class="flex items-center justify-center" @attributes(null, ['name', 'list'])>
     @if (isset($slide) && isset($name) && isset($list))
         <button 
             class="focus-none h-full w-full duration-200 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 focus:opacity-100 focus:grayscale-0" 

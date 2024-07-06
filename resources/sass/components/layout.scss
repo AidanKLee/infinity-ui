@@ -16,6 +16,14 @@
 
         &:first-child {
             @apply pt-48;
+
+            &.hero {
+                @apply flex flex-col min-h-screen py-24;
+    
+                > * {
+                    @apply my-auto;
+                }
+            }
         }
 
         &:last-child {

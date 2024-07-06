@@ -1,4 +1,4 @@
-<div x-data="logo_list" @resize.window="handleWindowResize">
+<div @attributes(null, ['name']) x-data="logo_list" @resize.window="handleWindowResize">
     <ul class="grid grid-cols-2 gap-5 xs:gap-10 md:grid-cols-4 mt-8 sm:mt-20 gap-y-5 sm:gap-x-20 md:gap-10 lg:gap-20 xl:gap-24 2xl:gap-36 3xl:gap-56">
         @isset($slot)
             {{ $slot }}
@@ -21,6 +21,7 @@
     
                         close() {
                             this.$refs.slide.style.height = 0
+                            this.$refs.slide.style.opacity = 0.5
 
                             setTimeout(() => {
                                 this.show = null
@@ -44,16 +45,20 @@
 
                                 setTimeout(() => {
                                     this.show = newTargetName
+                                    this.$refs.slide.style.opacity = 0.5
 
                                     setTimeout(() => {
                                         this.$refs.slide.style.height = this.$refs.slide.scrollHeight + 'px'
+                                        this.$refs.slide.style.opacity = 1
                                     }, 40)
                                 }, 200)
                             } else {
                                 this.show = e.currentTarget.dataset.slide
+                                this.$refs.slide.style.opacity = 0.5
     
                                 setTimeout(() => {
                                     this.$refs.slide.style.height = this.$refs.slide.scrollHeight + 'px'
+                                        this.$refs.slide.style.opacity = 1
                                 }, 40)
                             }
                         },

@@ -1,5 +1,5 @@
-<x-layouts.frontend animate="fadeIn" animate-duration="3">
-    <section class="relative">
+<x-layouts.frontend>
+    <section class="hero relative">
         <svg class="absolute inset-0 -z-10 h-full w-full stroke-primary/10 dark:stroke-primary-dark/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
             <defs>
               <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
@@ -16,12 +16,8 @@
                     <p class="text-lg mt-8 opacity-60">Discover a collection of premium UI components that speed up your development process.</p>
                 </div>
                 <div class="flex flex-col items-center gap-3 mt-10">
-                    <div animate="slideInLeft" animate-timeline="onload" animate-duration="0.5">
-                        <a href="#" class="btn btn-lg font-lexend">Get Started</a>
-                    </div>
-                    <div animate="slideInLeft" animate-timeline="onload" animate-duration="0.5">
-                        <a href="#" class="btn btn-lg primary font-lexend">Browse Components</a>
-                    </div>
+                    <a href="#" class="btn btn-lg font-lexend" animate="slideInLeft" animate-timeline="onload" animate-duration="0.5">Get Started</a>
+                    <a href="#" class="btn btn-lg primary font-lexend" animate="slideInLeft" animate-timeline="onload" animate-duration="0.5">Browse Components</a>
                 </div>
             </div>
         </div>
@@ -29,12 +25,12 @@
     <section>
         <div class="container">
             <div class="max-w-5xl mx-auto text-center">
-                <p class="text-primary font-semibold dark:text-primary-dark">Powered by Leading Technologies</p>
-                <h2 class="text-3xl font-semibold mt-4">Our Stack</h2>
-                <p class="mt-8 text-lg opacity-60">We leverage the latest technologies to deliver high-quality, efficient, and customizable UI components. Our stack is designed to enhance your development experience and provide you with the tools you need to create exceptional user interfaces.</p>
+                <p class="text-primary font-semibold dark:text-primary-dark" animate="fadeIn" animate-onscroll="tech">Powered by Leading Technologies</p>
+                <h2 class="text-3xl font-semibold mt-4" animate="fadeIn" animate-onscroll="tech">Our Stack</h2>
+                <p class="mt-8 text-lg opacity-60" animate="fadeDropTextIn" animate-onscroll="tech-content" animate-onscroll.end="top 50%">We leverage the latest technologies to deliver high-quality, efficient, and customizable UI components. Our stack is designed to enhance your development experience and provide you with the tools you need to create exceptional user interfaces.</p>
             </div>
-            <x-lists.logo-list name="technologies">
-                <x-lists.logo-list-item name="tailwind" list="technologies">
+            <x-lists.logo-list name="technologies" animate-onscroll.trigger="tech-list" animate-onscroll.start="top 100%" animate-onscroll.end="top 75%">
+                <x-lists.logo-list-item name="tailwind" list="technologies" animate="fadeDropGrowIn" animate-onscroll="tech-list">
                     <x-icons.technologies.tailwind class="w-full h-full" />
                     <p class="sr-only">Tailwind CSS</p>
                     <x-slot:slide>
@@ -43,7 +39,7 @@
                         <a href="https://tailwindcss.com/" target="_blank" class="link block w-fit ml-auto">Learn more</a>
                     </x-slot>
                 </x-lists.logo-list-item>
-                <x-lists.logo-list-item name="laravel" list="technologies">
+                <x-lists.logo-list-item name="laravel" list="technologies" animate="fadeDropGrowIn" animate-onscroll="tech-list">
                     <x-icons.technologies.laravel class="w-full h-full" />
                     <p class="sr-only">Laravel</p>
                     <x-slot:slide>
@@ -52,7 +48,7 @@
                         <a href="https://laravel.com/" target="_blank" class="link block w-fit ml-auto">Learn more</a>
                     </x-slot>
                 </x-lists.logo-list-item>
-                <x-lists.logo-list-item name="livewire" list="technologies">
+                <x-lists.logo-list-item name="livewire" list="technologies" animate="fadeDropGrowIn" animate-onscroll="tech-list">
                     <x-icons.technologies.livewire class="w-full h-full" />
                     <p class="sr-only">Livewire</p>
                     <x-slot:slide>
@@ -61,7 +57,7 @@
                         <a href="https://livewire.laravel.com/" target="_blank" class="link block w-fit ml-auto">Learn more</a>
                     </x-slot>
                 </x-lists.logo-list-item>
-                <x-lists.logo-list-item name="alpine" list="technologies">
+                <x-lists.logo-list-item name="alpine" list="technologies" animate="fadeDropGrowIn" animate-onscroll="tech-list">
                     <x-icons.technologies.alpine class="w-full h-full dark:brightness-200" />
                     <p class="sr-only">Alpine.js</p>
                     <x-slot:slide>
@@ -77,8 +73,8 @@
         <div class="container">
             <div class="max-w-screen-2xl mx-auto">
                 <div class="max-w-5xl">
-                    <p class="text-primary font-semibold dark:text-primary-dark">Our Commitment to Excellence</p>
-                    <h2 class="text-3xl font-semibold mt-4">Building the Future of UI Development</h2>
+                    <p class="text-primary font-semibold dark:text-primary-dark" animate="fadeTextIn" animate-onscroll="metrics-1" animate-onscroll.start="top 100%" animate-onscroll.end="top 50%">Our Commitment to Excellence</p>
+                    <h2 class="text-3xl font-semibold mt-4" animate="fadeTextIn" animate-onscroll="metrics-1">Building the Future of UI Development</h2>
                     <p class="mt-8 text-lg opacity-60">At <strong>Infinity UI</strong>, we are dedicated to revolutionizing the way developers create user interfaces. Our mission is to empower developers with high-quality, intuitive, and versatile UI components that accelerate development time and enhance user experiences. We believe in the power of innovation, collaboration, and continuous improvement to shape the future of web development.</p>
                 </div>
                 <ul class="metrics-list">

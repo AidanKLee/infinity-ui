@@ -1,7 +1,11 @@
 @isset($slot)
-    <ul class="notification-container" x-data="notification_container" x-ref="notification-container" @scroll.window="positionNotifications" @resize.window="positionNotifications">
-        {{ $slot }}
-    </ul>
+    <div @attributes(null, null, [
+        'absolute top-0 right-0 w-full pointer-events-none',
+    ])>
+        <ul class="notification-container" x-data="notification_container" x-ref="notification-container" @scroll.window="positionNotifications" @resize.window="positionNotifications">
+            {{ $slot }}
+        </ul>
+    </div>
 @endisset
 
 @push('scripts')

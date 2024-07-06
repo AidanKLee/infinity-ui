@@ -1,9 +1,12 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
 class Animations {
+    nameLessOnScrollCounter = 0;
+
     standard = [];
     timeline = {};
     onScroll = {};
@@ -17,15 +20,27 @@ class Animations {
 
     init() {
         document.addEventListener('DOMContentLoaded', () => {
+            this.startSmoothScroll();
+
             document.querySelectorAll('[animate]').forEach((element) => {
                 const animationType = element.getAttribute('animate');
-                const animationDuration = element.getAttribute('animate-duration') ?? this.defaultDuration;
+
+                this.disableTransition(element);
                 
                 if (element.hasAttribute('animate-onscroll')) {
                     try {
-                        const animationOnScrollName = element.getAttribute('animate-onscroll');
+                        let animationOnScrollName = element.getAttribute('animate-onscroll');
+
+                        if (!animationOnScrollName) {
+                            animationOnScrollName = this.nameLessOnScrollCounter;
+                            this.nameLessOnScrollCounter++;
+                        }
+
+                        if (!this.onScroll[animationOnScrollName]) {
+                            this.onScroll[animationOnScrollName] = [];
+                        }
                         
-                        this.onScroll[animationOnScrollName] = [element, animationType];
+                        this.onScroll[animationOnScrollName].push([element, animationType]);
                     } catch (e) {
                         console.error(e);
                     }
@@ -37,7 +52,7 @@ class Animations {
                             this.timeline[animationTimelineName] = [];
                         }
 
-                        this.timeline[animationTimelineName] .push([element, animationType]);
+                        this.timeline[animationTimelineName].push([element, animationType]);
                     } catch (e) {
                         console.error(e);
                     }
@@ -52,12 +67,51 @@ class Animations {
 
             this.startStandardAnimations();
             this.startTimelineAnimations();
+            this.startOnscrollAnimations();
         });
     }
 
     /**
      * Initialise animations
      */
+    startOnscrollAnimations() {
+        Object.entries(this.onScroll).forEach(([animationName, elements]) => {
+            const trigger = document.querySelector(`[animate-onscroll\\.trigger="${animationName}"]`) ?? elements[0][0];
+            const start = trigger.getAttribute('animate-onscroll.start') ?? 'top 90%';
+            const end = trigger.getAttribute('animate-onscroll.end') ?? 'top 30%';
+            const timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger,
+                    start,
+                    end,
+                    scrub: 2,
+                    // markers: true,
+                }
+            });
+
+            elements.forEach(([element, type]) => {
+                this.addToTimeline(timeline, element, type);
+            });
+        });
+    }
+
+    startSmoothScroll() {
+        const isSmoothScroll = document.querySelector(['[data-smooth-scroll]']);
+
+        if (isSmoothScroll) {
+            const lenis = new Lenis({
+                duration: 1.8
+            })
+
+            function raf(time) {
+                lenis.raf(time)
+                requestAnimationFrame(raf)
+            }
+
+            requestAnimationFrame(raf)
+        }
+    }
+
     startStandardAnimations() {
         this.standard.forEach(([element, type, duration]) => {
             this[type](element, duration);
@@ -77,7 +131,13 @@ class Animations {
     /**
      * Animation types
      */
-    fadeInGrow(element, GSAP = gsap) {
+    fadeDropGrowIn(element, GSAP = gsap) {
+        const options = this.getOptions(element);
+
+        GSAP.from(element, { opacity: 0, scale: 0, y: '-25vh', ...options });
+    }
+
+    fadeGrowIn(element, GSAP = gsap) {
         const options = this.getOptions(element);
         
         GSAP.from(element, { opacity: 0, scale: 0.8, ...options });
@@ -85,6 +145,7 @@ class Animations {
 
     fadeIn(element, GSAP = gsap) {
         const options = this.getOptions(element);
+
         GSAP.from(element, { opacity: 0, ...options });
     }
 
@@ -106,7 +167,7 @@ class Animations {
 
     slideInLeft(element, GSAP = gsap) {
         const options = this.getOptions(element);
-        // easing options
+
         GSAP.from(element, { x: '-100vw', ease: 'power2.out', ...options });
     }
 
@@ -117,6 +178,14 @@ class Animations {
         this[type](element, timeline);
     }
 
+    disableTransition(element) {
+        element.style.transition = 'none';
+    }
+
+    enableTransition(element) {
+        element.style.transition = '';
+    }
+
     getOptions(element, isStaggered = false) {
         const duration = element.getAttribute('animate-duration') ?? this.defaultDuration;
         const stagger = isStaggered ? element.getAttribute('animate-stagger') ?? this.defaultStagger : 0;
@@ -124,6 +193,9 @@ class Animations {
         return {
             duration,
             stagger,
+            onComplete: () => {
+                this.enableTransition(element);
+            },
         };
     }
 
