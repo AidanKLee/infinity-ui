@@ -27,6 +27,12 @@
         }
     }
 
+    .char, 
+    .word,
+    [animate="fadeDropTextIn"] > * {
+        @apply inline-block;
+    }
+
     .navlist {
         @apply bg-tertiary text-white py-1.5 font-poppins dark:bg-tertiary-dark dark:text-black;
     }

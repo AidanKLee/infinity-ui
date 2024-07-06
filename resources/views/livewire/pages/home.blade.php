@@ -1,4 +1,4 @@
-<x-layouts.frontend>
+<x-layouts.frontend animate="fadeIn" animate-duration="3">
     <section class="relative">
         <svg class="absolute inset-0 -z-10 h-full w-full stroke-primary/10 dark:stroke-primary-dark/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
             <defs>
@@ -10,42 +10,96 @@
         </svg>
         <div class="container font-poppins">
             <div class="max-w-4xl mx-auto text-center">
-                <p class="text-3xl font-light opacity-70">infinity:<span class="font-semibold">ui</span></p>
-                <h1 class="text-4xl font-semibold mt-5 md:text-7xl">Build Stunning Interfaces Effortlessly</h1>
-                <p class="text-lg mt-8 opacity-60">Discover a collection of premium UI components that speed up your development process.</p>
+                <div animate="fadeDropTextIn" animate-duration="0.2" animate-stagger="0.02" animate-timeline="onload">
+                    <p class="text-3xl font-light opacity-70">infinity:<span class="font-semibold">ui</span></p>
+                    <h1 class="text-4xl font-semibold mt-5 md:text-7xl">Build Stunning Interfaces Effortlessly</h1>
+                    <p class="text-lg mt-8 opacity-60">Discover a collection of premium UI components that speed up your development process.</p>
+                </div>
                 <div class="flex flex-col items-center gap-3 mt-10">
-                    <a href="#" class="btn btn-lg font-lexend">Get Started</a>
-                    <a href="#" class="btn btn-lg primary font-lexend">Browse Components</a>
+                    <div animate="slideInLeft" animate-timeline="onload" animate-duration="0.5">
+                        <a href="#" class="btn btn-lg font-lexend">Get Started</a>
+                    </div>
+                    <div animate="slideInLeft" animate-timeline="onload" animate-duration="0.5">
+                        <a href="#" class="btn btn-lg primary font-lexend">Browse Components</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <section>
         <div class="container">
-            <!-- Section listing the technologies used (Laravel, Livewire, Tailwind CSS, Alpine.js) -->
             <div class="max-w-5xl mx-auto text-center">
                 <p class="text-primary font-semibold dark:text-primary-dark">Powered by Leading Technologies</p>
                 <h2 class="text-3xl font-semibold mt-4">Our Stack</h2>
                 <p class="mt-8 text-lg opacity-60">We leverage the latest technologies to deliver high-quality, efficient, and customizable UI components. Our stack is designed to enhance your development experience and provide you with the tools you need to create exceptional user interfaces.</p>
             </div>
-            <ul class="grid grid-cols-2 gap-5 xs:gap-10 md:grid-cols-4 mt-8 sm:mt-20 gap-y-5 sm:gap-x-20 md:gap-10 lg:gap-20 xl:gap-24 2xl:gap-36 3xl:gap-56">
-                <li class="flex items-center justify-center gap-4 duration-200 opacity-40 grayscale hover:opacity-100 hover:grayscale-0">
+            <x-lists.logo-list name="technologies">
+                <x-lists.logo-list-item name="tailwind" list="technologies">
                     <x-icons.technologies.tailwind class="w-full h-full" />
                     <p class="sr-only">Tailwind CSS</p>
-                </li>
-                <li class="flex items-center justify-center gap-4 duration-200 opacity-40 grayscale hover:opacity-100 hover:grayscale-0">
+                    <x-slot:slide>
+                        <h3 class="text-xl font-semibold opacity-60">Tailwind CSS</h3>
+                        <p class="font-light">TailwindCSS is a utility-first CSS framework that provides low-level utility classes to build custom designs directly in your HTML. It enables developers to create responsive and modern web designs with minimal custom CSS, enhancing productivity by simplifying the styling process.</p>
+                        <a href="https://tailwindcss.com/" target="_blank" class="link block w-fit ml-auto">Learn more</a>
+                    </x-slot>
+                </x-lists.logo-list-item>
+                <x-lists.logo-list-item name="laravel" list="technologies">
                     <x-icons.technologies.laravel class="w-full h-full" />
                     <p class="sr-only">Laravel</p>
-                </li>
-                <li class="flex items-center justify-center gap-4 duration-200 opacity-40 grayscale hover:opacity-100 hover:grayscale-0">
+                    <x-slot:slide>
+                        <h3 class="text-xl font-semibold opacity-60">Laravel</h3>
+                        <p class="font-light">Laravel is a free, open-source PHP web framework, created by Taylor Otwell and intended for the development of web applications following the model–view–controller architectural pattern. Laravel is known for its elegant syntax and is designed for building web applications with an expressive and elegant syntax.</p>
+                        <a href="https://laravel.com/" target="_blank" class="link block w-fit ml-auto">Learn more</a>
+                    </x-slot>
+                </x-lists.logo-list-item>
+                <x-lists.logo-list-item name="livewire" list="technologies">
                     <x-icons.technologies.livewire class="w-full h-full" />
                     <p class="sr-only">Livewire</p>
-                </li>
-                <li class="flex items-center justify-center gap-4 duration-200 opacity-40 grayscale hover:opacity-100 hover:grayscale-0">
-                    <x-icons.technologies.alpine class="w-full h-full" />
+                    <x-slot:slide>
+                        <h3 class="text-xl font-semibold opacity-60">Livewire</h3>
+                        <p class="font-light">Livewire is a full-stack framework for Laravel that makes building dynamic interfaces simple, without leaving the comfort of Laravel. Livewire relies on Blade, Laravel's templating engine, to render the HTML and manage the DOM, making it easy to build dynamic interfaces with Laravel.</p>
+                        <a href="https://livewire.laravel.com/" target="_blank" class="link block w-fit ml-auto">Learn more</a>
+                    </x-slot>
+                </x-lists.logo-list-item>
+                <x-lists.logo-list-item name="alpine" list="technologies">
+                    <x-icons.technologies.alpine class="w-full h-full dark:brightness-200" />
                     <p class="sr-only">Alpine.js</p>
-                </li>
-            </ul>
+                    <x-slot:slide>
+                        <h3 class="text-xl font-semibold opacity-60">Alpine.js</h3>
+                        <p class="font-light">Alpine.js offers you the reactive and declarative nature of big frameworks like Vue or React at a much lower cost. You get to keep your DOM, and sprinkle in behavior as you see fit. Alpine.js is a minimal framework for composing JavaScript behavior in your HTML.</p>
+                        <a href="https://alpinejs.dev/" target="_blank" class="link block w-fit ml-auto">Learn more</a>
+                    </x-slot>
+                </x-lists.logo-list-item>
+            </x-lists.logo-list>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="max-w-screen-2xl mx-auto">
+                <div class="max-w-5xl">
+                    <p class="text-primary font-semibold dark:text-primary-dark">Our Commitment to Excellence</p>
+                    <h2 class="text-3xl font-semibold mt-4">Building the Future of UI Development</h2>
+                    <p class="mt-8 text-lg opacity-60">At <strong>Infinity UI</strong>, we are dedicated to revolutionizing the way developers create user interfaces. Our mission is to empower developers with high-quality, intuitive, and versatile UI components that accelerate development time and enhance user experiences. We believe in the power of innovation, collaboration, and continuous improvement to shape the future of web development.</p>
+                </div>
+                <ul class="metrics-list">
+                    <li>
+                        <p>50+</p>
+                        <p>Customizable UI components</p>
+                    </li>
+                    <li>
+                        <p>100+</p>
+                        <p>Hours saved per project</p>
+                    </li>
+                    <li>
+                        <p>99.9%</p>
+                        <p>Code efficiency</p>
+                    </li>
+                    <li>
+                        <p>1000+</p>
+                        <p>Hours of development experience</p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
     <section>
@@ -84,35 +138,6 @@
                     <x-icons.arrow-down class="w-7 h-7 stroke-2" />
                 </div>
             </a>
-        </div>
-    </section>
-    <section>
-        <div class="container">
-            <div class="max-w-screen-2xl mx-auto">
-                <div class="max-w-5xl">
-                    <p class="text-primary font-semibold dark:text-primary-dark">Our Commitment to Excellence</p>
-                    <h2 class="text-3xl font-semibold mt-4">Building the Future of UI Development</h2>
-                    <p class="mt-8 text-lg opacity-60">At <strong>Infinity UI</strong>, we are dedicated to revolutionizing the way developers create user interfaces. Our mission is to empower developers with high-quality, intuitive, and versatile UI components that accelerate development time and enhance user experiences. We believe in the power of innovation, collaboration, and continuous improvement to shape the future of web development.</p>
-                </div>
-                <ul class="metrics-list">
-                    <li>
-                        <p>50+</p>
-                        <p>Customizable UI components</p>
-                    </li>
-                    <li>
-                        <p>100+</p>
-                        <p>Hours saved per project</p>
-                    </li>
-                    <li>
-                        <p>99.9%</p>
-                        <p>Code efficiency</p>
-                    </li>
-                    <li>
-                        <p>1000+</p>
-                        <p>Hours of development experience</p>
-                    </li>
-                </ul>
-            </div>
         </div>
     </section>
     <section class="coloured">
@@ -172,6 +197,12 @@
                                 </div>
                                 <span>Access to 50+ components</span>
                             </li>
+                            <li class="flex items-center gap-4">
+                                <div class="p-0.5 rounded-full bg-primary flex items-center justify-center dark:bg-primary-dark">
+                                    <x-icons.check class="w-4 h-4 text-white stroke-2" />
+                                </div>
+                                <span>Access for 1 user</span>
+                            </li>
                         </ul>
                     </div>
                     <a href="#" class="btn btn-xl primary w-full justify-center mt-12">Get Started</a>
@@ -198,6 +229,12 @@
                                     <x-icons.check class="w-4 h-4 text-white stroke-2" />
                                 </div>
                                 <span>Basic support</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="p-0.5 rounded-full bg-primary flex items-center justify-center dark:bg-primary-dark">
+                                    <x-icons.check class="w-4 h-4 text-white stroke-2" />
+                                </div>
+                                <span>Access for up to 5 users</span>
                             </li>
                         </ul>
                     </div>
@@ -230,6 +267,12 @@
                                     <x-icons.check class="w-4 h-4 text-primary stroke-2 dark:text-primary-dark" />
                                 </div>
                                 <span>Premium support</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="p-0.5 rounded-full bg-white flex items-center justify-center dark:bg-black">
+                                    <x-icons.check class="w-4 h-4 text-primary stroke-2 dark:text-primary-dark" />
+                                </div>
+                                <span>Access for up to 15 users</span>
                             </li>
                         </ul>
                     </div>

@@ -2,7 +2,7 @@
     <x-layouts.frontend>
         <section class="relative">
             <img src="{{ asset('assets/images/samples/backdrop.jpg') }}" alt="Laptop and mobile" class="absolute z-[1] inset-0 object-cover w-full h-full opacity-10" />
-            <div class="container flex flex-col items-center justify-center h-full space-y-4">
+            <div class="relative z-[2] container flex flex-col items-center justify-center h-full space-y-4">
                 <x-icons.logo class="w-32 h-16 text-primary dark:text-primary-dark" />
                 <h1 class="text-7xl font-bold text-center text-black/80 dark:text-white/80">429</h1>
                 <p class="text-lg text-center text-black/60 dark:text-white/60">You’re making too many requests. Please slow down.</p>

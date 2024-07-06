@@ -1,4 +1,4 @@
-<div class="flex flex-col min-h-screen">
+<div @attributes class="flex flex-col min-h-screen">
     <x-header.frontend>
         <x-slot name="left">
             <div class="flex items-stretch gap-8">
