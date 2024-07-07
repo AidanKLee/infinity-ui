@@ -64,6 +64,10 @@ class Animations {
                     }
                 }
             });
+            
+            document.querySelectorAll('[animate-bubbles]').forEach((element) => {
+                this.bubbles(element);
+            });
 
             this.startStandardAnimations();
             this.startTimelineAnimations();
@@ -85,7 +89,7 @@ class Animations {
                     trigger,
                     start,
                     end,
-                    scrub: 2,
+                    scrub: 1,
                     pin
                     // markers: true,
                 }
@@ -133,6 +137,32 @@ class Animations {
     /**
      * Animation types
      */
+    bubbles(element) {
+        let debounce = null;
+        let [bubbles, animations] = this.drawBubbles(element);
+        
+        window.addEventListener('resize', () => {
+            clearTimeout(debounce);
+            debounce = setTimeout(() => {
+                bubbles.forEach((bubble) => {
+                    bubble.remove();
+                });
+                animations.forEach((animation) => {
+                    animation.kill();
+                });
+
+                [bubbles, animations] = this.drawBubbles(element);
+            }, 500);
+        });
+    }
+    
+
+    clipOut(element, GSAP = gsap) {
+        const options = this.getOptions(element);
+
+        GSAP.to(element, { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)', opacity: 0, ease: 'power2.out', ...options });
+
+    }
     clipRiseIn(element, GSAP = gsap) {
         const options = this.getOptions(element);
 
@@ -212,6 +242,12 @@ class Animations {
         GSAP.from(chars, { opacity: 0, ...options });
     }
 
+    parallax(element, GSAP = gsap) {
+        const options = this.getOptions(element);
+
+        GSAP.to(element, { y: '-100vh', ease: 'none', ...options });
+    }
+
     slideInLeft(element, GSAP = gsap) {
         const options = this.getOptions(element);
 
@@ -227,6 +263,44 @@ class Animations {
 
     disableTransition(element) {
         element.style.transition = 'none';
+    }
+
+    drawBubbles(element) {
+        const animations = [];
+        const bubbles = [];
+        const pinSpacer = element.closest('.pin-spacer');
+        const { width: elementWidth, height: elementHeight } = element.getBoundingClientRect();
+        const sizes = ['w-4 h-4', 'w-6 h-6', 'w-8 h-8', 'w-10 h-10', 'w-12 h-12', 'w-14 h-14', 'w-16 h-16', 'w-18 h-18', 'w-20 h-20', 'w-22 h-22', 'w-24 h-24', 'w-26 h-26', 'w-28 h-28', 'w-30 h-30', 'w-32 h-32'];
+    
+        for (let i = 0; i < 50; i++) {
+            const bubble = document.createElement('div');
+    
+            bubble.classList.add('absolute', 'bg-black/5', 'rounded-full', 'animate-pulse', 'dark:bg-white/5');
+            bubble.classList.add(...sizes[Math.floor(Math.random() * sizes.length)].split(' '));
+    
+
+            bubble.style.top = `calc(100vh + ${Math.floor(Math.random() * elementHeight)}px)`;
+            bubble.style.left = `${Math.floor(Math.random() * elementWidth)}px`;
+    
+            const speed = Math.random() * 2 + 0.5;
+    
+            animations.push(gsap.to(bubble, {
+                scrollTrigger: {
+                    trigger: pinSpacer ?? bubble,
+                    start: pinSpacer ? 'top top' : 'top bottom',
+                    end: pinSpacer ? 'bottom top' : 'bottom top',
+                    scrub: true,
+                    invalidateOnRefresh: true,
+                },
+                y: `-=${100 * speed}vh`,
+                ease: 'none',
+            }));
+    
+            bubbles.push(bubble);
+            element.appendChild(bubble);
+        }
+    
+        return [bubbles, animations];
     }
 
     enableTransition(element) {

@@ -8,7 +8,7 @@
             </defs>
             <rect width="100%" height="100%" stroke-width="0" fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" />
         </svg>
-        <div class="container font-poppins">
+        <div class="clip-full container font-poppins" animate="clipOut" animate-onscroll animate-onscroll.start="top top" animate-onscroll.end="center top">
             <div class="max-w-4xl mx-auto text-center">
                 <div animate="fadeDropTextIn" animate-duration="0.2" animate-stagger="0.02" animate-timeline="onload">
                     <p class="text-3xl font-light opacity-70">infinity:<span class="font-semibold">ui</span></p>
@@ -98,7 +98,7 @@
             </div>
         </div>
     </section>
-    <section class="realtive min-h-screen flex flex-col justify-center" animate-onscroll.trigger="why-us" animate-onscroll.start="top top" animate-onscroll.end="+=50%" animate-onscroll.pin>
+    <section class="clip-full relative min-h-screen flex flex-col justify-center" animate-onscroll.trigger="why-us" animate-onscroll.start="top top" animate-onscroll.end="+=100%" animate-onscroll.pin animate-bubbles>
         <div class="container">
             <div class="max-w-4xl mx-auto text-center">
                 <p class="clip-full text-primary font-semibold dark:text-primary-dark" animate="fadeRiseTextIn" animate-onscroll="why-us" animate-duration="0.1">Effortless, Elegant, Efficient</p>
@@ -141,8 +141,17 @@
                 <x-icons.arrow-down class="w-4 h-4 stroke-2" />
             </div>
         </div>
+        {{-- <div class="absolute bottom-0 left-[40%] bg-black/10 h-32 w-32 rounded-full animate-pulse dark:bg-white/10" animate="parallax" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="bottom top"></div> --}}
     </section>
-    <section class="coloured">
+    <section class="coloured relative">
+        {{-- <img src="{{ asset('assets/images/samples/backdrop.jpg') }}"
+            class="absolute inset-0 object-cover w-full h-full mix-blend-exclusion opacity-50"
+            alt=""
+            animate="parallax"
+            animate-onscroll="bg"
+            animate-onscroll.start="top bottom"
+            animate-onscroll.end="bottom top"
+        /> --}}
         <div class="container">
             <div class="max-w-4xl mx-auto text-center">
                 <p class="text-primary font-semibold dark:text-primary-dark">Easy as 1-2-3</p>
