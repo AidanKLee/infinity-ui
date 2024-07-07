@@ -71,13 +71,13 @@
     </section>
     <section>
         <div class="container">
-            <div class="max-w-screen-2xl mx-auto">
+            <div class="max-w-screen-2xl mx-auto" animate-onscroll.trigger="metrics" animate-onscroll.start="top 100%" animate-onscroll.end="center 60%">
                 <div class="max-w-5xl">
-                    <p class="text-primary font-semibold dark:text-primary-dark" animate="fadeTextIn" animate-onscroll="metrics-1" animate-onscroll.start="top 100%" animate-onscroll.end="top 50%">Our Commitment to Excellence</p>
-                    <h2 class="text-3xl font-semibold mt-4" animate="fadeTextIn" animate-onscroll="metrics-1">Building the Future of UI Development</h2>
-                    <p class="mt-8 text-lg opacity-60">At <strong>Infinity UI</strong>, we are dedicated to revolutionizing the way developers create user interfaces. Our mission is to empower developers with high-quality, intuitive, and versatile UI components that accelerate development time and enhance user experiences. We believe in the power of innovation, collaboration, and continuous improvement to shape the future of web development.</p>
+                    <p class="text-primary font-semibold dark:text-primary-dark" animate="fadeTextIn" animate-onscroll="metrics">Our Commitment to Excellence</p>
+                    <h2 class="text-3xl font-semibold mt-4" animate="fadeTextIn" animate-onscroll="metrics">Building the Future of UI Development</h2>
+                    <p class="mt-8 text-lg opacity-60 clip-full" animate="clipRiseIn" animate-onscroll="metrics">At <strong>Infinity UI</strong>, we are dedicated to revolutionizing the way developers create user interfaces. Our mission is to empower developers with high-quality, intuitive, and versatile UI components that accelerate development time and enhance user experiences. We believe in the power of innovation, collaboration, and continuous improvement to shape the future of web development.</p>
                 </div>
-                <ul class="metrics-list">
+                <ul class="metrics-list clip-full" animate="clipRevealRTL" animate-onscroll="metrics">
                     <li>
                         <p>50+</p>
                         <p>Customizable UI components</p>
@@ -98,29 +98,29 @@
             </div>
         </div>
     </section>
-    <section>
+    <section class="realtive min-h-screen flex flex-col justify-center" animate-onscroll.trigger="why-us" animate-onscroll.start="top top" animate-onscroll.end="+=50%" animate-onscroll.pin>
         <div class="container">
             <div class="max-w-4xl mx-auto text-center">
-                <p class="text-primary font-semibold dark:text-primary-dark">Effortless, Elegant, Efficient</p>
-                <h2 class="text-3xl font-semibold mt-4">Why choose our components?</h2>
-                <p class="mt-8 text-lg opacity-60">Our UI components empower developers and designers with a perfect blend of aesthetics, functionality, and efficiency. Whether for a small project or a large-scale application, our components offer customization and ease of use. Discover how our elements can elevate your interface, reduce development time, and enhance the user experience.</p>
+                <p class="clip-full text-primary font-semibold dark:text-primary-dark" animate="fadeRiseTextIn" animate-onscroll="why-us" animate-duration="0.1">Effortless, Elegant, Efficient</p>
+                <h2 class="clip-full text-3xl font-semibold mt-4" animate="fadeRiseTextIn" animate-onscroll="why-us" animate-duration="0.1">Why choose our components?</h2>
+                <p class="clip-full mt-8 text-lg opacity-60" animate="clipRiseIn" animate-onscroll="why-us" animate-duration="1">Our UI components empower developers and designers with a perfect blend of aesthetics, functionality, and efficiency. Whether for a small project or a large-scale application, our components offer customization and ease of use. Discover how our elements can elevate your interface, reduce development time, and enhance the user experience.</p>
             </div>
-            <ul class="grid gap-8 mt-20 font-light xl:gap-16 lg:grid-cols-3">
-                <li class="flex-1 min-w-56">
+            <ul class="grid gap-8 mt-20 font-light xl:gap-16 lg:grid-cols-3" animate-onscroll.trigger="why-us-2" animate-onscroll.start="top 90%" animate-onscroll.end="top 50%" >
+                <li class="flex-1 min-w-56" animate="fadeIn" animate-onscroll="why-us-2" animate-duration="1">
                     <div class="p-2 w-fit bg-primary text-white rounded-md dark:bg-primary-dark dark:text-black">
                         <x-icons.bolt class="w-6 h-6" />
                     </div>
                     <h3 class="text-xl font-semibold mt-5">Speed & Efficiency</h3>
                     <p class="mt-1 opacity-60">Boost your development speed with pre-built, customizable components. Our library helps you get your project up and running quickly, allowing you to focus on delivering value to your users. Integrating our components into your workflow is seamless, saving you time without compromising on quality.</p>
                 </li>
-                <li class="flex-1 min-w-56">
+                <li class="flex-1 min-w-56" animate="fadeIn" animate-onscroll="why-us-2" animate-duration="1">
                     <div class="p-2 w-fit bg-secondary text-white rounded-md dark:bg-secondary-dark dark:text-black">
                         <x-icons.check-badge class="w-6 h-6" />
                     </div>
                     <h3 class="text-xl font-semibold mt-5">Quality & Design</h3>
                     <p class="mt-1 opacity-60">Crafted with attention to detail for a professional and polished look. Our components meet high standards of design and functionality, performing optimally across all devices. By following best practices in UX/UI design, we provide components that enhance the user experience, making your applications more attractive and engaging.</p>
                 </li>
-                <li class="flex-1 min-w-56">
+                <li class="flex-1 min-w-56" animate="fadeIn" animate-onscroll="why-us-2" animate-duration="1">
                     <div class="p-2 w-fit bg-tertiary text-white rounded-md dark:bg-tertiary-dark dark:text-black">
                         <x-icons.corner-down-left class="w-6 h-6" />
                     </div>
@@ -128,12 +128,18 @@
                     <p class="mt-1 opacity-60">Easily adaptable to fit your unique needs and branding. Our components are fully customizable, allowing you to tweak colors, adjust sizes, or modify behaviors to match your brand's identity. Our extensive documentation and support ensure you can make necessary adjustments effortlessly.</p>
                 </li>
             </ul>
-            <a href="#" class="btn btn-xl primary mt-20 mx-auto">
+            <a href="#" class="clip-full btn btn-xl primary mt-20 mx-auto" animate="clipRevealRTL" animate-onscroll="why-us-2 " animate-duration="1">
                 <span>Learn more</span>
                 <div class="-rotate-90">
                     <x-icons.arrow-down class="w-7 h-7 stroke-2" />
                 </div>
             </a>
+        </div>
+        <div class="fixed top-3 left-1/2 -translate-x-1/2 text-xs text-center max-w-32" animate="fadeRiseShrinkOut" animate-onscroll="why-us" animate-duration="1">
+            <p>There's more to see, keep scrolling</p>
+            <div class="mt-3 rounded-full text-secondary w-fit mx-auto p-1 animate-bounce border-2 border-secondary dark:border-secondary-dark dark:text-secondary-dark">
+                <x-icons.arrow-down class="w-4 h-4 stroke-2" />
+            </div>
         </div>
     </section>
     <section class="coloured">

@@ -1,11 +1,11 @@
-<div @attributes(null, ['name']) x-data="logo_list" @resize.window="handleWindowResize">
-    <ul class="grid grid-cols-2 gap-5 xs:gap-10 md:grid-cols-4 mt-8 sm:mt-20 gap-y-5 sm:gap-x-20 md:gap-10 lg:gap-20 xl:gap-24 2xl:gap-36 3xl:gap-56">
+<div @attributes(null, ['name'], 'pointer-events-none') x-data="logo_list" @resize.window="handleWindowResize" @click.outside="close">
+    <ul class="pointer-events-auto grid grid-cols-2 gap-5 xs:gap-10 md:grid-cols-4 mt-8 sm:mt-20 gap-y-5 sm:gap-x-20 md:gap-10 lg:gap-20 xl:gap-24 2xl:gap-36 3xl:gap-56">
         @isset($slot)
             {{ $slot }}
         @endisset
     </ul>
     <div class="max-w-2xl overflow-hidden mx-auto duration-200" x-ref="slide" style="height: 0;">
-        <div class="p-3 backdrop-blur-md shadow-md rounded-md mb-3 mx-3 mt-8 dark:bg-white/2.5">
+        <div class="pointer-events-auto p-3 backdrop-blur-md shadow-md rounded-md mb-3 mx-3 mt-8 dark:bg-white/2.5">
             @stack("$name-logo-list")
         </div>
     </div>

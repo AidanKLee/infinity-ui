@@ -79,12 +79,14 @@ class Animations {
             const trigger = document.querySelector(`[animate-onscroll\\.trigger="${animationName}"]`) ?? elements[0][0];
             const start = trigger.getAttribute('animate-onscroll.start') ?? 'top 90%';
             const end = trigger.getAttribute('animate-onscroll.end') ?? 'top 30%';
+            const pin = trigger.hasAttribute('animate-onscroll.pin');
             const timeline = gsap.timeline({
                 scrollTrigger: {
                     trigger,
                     start,
                     end,
                     scrub: 2,
+                    pin
                     // markers: true,
                 }
             });
@@ -131,6 +133,30 @@ class Animations {
     /**
      * Animation types
      */
+    clipRiseIn(element, GSAP = gsap) {
+        const options = this.getOptions(element);
+
+        GSAP.from(element, { 
+            clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)', 
+            y: '50%',
+            opacity: 0,
+            ease: 'power2.out',
+            ...options 
+        });
+    }
+
+    clipRevealRTL(element, GSAP = gsap) {
+        const options = this.getOptions(element);
+
+        GSAP.from(element, {
+            clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)',
+            opacity: 0,
+            x: '50%',
+            ease: 'power2.out',
+            ...options
+        });
+    }
+
     fadeDropGrowIn(element, GSAP = gsap) {
         const options = this.getOptions(element);
 
@@ -143,10 +169,22 @@ class Animations {
         GSAP.from(element, { opacity: 0, scale: 0.8, ...options });
     }
 
+    fadeRiseShrinkOut(element, GSAP = gsap) {
+        const options = this.getOptions(element);
+
+        GSAP.to(element, { opacity: 0, scale: 0, y: '-25vh', ...options });
+    }
+
     fadeIn(element, GSAP = gsap) {
         const options = this.getOptions(element);
 
         GSAP.from(element, { opacity: 0, ...options });
+    }
+
+    fadeOut(element, GSAP = gsap) {
+        const options = this.getOptions(element);
+
+        GSAP.to(element, { opacity: 0, ...options });
     }
 
     fadeDropTextIn(element, GSAP = gsap) {
@@ -155,6 +193,15 @@ class Animations {
         const options = this.getOptions(element, true);
 
         GSAP.from(chars, { opacity: 0, y: '-150%', ...options });
+    }
+
+    fadeRiseTextIn(element, GSAP = gsap) {
+        this.splitText(element);
+        const chars = element.querySelectorAll('.char');
+        const options = this.getOptions(element, true);
+        const duration = element.getAttribute('animate-duration') ?? this.defaultDuration;
+
+        GSAP.from(chars, { opacity: 0, y: '150%', ...options });
     }
 
     fadeTextIn(element, GSAP = gsap) {
