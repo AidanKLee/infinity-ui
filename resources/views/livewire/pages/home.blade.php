@@ -144,36 +144,28 @@
         {{-- <div class="absolute bottom-0 left-[40%] bg-black/10 h-32 w-32 rounded-full animate-pulse dark:bg-white/10" animate="parallax" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="bottom top"></div> --}}
     </section>
     <section class="coloured relative">
-        {{-- <img src="{{ asset('assets/images/samples/backdrop.jpg') }}"
-            class="absolute inset-0 object-cover w-full h-full mix-blend-exclusion opacity-50"
-            alt=""
-            animate="parallax"
-            animate-onscroll="bg"
-            animate-onscroll.start="top bottom"
-            animate-onscroll.end="bottom top"
-        /> --}}
         <div class="container">
-            <div class="max-w-4xl mx-auto text-center">
+            <div class="clip-full max-w-4xl mx-auto text-center" animate="clipRiseIn" animate-onscroll="how-it-works">
                 <p class="text-primary font-semibold dark:text-primary-dark">Easy as 1-2-3</p>
                 <h2 class="text-3xl font-semibold mt-4">How it works</h2>
                 <p class="mt-8 text-lg opacity-60">Three Simple Steps to Stunning Interfaces.</p>
             </div>
-            <ul class="progress-list-vertical flex flex-col mt-20 max-w-2xl mx-auto">
-                <x-lists.progress-list-vertical-item>
+            <ul class="progress-list-vertical flex flex-col mt-20 max-w-2xl mx-auto" animate-onscroll.trigger="progress-list" animate-onscroll.start="top 90%" animate-onscroll.end="top 50%">
+                <x-lists.progress-list-vertical-item class="clip-full" animate="clipRevealLTR" animate-onscroll="progress-list" animate.onscroll>
                     <x-slot:icon>
                         <x-icons.library />
                     </x-slot:icon>
                     <x-slot:heading>1. Choose your Component</x-slot:heading>
                     Browse our extensive library and select the components that fit your project. Our collection features a wide range of options, from buttons to complex navigation bars, all designed to enhance your interface.
                 </x-lists.progress-list-vertical-item>
-                <x-lists.progress-list-vertical-item>
+                <x-lists.progress-list-vertical-item class="clip-full" animate="clipRevealRTL" animate-onscroll="progress-list" animate.onscroll>
                     <x-slot:icon>
                         <x-icons.paintbrush />
                     </x-slot:icon>
                     <x-slot:heading>2. Customize</x-slot:heading>
                     Easily customize your chosen components to match your brand and design requirements. Our components are designed for flexibility, allowing you to adjust colors, sizes, and behaviors with ease.
                 </x-lists.progress-list-vertical-item>
-                <x-lists.progress-list-vertical-item>
+                <x-lists.progress-list-vertical-item class="clip-full" animate="clipRevealLTR" animate-onscroll="progress-list" animate.onscroll>
                     <x-slot:icon>
                         <x-icons.code-bracket />
                     </x-slot:icon>
@@ -183,16 +175,16 @@
             </ul>
         </div>
     </section>
-    <section class="coloured relative !pb-24">
+    <section class="coloured relative !pb-0">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white h-full w-full dark:to-black"></div>
         <div class="container relative">
-            <div class="max-w-5xl mx-auto text-center">
-                <p class="text-primary font-semibold dark:text-primary-dark">Flexible Plans for Every Developer</p>
-                <h2 class="text-3xl font-semibold mt-4">Simple, Transparent Pricing</h2>
-                <p class="mt-8 text-lg opacity-60">Choose the plan that fits your needs and unlock access to our comprehensive library of UI components, regular updates, and dedicated support. With our transparent pricing, you can focus on building exceptional user interfaces without worrying about hidden costs. Experience the flexibility and power of our components today, and elevate your development process to new heights.</p>
+            <div class="max-w-5xl mx-auto text-center" animate-onscroll.trigger="pricing-header" animate-onscroll.end="top 50%">
+                <p class="text-primary font-semibold dark:text-primary-dark" animate="fadeTextIn" animate-onscroll="pricing-header" animate-options="{ opacity: 0.1 }">Flexible Plans for Every Developer</p>
+                <h2 class="text-3xl font-semibold mt-4" animate="fadeTextIn" animate-onscroll="pricing-header" animate-options="{ opacity: 0.1 }">Simple, Transparent Pricing</h2>
+                <p class="mt-8 text-lg opacity-60" animate="fadeTextIn" animate-onscroll animate-onscroll.end="top 50%" animate-options="{ opacity: 0.1 }">Choose the plan that fits your needs and unlock access to our comprehensive library of UI components, regular updates, and dedicated support. With our transparent pricing, you can focus on building exceptional user interfaces without worrying about hidden costs. Experience the flexibility and power of our components today, and elevate your development process to new heights.</p>
             </div>
             <ul class="max-w-7xl mx-auto grid gap-8 mt-20 font-poppins lg:grid-cols-3">
-                <li class="flex flex-col p-6 bg-white border-2 border-white/10 rounded-2xl shadow-lg dark:bg-black dark:text-white">
+                <li class="flex flex-col p-6 bg-white border-2 border-white/10 rounded-2xl shadow-lg dark:bg-black dark:text-white" animate="fadeSlideGrowInLeft" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="top 50%">
                     <div class="grow">
                         <div class="flex flex-wrap items-center justify-between gap-2">
                             <h3 class="text-xl font-semibold">Starter</h3>
@@ -218,7 +210,7 @@
                     </div>
                     <a href="#" class="btn btn-xl primary w-full justify-center mt-12">Get Started</a>
                 </li>
-                <li class="flex flex-col p-6 bg-white border-2 border-primary rounded-2xl shadow-lg dark:bg-black dark:text-white dark:border-primary-dark">
+                <li class="flex flex-col p-6 bg-white border-2 border-primary rounded-2xl shadow-lg dark:bg-black dark:text-white dark:border-primary-dark" animate="fadeDropGrowIn" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="top 50%">
                     <div class="grow">
                         <div class="flex flex-wrap items-center justify-between gap-2">
                             <h3 class="text-xl font-semibold">Professional</h3>
@@ -251,7 +243,7 @@
                     </div>
                     <a href="#" class="btn btn-xl primary w-full justify-center mt-12">Get Started</a>
                 </li>
-                <li class="flex flex-col p-6 text-white bg-primary border-2 border-primary rounded-2xl shadow-glow shadow-primary dark:bg-primary-dark dark:border-primary-dark dark:text-black dark:shadow-primary-dark">
+                <li class="flex flex-col p-6 text-white bg-primary border-2 border-primary rounded-2xl shadow-glow shadow-primary dark:bg-primary-dark dark:border-primary-dark dark:text-black dark:shadow-primary-dark" animate="fadeSlideGrowInRight" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="top 50%">
                     <div class="grow">
                         <div class="flex flex-wrap items-center justify-between gap-2">
                             <h3 class="text-xl font-semibold">Enterprise</h3>

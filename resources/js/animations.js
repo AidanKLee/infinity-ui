@@ -32,19 +32,18 @@ class Animations {
                         let animationOnScrollName = element.getAttribute('animate-onscroll');
 
                         if (!animationOnScrollName) {
-                            animationOnScrollName = this.nameLessOnScrollCounter;
+                            animationOnScrollName = `onscroll-${this.nameLessOnScrollCounter}`;
                             this.nameLessOnScrollCounter++;
                         }
 
                         if (!this.onScroll[animationOnScrollName]) {
                             this.onScroll[animationOnScrollName] = [];
                         }
-                        
                         this.onScroll[animationOnScrollName].push([element, animationType]);
                     } catch (e) {
                         console.error(e);
                     }
-                } else if (element.hasAttribute('animate-timeline')) {
+                } else if (element.hasAttribute('animate-timeline') && element.getAttribute('animate-timeline')) {
                     try {
                         const animationTimelineName = element.getAttribute('animate-timeline');
 
@@ -64,14 +63,14 @@ class Animations {
                     }
                 }
             });
-            
-            document.querySelectorAll('[animate-bubbles]').forEach((element) => {
-                this.bubbles(element);
-            });
 
             this.startStandardAnimations();
             this.startTimelineAnimations();
             this.startOnscrollAnimations();
+            
+            document.querySelectorAll('[animate-bubbles]').forEach((element) => {
+                this.bubbles(element);
+            });
         });
     }
 
@@ -89,7 +88,7 @@ class Animations {
                     trigger,
                     start,
                     end,
-                    scrub: 1,
+                    scrub: 2,
                     pin
                     // markers: true,
                 }
@@ -157,14 +156,14 @@ class Animations {
     }
     
 
-    clipOut(element, GSAP = gsap) {
-        const options = this.getOptions(element);
+    clipOut(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
 
         GSAP.to(element, { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)', opacity: 0, ease: 'power2.out', ...options });
 
     }
-    clipRiseIn(element, GSAP = gsap) {
-        const options = this.getOptions(element);
+    clipRiseIn(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
 
         GSAP.from(element, { 
             clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)', 
@@ -175,8 +174,8 @@ class Animations {
         });
     }
 
-    clipRevealRTL(element, GSAP = gsap) {
-        const options = this.getOptions(element);
+    clipRevealRTL(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
 
         GSAP.from(element, {
             clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)',
@@ -187,69 +186,93 @@ class Animations {
         });
     }
 
-    fadeDropGrowIn(element, GSAP = gsap) {
-        const options = this.getOptions(element);
+    clipRevealLTR(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
+
+        GSAP.from(element, {
+            clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)',
+            opacity: 0,
+            x: '-50%',
+            ease: 'power2.out',
+            ...options
+        });
+    }
+
+    fadeDropGrowIn(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
 
         GSAP.from(element, { opacity: 0, scale: 0, y: '-25vh', ...options });
     }
 
-    fadeGrowIn(element, GSAP = gsap) {
-        const options = this.getOptions(element);
+    fadeGrowIn(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
         
         GSAP.from(element, { opacity: 0, scale: 0.8, ...options });
     }
 
-    fadeRiseShrinkOut(element, GSAP = gsap) {
-        const options = this.getOptions(element);
+    fadeRiseShrinkOut(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
 
         GSAP.to(element, { opacity: 0, scale: 0, y: '-25vh', ...options });
     }
 
-    fadeIn(element, GSAP = gsap) {
-        const options = this.getOptions(element);
+    fadeIn(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
 
         GSAP.from(element, { opacity: 0, ...options });
     }
 
-    fadeOut(element, GSAP = gsap) {
-        const options = this.getOptions(element);
+    fadeOut(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
 
         GSAP.to(element, { opacity: 0, ...options });
     }
 
-    fadeDropTextIn(element, GSAP = gsap) {
+    fadeSlideGrowInLeft(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
+
+        GSAP.from(element, { opacity: 0, x: '-100vw', scale: 0, ease: 'power2.out', ...options });
+    }
+
+    fadeSlideGrowInRight(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
+
+        GSAP.from(element, { opacity: 0, x: '100vw', scale: 0, ease: 'power2.out', ...options });
+    }
+
+    fadeDropTextIn(element, GSAP = gsap, options = {}) {
         this.splitText(element);
         const chars = element.querySelectorAll('.char');
-        const options = this.getOptions(element, true);
+        options = { ...options, ...this.getOptions(element, true) };
 
         GSAP.from(chars, { opacity: 0, y: '-150%', ...options });
     }
 
-    fadeRiseTextIn(element, GSAP = gsap) {
+    fadeRiseTextIn(element, GSAP = gsap, options = {}) {
         this.splitText(element);
         const chars = element.querySelectorAll('.char');
-        const options = this.getOptions(element, true);
+        options = { ...options, ...this.getOptions(element, true) };
         const duration = element.getAttribute('animate-duration') ?? this.defaultDuration;
 
         GSAP.from(chars, { opacity: 0, y: '150%', ...options });
     }
 
-    fadeTextIn(element, GSAP = gsap) {
+    fadeTextIn(element, GSAP = gsap, options = {}) {
         this.splitText(element);
         const chars = element.querySelectorAll('.char');
-        const options = this.getOptions(element, true);
+        options = { ...options, ...this.getOptions(element, true) };
 
         GSAP.from(chars, { opacity: 0, ...options });
     }
 
-    parallax(element, GSAP = gsap) {
-        const options = this.getOptions(element);
+    parallax(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
 
         GSAP.to(element, { y: '-100vh', ease: 'none', ...options });
     }
 
-    slideInLeft(element, GSAP = gsap) {
-        const options = this.getOptions(element);
+    slideInLeft(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
 
         GSAP.from(element, { x: '-100vw', ease: 'power2.out', ...options });
     }
@@ -260,6 +283,17 @@ class Animations {
     addToTimeline(timeline, element, type) {
         this[type](element, timeline);
     }
+    
+    convertToJSONCompatible(str) {
+        str = str.replace(/([{,]\s*)([a-zA-Z0-9_]+)\s*:/g, '$1"$2":');
+        
+        str = str.replace(/'([^']*)'/g, '"$1"');
+        str = str.replace(/`([^`]*)`/g, '"$1"');
+      
+        str = str.replace(/:\s*(true|false|null|[\d.eE+-]+)(\s*[},])/g, ': "$1"$2');
+      
+        return str;
+      }
 
     disableTransition(element) {
         element.style.transition = 'none';
@@ -271,15 +305,14 @@ class Animations {
         const pinSpacer = element.closest('.pin-spacer');
         const { width: elementWidth, height: elementHeight } = element.getBoundingClientRect();
         const sizes = ['w-4 h-4', 'w-6 h-6', 'w-8 h-8', 'w-10 h-10', 'w-12 h-12', 'w-14 h-14', 'w-16 h-16', 'w-18 h-18', 'w-20 h-20', 'w-22 h-22', 'w-24 h-24', 'w-26 h-26', 'w-28 h-28', 'w-30 h-30', 'w-32 h-32'];
-    
+
         for (let i = 0; i < 50; i++) {
             const bubble = document.createElement('div');
     
             bubble.classList.add('absolute', 'bg-black/5', 'rounded-full', 'animate-pulse', 'dark:bg-white/5');
             bubble.classList.add(...sizes[Math.floor(Math.random() * sizes.length)].split(' '));
     
-
-            bubble.style.top = `calc(100vh + ${Math.floor(Math.random() * elementHeight)}px)`;
+            bubble.style.top = `calc(${elementHeight}px + ${Math.floor(Math.random() * elementHeight)}px)`;
             bubble.style.left = `${Math.floor(Math.random() * elementWidth)}px`;
     
             const speed = Math.random() * 2 + 0.5;
@@ -308,10 +341,20 @@ class Animations {
     }
 
     getOptions(element, isStaggered = false) {
+        let options = element.getAttribute('animate-options') ?? {};
         const duration = element.getAttribute('animate-duration') ?? this.defaultDuration;
         const stagger = isStaggered ? element.getAttribute('animate-stagger') ?? this.defaultStagger : 0;
 
+        if (typeof options === 'string') {
+            try {
+                options = this.stringToObject(options);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
         return {
+            ...options,
             duration,
             stagger,
             onComplete: () => {
@@ -352,6 +395,25 @@ class Animations {
             console.warn('Unhandled node type:', element.nodeType);
         }
     }
+      
+      stringToObject(str) {
+        const jsonCompatibleStr = this.convertToJSONCompatible(str);
+
+        try {
+          return JSON.parse(jsonCompatibleStr, (key, value) => {
+            if (typeof value === 'string') {
+                if (value === 'true') return true;
+                if (value === 'false') return false;
+                if (value === 'null') return null;
+                if (!isNaN(value)) return Number(value);
+            }
+
+            return value;
+          });
+        } catch (e) {
+          throw new Error('Invalid object string format');
+        }
+      }
 }
 
 new Animations();

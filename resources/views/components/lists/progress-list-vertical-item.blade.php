@@ -1,4 +1,4 @@
-<li>
+<li @attributes>
     <div>
         <div>
             @isset($icon)
