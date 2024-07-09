@@ -1,4 +1,4 @@
-<li x-data="accordion" @click.outside="close" @resize.window="handleResize" :class="{ 'border-primary dark:border-primary-dark': show }">
+<li x-data="accordion" @click.outside="close" @resize.window="handleResize" :class="{ 'border-primary dark:border-primary-dark': show }" @scroll.window="handleWindowScroll">
     <button class="focus-none flex items-center justify-between w-full gap-3 py-8 duration-200 focus:text-primary dark:focus:text-primary-dark" @click="toggle">
         <h3 class="text-left font-semibold flex-1 xs:text-lg xl:text-xl">
             @isset($header)
@@ -39,6 +39,15 @@
                                 this.$refs.content.style.height = this.$refs.content.scrollHeight + 'px'
                                 
                                 this.$refs.content.style.transition = ''
+                            }
+                        },
+
+                        handleWindowScroll() {
+                            if (
+                                this.show && 
+                                (this.$refs.content.getBoundingClientRect().bottom < 0 || this.$refs.content.getBoundingClientRect().top > window.innerHeight)
+                            ) {
+                                this.close()
                             }
                         },
     

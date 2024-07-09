@@ -98,7 +98,7 @@
             </div>
         </div>
     </section>
-    <section class="clip-full relative min-h-screen flex flex-col justify-center" animate-onscroll.trigger="why-us" animate-onscroll.start="top top" animate-onscroll.end="+=100%" animate-onscroll.pin animate-bubbles>
+    <section class="clip-full relative min-h-screen flex flex-col justify-center" animate-onscroll.trigger="why-us" animate-onscroll.start="top top" animate-onscroll.end="+=150%" animate-onscroll.pin animate-bubbles>
         <div class="container">
             <div class="max-w-4xl mx-auto text-center">
                 <p class="clip-full text-primary font-semibold dark:text-primary-dark" animate="fadeRiseTextIn" animate-onscroll="why-us" animate-duration="0.1">Effortless, Elegant, Efficient</p>
@@ -184,7 +184,7 @@
                 <p class="mt-8 text-lg opacity-60" animate="fadeTextIn" animate-onscroll animate-onscroll.end="top 50%" animate-options="{ opacity: 0.1 }">Choose the plan that fits your needs and unlock access to our comprehensive library of UI components, regular updates, and dedicated support. With our transparent pricing, you can focus on building exceptional user interfaces without worrying about hidden costs. Experience the flexibility and power of our components today, and elevate your development process to new heights.</p>
             </div>
             <ul class="max-w-7xl mx-auto grid gap-8 mt-20 font-poppins lg:grid-cols-3">
-                <li class="flex flex-col p-6 bg-white border-2 border-white/10 rounded-2xl shadow-lg dark:bg-black dark:text-white" animate="fadeSlideGrowInLeft" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="top 50%">
+                <li class="flex flex-col p-6 bg-white border-2 border-white/10 rounded-2xl shadow-lg origin-top dark:bg-black dark:text-white" animate="fadeSlideGrowInLeft" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="top 50%">
                     <div class="grow">
                         <div class="flex flex-wrap items-center justify-between gap-2">
                             <h3 class="text-xl font-semibold">Starter</h3>
@@ -210,7 +210,7 @@
                     </div>
                     <a href="#" class="btn btn-xl primary w-full justify-center mt-12">Get Started</a>
                 </li>
-                <li class="flex flex-col p-6 bg-white border-2 border-primary rounded-2xl shadow-lg dark:bg-black dark:text-white dark:border-primary-dark" animate="fadeDropGrowIn" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="top 50%">
+                <li class="flex flex-col p-6 bg-white border-2 border-primary rounded-2xl shadow-lg origin-top dark:bg-black dark:text-white dark:border-primary-dark" animate="fadeGrowIn" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="top 50%">
                     <div class="grow">
                         <div class="flex flex-wrap items-center justify-between gap-2">
                             <h3 class="text-xl font-semibold">Professional</h3>
@@ -243,7 +243,7 @@
                     </div>
                     <a href="#" class="btn btn-xl primary w-full justify-center mt-12">Get Started</a>
                 </li>
-                <li class="flex flex-col p-6 text-white bg-primary border-2 border-primary rounded-2xl shadow-glow shadow-primary dark:bg-primary-dark dark:border-primary-dark dark:text-black dark:shadow-primary-dark" animate="fadeSlideGrowInRight" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="top 50%">
+                <li class="flex flex-col p-6 text-white bg-primary border-2 border-primary rounded-2xl shadow-glow shadow-primary origin-top dark:bg-primary-dark dark:border-primary-dark dark:text-black dark:shadow-primary-dark" animate="fadeSlideGrowInRight" animate-onscroll animate-onscroll.start="top bottom" animate-onscroll.end="top 50%">
                     <div class="grow">
                         <div class="flex flex-wrap items-center justify-between gap-2">
                             <h3 class="text-xl font-semibold">Enterprise</h3>
@@ -317,12 +317,12 @@
     <section>
         <div class="container">
             <div class="max-w-4xl mx-auto text-center">
-                <p class="text-primary font-semibold dark:text-primary-dark">Enhance Your Interface Effortlessly</p>
-                <h2 class="text-3xl font-semibold md:text-5xl mt-4">Ready to Transform Your UI?</h2>
-                <p class="mt-8 text-lg opacity-60">Discover the power of our UI components to create stunning, user-friendly interfaces. Whether you’re starting a new project or looking to enhance an existing one, our components are designed to streamline your workflow and elevate your design. Take the next step towards exceptional user experiences with our intuitive tools and extensive library of customizable elements.</p>
-                <div class="flex flex-col items-center gap-3 mt-10">
-                    <a href="#" class="btn btn-lg font-lexend">Sign Up</a>
-                    <a href="#" class="btn btn-lg primary font-lexend">Contact Us</a>
+                <p class="clip-full text-primary font-semibold dark:text-primary-dark" animate="fadeDropTextIn" animate-onscroll="transform-ui" animate-onscroll.end="top 40%">Enhance Your Interface Effortlessly</p>
+                <h2 class="clip-full text-3xl font-semibold md:text-5xl mt-4" animate="fadeDropTextIn" animate-onscroll="transform-ui">Ready to Transform Your UI?</h2>
+                <p class="mt-8 text-lg opacity-60" animate="fadeIn" animate-onscroll animate-onscroll.end="top 50%">Discover the power of our UI components to create stunning, user-friendly interfaces. Whether you’re starting a new project or looking to enhance an existing one, our components are designed to streamline your workflow and elevate your design. Take the next step towards exceptional user experiences with our intuitive tools and extensive library of customizable elements.</p>
+                <div class="clip-full flex flex-col items-center gap-3 p-2 mt-10" animate-onscroll.trigger="transform-ui-ctas" animate-onscroll.start="top bottom" animate-onscroll.end="top 75%">
+                    <a href="#" class="btn btn-lg font-lexend" animate="fadeDropGrowIn" animate-onscroll="transform-ui-ctas">Sign Up</a>
+                    <a href="#" class="btn btn-lg primary font-lexend" animate="fadeDropGrowIn" animate-onscroll="transform-ui-ctas">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -331,11 +331,11 @@
         <img src="{{ asset('assets/images/samples/backdrop.jpg') }}" alt="Laptop and mobile" class="absolute z-[1] inset-0 object-cover w-full h-full mix-blend-exclusion opacity-50" />
         <div class="absolute z-[2] inset-0 bg-gradient-to-b from-white to-transparent h-full w-full dark:from-black"></div>
         <div class="container relative z-[3]">
-            <div class="max-w-4xl mx-auto text-center">
+            <div class="clip-full max-w-4xl mx-auto text-center" animate="clipDropIn" animate-onscroll>
                 <p class="text-primary font-semibold dark:text-primary-dark">Explore and Innovate</p>
                 <h2 class="text-3xl font-semibold mt-4">Latest Insights and Tutorials</h2>
             </div>
-            <ul class="blog-list">
+            <ul class="blog-list" animate="fadeIn" animate-onscroll animate-onscroll.end="top 50%">
                 <x-lists.blog-list-item href="#" :src="asset('assets/images/samples/blog/ui.jpg')" alt="Laptop and mobile">
                     <x-slot:prefix>Stay Ahead in UI</x-slot:prefix>
                     <x-slot:category>Industry Trends</x-slot:category>

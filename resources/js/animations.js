@@ -13,6 +13,8 @@ class Animations {
 
     defaultDuration = 0.2;
     defaultStagger = 0.03;
+    defaultStart = 'top 90%';
+    defaultEnd = 'top 30%';
 
     constructor() {
         this.init();
@@ -80,16 +82,17 @@ class Animations {
     startOnscrollAnimations() {
         Object.entries(this.onScroll).forEach(([animationName, elements]) => {
             const trigger = document.querySelector(`[animate-onscroll\\.trigger="${animationName}"]`) ?? elements[0][0];
-            const start = trigger.getAttribute('animate-onscroll.start') ?? 'top 90%';
-            const end = trigger.getAttribute('animate-onscroll.end') ?? 'top 30%';
+            const start = trigger.getAttribute('animate-onscroll.start') ?? this.defaultStart;
+            const end = trigger.getAttribute('animate-onscroll.end') ?? this.defaultEnd;
             const pin = trigger.hasAttribute('animate-onscroll.pin');
+
             const timeline = gsap.timeline({
                 scrollTrigger: {
                     trigger,
                     start,
                     end,
                     scrub: 2,
-                    pin
+                    pin,
                     // markers: true,
                 }
             });
@@ -154,6 +157,12 @@ class Animations {
             }, 500);
         });
     }
+
+    clipDropIn(element, GSAP = gsap, options = {}) {
+        options = { ...options, ...this.getOptions(element) };
+
+        GSAP.from(element, { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)', y: '-50%', opacity: 0, ease: 'power2.out', ...options });
+    }
     
 
     clipOut(element, GSAP = gsap, options = {}) {
@@ -162,6 +171,7 @@ class Animations {
         GSAP.to(element, { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)', opacity: 0, ease: 'power2.out', ...options });
 
     }
+
     clipRiseIn(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 

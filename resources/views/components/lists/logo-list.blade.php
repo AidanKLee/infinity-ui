@@ -1,4 +1,4 @@
-<div @attributes(null, ['name'], 'pointer-events-none') x-data="logo_list" @resize.window="handleWindowResize" @click.outside="close">
+<div @attributes(null, ['name'], 'pointer-events-none') x-data="logo_list" @resize.window="handleWindowResize" @scroll.window="handleWindowScroll" @click.outside="close">
     <ul class="pointer-events-auto grid grid-cols-2 gap-5 xs:gap-10 md:grid-cols-4 mt-8 sm:mt-20 gap-y-5 sm:gap-x-20 md:gap-10 lg:gap-20 xl:gap-24 2xl:gap-36 3xl:gap-56">
         @isset($slot)
             {{ $slot }}
@@ -36,6 +36,15 @@
                                 this.$refs.slide.style.height = this.$refs.slide.scrollHeight + 'px'
 
                                 this.$refs.slide.style.transition = ''
+                            }
+                        },
+
+                        handleWindowScroll() {
+                            if (
+                                this.show && 
+                                (this.$refs.slide.getBoundingClientRect().bottom < 0 || this.$refs.slide.getBoundingClientRect().top > window.innerHeight)
+                            ) {
+                                this.close()
                             }
                         },
     
