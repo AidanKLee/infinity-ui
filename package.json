@@ -16,6 +16,7 @@
     "dependencies": {
         "gsap": "^3.12.5",
         "lenis": "^1.1.6",
+        "pace-js": "^1.2.4",
         "sass": "^1.77.6"
     }
 }

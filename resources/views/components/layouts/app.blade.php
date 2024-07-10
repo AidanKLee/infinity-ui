@@ -16,6 +16,8 @@
         @livewireStyles
     </head>
     <body class="relative font-sans antialiased bg-white text-black dark:text-white dark:bg-black" x-data>
+        @stack('preloader')
+
         @isset($slot)
             {{ $slot }}
         @endisset
@@ -23,8 +25,8 @@
         @stack('modals')
         @stack('mobile-menu')
         
+        @vite(['resources/js/app.js'])
         @stack('scripts')
         @livewireScripts
-        @vite(['resources/js/app.js'])
     </body>
 </html>

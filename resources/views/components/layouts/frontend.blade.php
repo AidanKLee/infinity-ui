@@ -197,6 +197,8 @@
         @endisset
     </main>
     <x-footer.frontend />
+
+    <x-preloaders.frontend />
         
     <x-notifications.container animate="fadeIn" animate-timeline="layout" animate-duration="1">
         <x-notifications.toast icon="success" closeable index="0">

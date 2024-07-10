@@ -4,7 +4,11 @@ import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
+window.gsap = gsap;
+
 class Animations {
+    pauseable = [];
+
     nameLessOnScrollCounter = 0;
 
     standard = [];
@@ -73,6 +77,27 @@ class Animations {
             document.querySelectorAll('[animate-bubbles]').forEach((element) => {
                 this.bubbles(element);
             });
+
+            const preloader = document.querySelector('[preloader]');
+
+            if (preloader) {
+                this.pause();
+            }
+        });
+    }
+
+    /**
+     * Global functions
+     */
+    pause() {
+        this.pauseable.forEach((animation) => {
+            animation.pause();
+        });
+    }
+
+    play() {
+        this.pauseable.forEach((animation) => {
+            animation.play();
         });
     }
 
@@ -107,12 +132,17 @@ class Animations {
         const isSmoothScroll = document.querySelector(['[data-smooth-scroll]']);
 
         if (isSmoothScroll) {
-            const lenis = new Lenis({
+            window.smoothScroll = new Lenis({
                 duration: 1.8
             })
+            
+            window.smoothScroll.enabled = true;
 
             function raf(time) {
-                lenis.raf(time)
+                if (window.smoothScroll.enabled) {
+                    window.smoothScroll.raf(time)
+                }
+
                 requestAnimationFrame(raf)
             }
 
@@ -122,7 +152,7 @@ class Animations {
 
     startStandardAnimations() {
         this.standard.forEach(([element, type, duration]) => {
-            this[type](element, duration);
+            this.animations.push(this[type](element, duration));
         });
     }
 
@@ -133,6 +163,8 @@ class Animations {
             elements.forEach(([element, type]) => {
                 this.addToTimeline(timeline, element, type);
             });
+
+            this.pauseable.push(timeline);
         });
     }
 
@@ -161,21 +193,21 @@ class Animations {
     clipDropIn(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.from(element, { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)', y: '-50%', opacity: 0, ease: 'power2.out', ...options });
+        return GSAP.from(element, { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)', y: '-50%', opacity: 0, ease: 'power2.out', ...options });
     }
     
 
     clipOut(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.to(element, { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)', opacity: 0, ease: 'power2.out', ...options });
+        return GSAP.to(element, { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)', opacity: 0, ease: 'power2.out', ...options });
 
     }
 
     clipRiseIn(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.from(element, { 
+        return GSAP.from(element, { 
             clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)', 
             y: '50%',
             opacity: 0,
@@ -187,7 +219,7 @@ class Animations {
     clipRevealRTL(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.from(element, {
+        return GSAP.from(element, {
             clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)',
             opacity: 0,
             x: '50%',
@@ -199,7 +231,7 @@ class Animations {
     clipRevealLTR(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.from(element, {
+        return GSAP.from(element, {
             clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)',
             opacity: 0,
             x: '-50%',
@@ -211,43 +243,43 @@ class Animations {
     fadeDropGrowIn(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.from(element, { opacity: 0, scale: 0, y: '-25vh', ...options });
+        return GSAP.from(element, { opacity: 0, scale: 0, y: '-25vh', ...options });
     }
 
     fadeGrowIn(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
         
-        GSAP.from(element, { opacity: 0, scale: 0.8, ...options });
+        return GSAP.from(element, { opacity: 0, scale: 0.8, ...options });
     }
 
     fadeRiseShrinkOut(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.to(element, { opacity: 0, scale: 0, y: '-25vh', ...options });
+        return GSAP.to(element, { opacity: 0, scale: 0, y: '-25vh', ...options });
     }
 
     fadeIn(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.from(element, { opacity: 0, ...options });
+        return GSAP.from(element, { opacity: 0, ...options });
     }
 
     fadeOut(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.to(element, { opacity: 0, ...options });
+        return GSAP.to(element, { opacity: 0, ...options });
     }
 
     fadeSlideGrowInLeft(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.from(element, { opacity: 0, x: '-100vw', scale: 0, ease: 'power2.out', ...options });
+        return GSAP.from(element, { opacity: 0, x: '-100vw', scale: 0, ease: 'power2.out', ...options });
     }
 
     fadeSlideGrowInRight(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.from(element, { opacity: 0, x: '100vw', scale: 0, ease: 'power2.out', ...options });
+        return GSAP.from(element, { opacity: 0, x: '100vw', scale: 0, ease: 'power2.out', ...options });
     }
 
     fadeDropTextIn(element, GSAP = gsap, options = {}) {
@@ -255,7 +287,7 @@ class Animations {
         const chars = element.querySelectorAll('.char');
         options = { ...options, ...this.getOptions(element, true) };
 
-        GSAP.from(chars, { opacity: 0, y: '-150%', ...options });
+        return GSAP.from(chars, { opacity: 0, y: '-150%', ...options });
     }
 
     fadeRiseTextIn(element, GSAP = gsap, options = {}) {
@@ -264,7 +296,7 @@ class Animations {
         options = { ...options, ...this.getOptions(element, true) };
         const duration = element.getAttribute('animate-duration') ?? this.defaultDuration;
 
-        GSAP.from(chars, { opacity: 0, y: '150%', ...options });
+        return GSAP.from(chars, { opacity: 0, y: '150%', ...options });
     }
 
     fadeTextIn(element, GSAP = gsap, options = {}) {
@@ -272,19 +304,19 @@ class Animations {
         const chars = element.querySelectorAll('.char');
         options = { ...options, ...this.getOptions(element, true) };
 
-        GSAP.from(chars, { opacity: 0, ...options });
+        return GSAP.from(chars, { opacity: 0, ...options });
     }
 
     parallax(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.to(element, { y: '-100vh', ease: 'none', ...options });
+        return GSAP.to(element, { y: '-100vh', ease: 'none', ...options });
     }
 
     slideInLeft(element, GSAP = gsap, options = {}) {
         options = { ...options, ...this.getOptions(element) };
 
-        GSAP.from(element, { x: '-100vw', ease: 'power2.out', ...options });
+        return GSAP.from(element, { x: '-100vw', ease: 'power2.out', ...options });
     }
 
     /**
@@ -426,4 +458,4 @@ class Animations {
       }
 }
 
-new Animations();
+window.animations = new Animations();

@@ -16,7 +16,7 @@
                     <p class="text-lg mt-8 opacity-60">Discover a collection of premium UI components that speed up your development process.</p>
                 </div>
                 <div class="flex flex-col items-center gap-3 mt-10">
-                    <a href="#" class="btn btn-lg font-lexend" animate="slideInLeft" animate-timeline="onload" animate-duration="0.5">Get Started</a>
+                    <a href="/404" class="btn btn-lg font-lexend" animate="slideInLeft" animate-timeline="onload" animate-duration="0.5">Get Started</a>
                     <a href="#" class="btn btn-lg primary font-lexend" animate="slideInLeft" animate-timeline="onload" animate-duration="0.5">Browse Components</a>
                 </div>
             </div>
