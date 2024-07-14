@@ -46,10 +46,10 @@ export default {
                     DEFAULT: "#C0392A",
                 },
                 light: {
-                    DEFAULT: "#F3F7FA",
+                    DEFAULT: "#F4F4F4",
                 },
                 dark: {
-                    DEFAULT: "#2F3842",
+                    DEFAULT: "#262B31",
                 },
                 white: {
                     DEFAULT: "#FDFDFD",

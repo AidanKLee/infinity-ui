@@ -35,3 +35,5 @@ if (config('app.env') === 'local') {
         return abort(503);
     })->name('503');
 }
+
+require __DIR__.'/backend.php';

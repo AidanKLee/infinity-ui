@@ -7,7 +7,8 @@ use Livewire\Component;
 
 class Auth extends Component
 {
-    public $fullWidth;
+    public bool|null $fullWidth;
+    public string $class;
     
     public function handleLogout()
     {

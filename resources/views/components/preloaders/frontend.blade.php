@@ -1,11 +1,11 @@
 @push('preloader')
     @once
         <div class="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none" x-data="preloader" preloader="1000">
-            <div class="absolute top-0 left-0 h-full w-[calc(20%+1px] inset-0 bg-light origin-top dark:bg-dark" data-preloader-strip></div>
-            <div class="absolute top-0 left-[20%] h-full w-[calc(20%+1px] inset-0 bg-light origin-top dark:bg-dark" data-preloader-strip></div>
-            <div class="absolute top-0 left-[40%] h-full w-[calc(20%+1px] inset-0 bg-light origin-top dark:bg-dark" data-preloader-strip></div>
-            <div class="absolute top-0 left-[60%] h-full w-[calc(20%+1px] inset-0 bg-light origin-top dark:bg-dark" data-preloader-strip></div>
-            <div class="absolute top-0 left-[80%] h-full w-[calc(20%+1px] inset-0 bg-light origin-top dark:bg-dark" data-preloader-strip></div>
+            <div class="absolute top-0 left-0 h-full w-1/5 inset-0 bg-light origin-top dark:bg-dark" data-preloader-strip></div>
+            <div class="absolute top-0 left-[20%] h-full w-1/5 inset-0 bg-light origin-top dark:bg-dark" data-preloader-strip></div>
+            <div class="absolute top-0 left-[40%] h-full w-1/5 inset-0 bg-light origin-top dark:bg-dark" data-preloader-strip></div>
+            <div class="absolute top-0 left-[60%] h-full w-1/5 inset-0 bg-light origin-top dark:bg-dark" data-preloader-strip></div>
+            <div class="absolute top-0 left-[80%] h-full w-1/5 inset-0 bg-light origin-top dark:bg-dark" data-preloader-strip></div>
             <div class="relative z-10 flex flex-col items-center justify-center" data-preloader-data>
                 <div class="relative">
                     <x-icons.spinner class="w-20 h-20 text-primary dark:text-primary-dark animate-spin" />

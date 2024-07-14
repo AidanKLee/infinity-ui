@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/sass/app.scss'])
         @livewireStyles
     </head>
-    <body class="relative font-sans antialiased bg-white text-black dark:text-white dark:bg-black" x-data>
+    <body class="relative font-sans antialiased bg-white text-black dark:text-white dark:bg-black has-[[data-backend]]:bg-light dark:has-[[data-backend]]:bg-dark" x-data>
         @stack('preloader')
 
         @isset($slot)

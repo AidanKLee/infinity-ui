@@ -1,5 +1,5 @@
-<div @attributes class="relative flex flex-col min-h-screen" animate="fadeIn" animate-timeline="layout" animate-duration="2" data-smooth-scroll>
-    <x-header.frontend position="absolute">
+<div @attributes(null, null, ['relative flex flex-col min-h-screen']) animate="fadeIn" animate-timeline="layout" animate-duration="2" data-smooth-scroll data-frontend>
+    <x-header.frontend class="absolute z-[1] bg-gradient-to-r from-dark/2.5 to-dark/5 dark:from-light/2.5 dark:to-light/5" position="absolute">
         <x-slot name="left">
             <div class="flex items-stretch gap-8">
                 <a class="group flex items-center gap-2 w-fit focus:outline-none" href="{{ route('home') }}">
